@@ -1,0 +1,14 @@
+.schema-risks {
+    position: relative;
+    img {
+        filter: invert(1);
+        height: 30px;
+        top: 10px;
+        right: 10px;
+        position: absolute;
+        cursor: pointer;
+        &:hover {
+            opacity: 0.7;
+        }
+    }
+}

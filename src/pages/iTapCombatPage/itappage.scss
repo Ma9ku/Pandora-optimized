@@ -1,0 +1,219 @@
+.itap-tool-wraper {
+    height: calc(100vh - 95px); /* Full viewport height */
+    overflow: hidden;
+    position: relative;
+    // * {
+    //     user-select: none;
+    // }
+    .warning-block {
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        transform: translate(-50%);
+        background-color: rgba(211, 55, 55, 0.603);
+        transition: all 0.5s ease;
+        padding: 20px;
+        padding-right: 4 0px;
+        border-radius: 7px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        svg {
+            width: 30px;
+        }
+        a {
+            color: white;
+            font-size: 16px;
+            font-weight: 400;
+        }
+    }
+    .left-bar-container-button {
+        user-select: none;
+
+        position: absolute;
+        z-index: 1;
+        height: 100%; /* Full height */
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        .left-bar-container {
+            width: 400px; /* Fixed width */
+            border-right: 1px solid #414141;
+            background: #0D0f11;
+            overflow: hidden;
+            transition: all 0.4s ease;
+
+            &.closed {
+                width: 0;
+                overflow: hidden;
+            }
+        }
+        
+        .open-lb-button {
+            cursor: pointer;
+
+            width: 10px;
+
+            display: flex; // Use flexbox
+            align-items: center; // Align items vertically in the center
+            justify-content: center; // Center horizontally if needed
+            .default-svg {
+                filter: invert(1);
+                &.opened, &.closed {
+                    display: block; // Show by default
+                }
+            }
+            
+            
+            
+            .hidden-svg {
+                display: none; // Hide by default
+            }
+        
+            
+            &:hover {
+                svg {
+                    // position: absolute;
+                    opacity: 1;
+                    transition: all 0.2s ease;
+                    
+                }
+            }
+            svg {
+                opacity: 0.4;
+        
+
+                // &.wide {
+                //     margin-left: -5px;
+                // }
+            }
+        }
+        
+        .graph-view-state {
+            background-color: #0D0f11;
+            border: 1px solid #414141;
+            padding: 5px;
+            border-radius: 9px;
+            position: absolute;
+            top: 10px;
+            // width: 10px;
+            left: 410px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+
+            > div {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 4px;
+                border-radius: 5px;
+                filter: invert(1);
+
+                // transition: all 0.4s ease;
+                > img {
+                    opacity: 0.5;
+                    width: 30px;
+                }
+                
+                &:hover {
+                    background-color: #00000041;
+                    // transition: all 0.1s ease;
+
+                    >img {
+                        opacity: 0.7;
+                    }
+                }
+                
+                &.active {
+                    background-color: #00000041;
+                }
+
+
+            }
+
+            transition: all 0.4s ease;
+
+            &.closed {
+                left: 10px;
+            }
+        }
+
+        .table-view-state, .download-state, .delete-state {
+            background-color: #0D0f11;
+            border: 1px solid #414141;
+            padding: 5px;
+            border-radius: 9px;
+            position: absolute;
+            top: 110px;
+            // width: 10px;
+            left: 410px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            margin-top: 40px;
+
+            > div {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 4px;
+                border-radius: 5px;
+                filter: invert(1);
+                // transition: all 0.4s ease;
+                > img {
+                    opacity: 0.5;
+                    width: 30px;
+                }
+                
+                &:hover {
+                    background-color: #00000041;
+                    // transition: all 0.1s ease;
+
+                    >img {
+                        opacity: 0.7;
+                    }
+                }
+                
+                &.active {
+                    background-color: #00000041;
+                }
+
+
+            }
+
+            transition: all 0.4s ease;
+
+            &.closed {
+                left: 10px;
+            }
+        }
+
+        .download-state {
+            top: 170px;
+        }
+
+        .delete-state {
+            top: 230px;
+        }
+
+    }
+    
+    .graph-container {
+        flex-grow: 1; /* Take remaining space */
+        height: 100%; /* Full height */
+        /* Add other styles as needed */
+
+        .no-results {
+            position: absolute;
+            left: 50%;
+            top: 47%;
+            transform: translate(-50%);
+            color: rgba(255, 255, 255, 0.26);
+            font-family: Ubuntu;
+            font-size: 30px;
+        }
+    }
+}

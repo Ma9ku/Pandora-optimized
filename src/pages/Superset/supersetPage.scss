@@ -1,0 +1,128 @@
+.supersetPage {
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+
+    font-family: 'Montserrat';
+
+    background-color: #0D0F11 !important;
+    background-image: url(./../../images/bg-image.png) !important;
+    background-size: 110% !important;
+    background-position: center;
+
+    display: flex;
+    flex-direction: row;
+
+    .supersetBody {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        width: calc(100%);
+
+    }
+
+    .iframes-container {
+        position: relative;
+
+        width: 100%;
+        height: 100%;
+
+        display: flex;
+        flex-direction: column;
+
+        .selectBarOpen {
+            height: max-content;
+            padding: 15px 10px;
+            border-bottom: 1px solid #838383;
+        }
+
+        .selectBarClose {
+            height: 0px;
+            padding: 0;
+            border-bottom: none;
+
+        }
+
+        .selectBar {
+            overflow: hidden;
+            z-index: 1;
+            transition: height 0.4s linear;
+
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            width: calc(100% - 10px * 2);
+
+            background-color: #0D0F11;
+
+            display: flex;
+            flex-direction: row;
+            justify-content: start;
+            gap: 10px;
+
+
+            > div:not(:last-child) {
+                padding: 10px;
+
+                font-size: 1.1rem;
+
+                border: 1px solid #838383;
+                background-color: #1f2429;
+                border-radius: 4px;
+
+                cursor: pointer;
+
+                &:hover {
+                    background-color: #13171b;
+                    transition: background-color 0.3s linear;
+                }
+
+                &:active {
+                    background-color: rgb(31, 37, 43);
+                }
+            }
+
+            > div:last-child {
+                position: absolute;
+
+                right: 20px;
+                top: 20px;
+
+                cursor: pointer;
+            }
+        }
+
+        .iframe-items {
+            position: relative;
+
+            width: 100%;
+            height: 100%;
+            background-color: #0D0F11;
+
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+
+            > div {
+                position: absolute;
+
+                cursor: pointer;
+
+                top: 20px;
+                right: 20px;
+            }
+
+            iframe {
+                width: 100%;
+                height: 100%;
+            }
+
+            img {
+                height: 25%;
+            }
+        }
+    }
+}

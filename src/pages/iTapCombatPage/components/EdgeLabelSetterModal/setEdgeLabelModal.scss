@@ -1,0 +1,54 @@
+.edge-label-set-modal {
+    z-index: 1000;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 400px;
+
+    border: 1px solid #BEBEBE;
+    background: #F2F0EE;
+    border-radius: 9px;
+    padding: 10px;
+
+    .modal-header {
+        display: flex;
+        justify-content: space-between;
+
+        border-bottom: 1px solid #808080;
+        padding-bottom: 5px;
+        h1 {
+            font-weight: 500;
+            font-size: 18px;
+            color: #808080;
+        }
+        img {
+            opacity: 0.5;
+            cursor: pointer;
+            &:hover {
+                opacity: 0.7;
+            }
+        }
+    }
+    .modal-body {
+        padding-top: 10px;
+        .label {
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+
+            input {
+                border-radius: 5px;
+                border: 1px solid #808080;
+                padding-bottom: 4px;
+            }
+        }
+    }
+    .modal-footer {
+        text-align: end;
+        padding-top: 40px;
+    }
+
+}

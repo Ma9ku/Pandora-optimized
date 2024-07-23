@@ -1,0 +1,147 @@
+/* src/components/style.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    width: 100%;
+    font-family: Arial, sans-serif;
+}
+
+.csv-upload-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    margin-top: -50px;
+    background-color: #0d0f11;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .dropdown-button {
+    padding: 15px 20px;
+    background-color: #7e7e81;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 18px;
+  }
+  
+  .dropdown-button:hover {
+    background-color: #c9c9c9;
+  }
+  
+  .dropdown-content {
+    display: block;
+    position: absolute;
+    background-color: #f9f9f9;
+    box-shadow: 0px 8px 16px 0px rgba(62, 62, 62, 0.2);
+    z-index: 1;
+    width: 100%;
+    border-radius: 4px;
+    max-width: 600px;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: #f1f1f1;
+  }
+  
+
+.csv-upload {
+    width: 100%;
+    max-width: 600px;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.csv-upload h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: rgb(109, 109, 109);
+}
+
+.csv-upload form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.csv-upload label {
+    font-weight: bold;
+    font-size: 16px;
+    color: rgb(118, 118, 118);
+}
+
+.csv-upload input,
+.csv-upload select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    width: 100%;
+}
+
+.csv-upload button {
+    padding: 15px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+.csv-upload button:hover {
+    scale: 1.02;
+    transition: 0.3s;
+    background-color: #218838;
+}
+
+.file-drop-area {
+    border: 2px dashed #ccc;
+    border-radius: 4px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.file-drop-area:hover {
+    background-color: #f1f1f1;
+}
+
+.file-name {
+    font-size: 16px;
+    color: #333;
+}
+
+.file-message {
+    font-size: 16px;
+    color: #aaa;
+}

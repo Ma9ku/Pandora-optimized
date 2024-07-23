@@ -1,0 +1,118 @@
+.docs-card-block {
+    flex: 1 1 0;
+    overflow-y: auto;
+    max-height: 100%;
+
+    background-color: #2E3740;
+    border-radius: 10px;
+    padding: 40px 52px;
+    box-sizing: border-box;
+
+    color: var(--main-text-color);
+
+    &.secondary {
+        margin-top: 25px;
+        background-color: rgba($color: var(--main-text-color), $alpha: .2);
+    }
+
+    &.loading {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        min-height: 525px;
+    }
+
+    > div {
+
+        .title {
+            display: flex;
+            flex-direction: row;
+            gap: 7px;
+            align-items: center;
+
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba($color: var(--main-text-color), $alpha: .33);
+
+            > *:first-child {
+                font-size: 24px;
+            }
+
+            .title-text {
+                font-size: 1.1rem;
+                font-weight: 700;
+                line-height: 20.68px;
+                text-align: left;
+            }
+
+            .text-button {
+                height: 100%;
+                padding-left: 20px;
+                margin-left: 15px;
+                border-left: #585F66 solid 1px;
+                color: rgba($color: var(--main-text-color), $alpha: .5);
+
+                font-size: 1.1rem;
+                font-weight: 400;
+                line-height: 120%;
+                text-align: left;
+                text-decoration: underline;
+                cursor: pointer;
+
+                &:hover {
+                    color: rgba($color: var(--main-text-color), $alpha: .4);
+                }
+
+                &:active {
+                    color: rgba($color: var(--main-text-color), $alpha: .7);
+                }
+            }
+        }
+
+        .body {
+            margin-top: 15px;
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 30px;
+
+            .column {
+                // flex: 1;
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+
+                font-size: 0.8rem;
+
+                td {
+                    min-width: 180px;
+                    vertical-align: text-top;
+                }
+
+                table > tr:not(:first-child) > td,
+                tbody > tr:not(:first-child) > td {
+                    padding: 10px 0px;
+                }
+
+                tr > td:first-child {
+                    font-weight: 500;
+                    line-height: 16.09px;
+                    text-align: left;
+                }
+
+                tr > td:not(:first-child) {
+                    font-weight: 400;
+                    line-height: 16.09px;
+                    text-align: left;
+                    color: rgba($color: var(--main-text-color), $alpha: .7);
+                }
+
+            }
+        }
+    }
+
+    > .block+.block {
+        margin-top: 36px;
+    }
+}

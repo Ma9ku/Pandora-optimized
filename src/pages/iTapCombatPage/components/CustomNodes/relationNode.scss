@@ -1,0 +1,172 @@
+*,
+*::before,
+*::after { 
+  box-sizing: border-box;
+}
+
+.relation-node {
+    * {
+        font-family: Ubuntu;
+    }
+
+    padding: 9px;
+    border-radius: 7px;
+
+    max-width: 200px;
+
+    position: relative;
+    &:hover {
+        opacity: 0.8;
+        .node-tools-bar {
+            display: flex;
+        }
+    }
+    .node-header {
+        padding-bottom: 5px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+        padding-left: 0;
+        .rendered-label-input {
+            cursor: pointer;
+
+            text-align: left;
+            font-family: Ubuntu;
+            min-width: 280px;
+            max-width: 300px;          /* Sets the width to 100% of its container */
+            min-height: 20px;     /* Minimum height for one line of text */
+            height: auto;         /* Height auto-adjusts to the content */
+            max-width: 300px;     /* Maximum width constraint */
+            text-align: left;
+            color: white;
+            font-weight: 500;
+            background: none;
+            border: none;
+            resize: none;         /* No manual resize handle */
+            overflow: hidden;     /* Hide overflow */
+            line-height: 1;     /* Line height for text */
+            box-sizing: border-box; /* Include padding in width calculation */
+          
+            &:focus {
+              outline: none;      /* No focus outline */
+            }
+        }
+    }
+    
+    .node-body {
+        color: rgba(255, 255, 255, 0.75);
+        font-weight: 300;
+        padding-top: 5px;
+        
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        a {
+            font-size: 10px;
+            font-family: Ubuntu;
+        }
+    }
+
+    .node-tools-bar {
+        cursor: default;
+        background-color: #F2F0EE;
+        border: 1px solid #BEBEBE;
+        color: #828282;
+
+        width: max-content;
+        border-radius: 5px;
+
+        padding: 0px 5px 0 5px;
+
+        position: absolute;
+        display: none;
+        flex-direction: row;
+        gap: 2px;
+        margin-left: 80%;
+        // right: calc(- 200%);
+        top: -10px;
+        
+        > img {
+            cursor: pointer;
+            filter: invert(1);
+            opacity: 0.3;
+            
+            &:hover {
+                opacity: 0.7;
+            }
+        }
+        transition: all 0.2s ease;
+        .edit-node-properties {
+            padding: 10px;
+            // display: flex;
+            h1 {
+                text-align: left;
+                color: #828282;
+                font-size: 11px;
+                font-weight: 500;
+                
+            }
+            .list-of-properties {
+                margin-bottom: 8px;
+                margin-top: 8px;
+                max-height: 200px; 
+                overflow-y: scroll;
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+                text-align: left;
+                .prop-vision {
+                    display: flex;
+                    gap: 3px;
+                    a {
+                        font-family: Ubuntu;
+                        text-align: left;
+                        font-size: 10px;
+                    }
+                }
+            }
+            .edit-node-additional {
+                padding-top: 5px;
+                padding-bottom: 5px;
+                border-top: 1px solid #BEBEBE;
+                display: flex;
+                // justify-content: center;
+                flex-direction: column;
+                gap: 3px;
+                input {
+                    font-family: Ubuntu;
+                    font-size: 10px;
+                    max-width: 100%;
+
+                    &:focus {
+                        outline: none;
+                    }
+                }
+
+
+            }
+
+            .edit-node-footer {
+                padding-top: 5px;
+                border-top: 1px solid #BEBEBE;
+                display: flex;
+                // justify-content: center;
+                align-items: center;
+                > img {
+                    width: 20px;
+                    filter: invert(1);
+                    opacity: 0.3;
+                }
+                > a {
+                    opacity: 0.3;
+                    font-size: 10px;
+                }
+                &:hover {
+                    cursor: pointer;
+                    > img, a {
+                        opacity: 0.7;
+                    }
+                }
+            }
+        }
+    }
+}

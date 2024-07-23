@@ -1,0 +1,82 @@
+.collapsable-container {
+    width: 100%;
+    height: max-content;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    padding: 15px 20px 0px 30px;
+    border: 1px solid rgba($color: #FFF, $alpha: .2);
+    border-radius: 6px;
+    box-sizing: border-box;
+
+    > .title {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 5px;
+
+        padding-right: 5px;
+        color: #FFF;
+
+        padding-bottom: 15px;
+
+        .title-text {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 8px;
+
+            cursor: pointer;
+
+            span {
+                font-weight: 700;
+                font-size: 0.8rem;
+                line-height: 20.68px;
+                text-align: left;
+            }
+        }
+
+        &.open > *:last-child {
+            transform: rotate(-90deg);
+            font-size: 20px;
+
+        }
+
+        > *:last-child {
+            font-size: 20px;
+            cursor: pointer;
+
+            transition: transform 0.4s ease-in-out;
+            user-select: none;
+        }
+    }
+
+    .body {
+        overflow: hidden;
+        transition: height 0.3s ease, padding 0.3s ease;
+
+        &.closed {
+            height: 0;
+            padding: 0;
+            margin: 0;
+        }
+
+        &.opened {
+            height: auto;
+            padding: 15px 0;
+            margin-bottom: 30px;
+        }
+    }
+
+    .actions {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 15px;
+
+        margin-top: 40px;
+    }
+}

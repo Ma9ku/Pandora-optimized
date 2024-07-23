@@ -1,0 +1,122 @@
+.simple-table {
+    border-collapse: collapse;
+
+    
+    width: 100%;
+
+    color: #fff;
+
+    th, td {
+        padding: 15px 0px;
+    }
+
+    tbody > tr {
+
+        &:hover {
+
+            td {
+                background-color: rgba($color: #FFF, $alpha: .2);
+            }
+
+        }
+    }
+
+    button {
+        background-color: #20272C;
+
+        font-size: 0.8rem;
+        font-weight: 500;
+        line-height: 16.09px;
+        text-align: center;
+        color: #FFF;
+
+        width: 200px;
+        padding: 10px 0px;
+
+        outline: none;
+        border: none;
+        border-radius: 5px;
+
+        cursor: pointer;
+
+        &:hover {
+            background-color: #232a30;
+        }
+
+        &:active {
+            background-color: rgb(14, 19, 22);
+        }
+    }
+
+    tr > td:not(:last-child),
+    tr > th:not(:last-child) {
+        border-right: solid #2E3740 6px;
+    }
+
+    tbody > tr:not(:last-child),
+    thead > tr {
+        border-bottom: solid #2E3740 6px;
+    }
+
+    thead { 
+        > tr > th:first-child {
+            border-top-left-radius: 6px;
+        }
+
+        > tr > th:last-child {
+            border-top-right-radius: 6px;
+        }
+
+        th {
+            background-color: #111B22;
+            color: rgba($color: #FFF, $alpha: .7);
+    
+            font-size: 0.8rem;
+            font-weight: 500;
+            line-height: 16.09px;
+            text-align: center;
+
+            &[align = 'left'] {
+                text-align: left;
+                padding-left: 25px;
+            }
+
+            &[align = 'right'] {
+                text-align: left;
+                padding-right: 25px;
+            }
+        }
+    }
+
+    tbody {
+        td {
+            background-color: rgba($color: #FFF, $alpha: .1);
+            text-align: center;
+
+            font-size: 0.8rem;
+            font-weight: 500;
+            line-height: 16.09px;
+            text-align: center;
+
+            &[align = 'left'] {
+                text-align: left;
+                padding-left: 25px;
+            }
+
+            &[align = 'right'] {
+                text-align: left;
+                padding-right: 25px;
+            }
+        }
+
+        > tr:last-child {
+            > td:first-child {
+                border-bottom-left-radius: 6px;
+            }
+
+            > td:last-child {
+                border-bottom-right-radius: 6px;
+            }
+        }
+    }
+}

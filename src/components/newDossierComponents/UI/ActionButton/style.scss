@@ -1,0 +1,21 @@
+.action-button {
+    padding: 13px 16px;
+    min-width: 200px;
+    color: #FFFFFF;
+    font-size: 1rem;
+    background-color: #20272C;
+
+    outline: none;
+    border: none;
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    &:hover {
+        background-color: #232a30;
+    }
+
+    &:active {
+        background-color: rgb(14, 19, 22);
+    }
+}

@@ -1,0 +1,61 @@
+@mixin inputLabel {
+    display: flex;
+    flex-direction: column;
+
+    min-width: max-content;
+    // max-width: 800px;
+
+    label {
+        margin-left: 1px;
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 18px;
+        // text-transform: uppercase;
+
+        color: #838383;
+    }
+
+    input {
+        box-sizing: border-box;
+        border-radius: 2px;
+        border: 1px solid #8F8F8F;
+        background: #FFFFFF;
+
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 600;
+        text-transform:uppercase;
+        
+        font-size: .9rem;
+        color: #ffffff;
+
+        padding: 3px 0px 3px 8px;
+    }
+}
+
+.left-bottom-section {
+    overflow: hidden;
+    * {
+        overflow: hidden;
+    }
+
+    padding: 20px;
+    
+    .other-line {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        overflow: visible;
+        
+        // div {
+        //     @include inputLabel
+        // }
+    }
+}
+
+.bumber {
+    border-left: 1px solid rgba(134, 134, 134, 0.9);
+    padding-left: 10px;
+}

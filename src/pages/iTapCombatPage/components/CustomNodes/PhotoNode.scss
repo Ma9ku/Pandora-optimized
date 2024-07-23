@@ -1,0 +1,61 @@
+.photo-node {
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    transition: width 0.2s, height 0.2s;
+  }
+  
+  .node-header-with-onlyPhoto {
+    position: relative;
+    img {
+      display: block;
+      width: 100%; /* Ensure the image takes up the full width of the container */
+      height: auto; /* Maintain aspect ratio */
+    }
+    .dot {
+      width: 10px; /* Size of the dot */
+      height: 10px;
+      background-color: gray; /* Color of the dot */
+      border-radius: 50%;
+      position: absolute;
+      top: -5px; /* Adjust position to be half inside and half outside */
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+  
+  .large-button {
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 8px;
+    padding: 8px;
+    background-color: rgba(222, 0, 0, 0.75);
+    
+    border-radius: 50%;
+    transition: background-color 0.3s;
+    &:hover {
+        background-color: rgb(145, 0, 0);
+    }
+  }
+  
+  .small-button {
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 8px;
+    padding: 8px;
+    background-color: rgba(222, 0, 0, 0.75);
+
+    border-radius: 100%;
+    transition: background-color 0.3s;
+    &:hover {
+      background-color: rgb(145, 0, 0);
+    }
+  }
+  

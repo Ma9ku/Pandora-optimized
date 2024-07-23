@@ -1,0 +1,118 @@
+.menu-bar {
+    margin-left: 0 !important;
+    // height:auto;
+    margin-top: 0 !important;
+}
+.menu-text{
+    font-size: 14px !important;
+}
+.menu-open {
+        width: 40px;
+        height: 100%;
+
+        // background-color: #2972bb90;
+        transition: width .3s ease-in-out, background-color .5s ease-in-out;
+
+        // &:hover {
+        //     background-color: #7b8593;
+        //     transition: background-color .5s ease-in-out;
+        // }
+
+        cursor: pointer;
+
+        position: absolute;
+        // display: block;
+        left: 0px;
+    }
+
+    .menu-bar {
+        // z-index: 100;
+
+        overflow: hidden !important;
+
+        // position: relative;
+        width: 0;
+        margin-left: 20px;
+        margin-bottom: 20px;
+
+        background-color: #0D0F11;
+        display: block;
+
+        transition: width .3s ease-in-out, padding .3s ease-in-out;
+
+        .menu-body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+
+            // border: 1px solid red;
+            height: 70%;
+            padding: 10px;
+
+            > div:nth-child(1) {
+                padding-top: 40px;
+
+                display: flex;
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            .menu-name {
+                span:nth-child(1) {
+                    font-weight: bold;
+                    font-size: 16px;
+                }
+
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .menu-buttons {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+
+                div {
+                    font-size: 16px;
+                    color: white;
+                    background-image: url('./../../background/block1back.png');
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    // background: radial-gradient(110.65% 7956.71% at 10.63% 20.65%, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.6) 100%);
+                    padding: 10px;
+                    border-radius: 4px;
+
+                    &:hover {
+                        background: radial-gradient(110.65% 7956.71% at 10.63% 20.65%, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.4) 100%);
+                        transition: all 0.4s ease-in-out;
+                    }
+                }
+
+                a {
+                    color: white;
+                }
+
+                > div {
+                    cursor: pointer;
+                }
+            }
+
+            .menu-logout {
+                a {
+                    font-weight: bold;
+                    color: rgb(153, 153, 153);
+                }
+            }
+        }
+
+        .menu-close {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+
+            cursor: pointer;
+            
+        }
+    }

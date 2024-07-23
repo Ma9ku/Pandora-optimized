@@ -1,0 +1,200 @@
+.newsPage {
+
+    background-color: white;
+    color: black;
+
+    display: flex;
+
+    flex-direction: column;
+
+    .newsBody {
+        width: 90%;
+        
+        margin: 0 auto;   
+        padding: 40px 0px;
+
+        display: flex;
+        flex-direction: column;
+
+        // gap: 40px;
+    }
+
+    .newsHeader {
+        position: relative;
+
+        border-bottom: 3px solid #A4A7AC;
+        padding-bottom: 60px;
+        // margin-bottom: 40px;
+
+        .addArticle {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+        }
+    }
+
+    .mainNewsBlock {
+        // border: 1px solid red;
+        font-family: 'Montserrat', sans-serif;
+
+        > h1 {
+            width: 80%;
+            font-size: 30px;
+            font-weight: regular;
+            line-height: 40px;
+
+            margin-bottom: 10px;
+        }
+
+        > h6 {
+            font-size: 18px;
+            font-weight: lighter;
+            color: #838383;
+
+            margin-bottom: 30px;
+        }
+
+        > p {
+            font-size: 24px;
+            font-weight: light;
+            line-height: 28px;
+            text-align: justify;
+
+            margin-bottom: 20px;
+        }
+
+        .quote {
+            padding: 15px 22px;
+
+            background-color: #F2F2F2;
+            border-radius: 8px;
+
+            p {
+                border-left: 3px solid #5A636A;
+
+                padding: 10px 20px;
+
+                font-size: 24px;
+                font-weight: light;
+                line-height: 28px;
+                text-align: justify;
+
+            }
+
+            margin-bottom: 30px;
+        }
+
+        .poster {
+            width: 100%;
+            height: 500px;
+
+            margin-bottom: 30px;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+
+                
+            }
+        }
+
+        .readMore {
+            font-size: 18px;
+
+            > div:first-child {
+                
+                margin-bottom: 10px;
+            }
+
+            ul {
+                padding-left: 40px;
+
+                li {
+                    display: list-item;
+                    line-height: 26px;
+
+                    * {color: black;}
+                }
+            }
+
+            // margin-bottom: 40px;
+        }
+    }
+
+    .otherNews {
+        margin-top: 60px;
+
+        background-color: white;
+
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+
+        .articleCard {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            // gap: 20px;
+
+            border-radius: 8px;
+            background-color: #eeeeee;
+
+            min-height: 220px;
+            width: 100%;
+
+            box-shadow: 0 4px 4px 2px rgba($color: #000000, $alpha: .25);
+
+            .poster {
+                min-width: 40%;
+                max-width: 400px;
+                border-radius: 8px;
+                height: 220px;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+
+                    margin: auto 0;
+                    
+                    border-radius: 8px;
+                }
+
+                
+            }
+
+            .info {
+                padding: 20px 30px;
+
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+
+                font-family: 'Montserrat', sans-serif;
+
+                .title {
+                    font-size: 20px;
+                    margin-bottom: 20px;
+                    font-weight: bold;
+                    color: black;
+                }
+
+                .desc {
+                    font-size: 18px;
+                    line-height: 20px;
+                    text-align: justify;
+                    color: black;
+
+                }
+
+                .date {
+                    font-size: 18px;
+                    font-weight: lighter;
+                    color: #838383;
+
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,174 @@
+.profilePage {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+
+    .errorMessage {
+        color: #565656;
+        align-self: center;
+    }
+    
+    > .profilePageBody {
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+        padding: 60px 150px;
+        width: 100%;
+    }
+
+    .mainInfo {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+
+        img {
+            min-width: 250px;
+
+        }
+
+        > div {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+
+            div:nth-child(1) {
+                font-size: 24px;
+                color: #fff;
+
+            }
+
+            div {
+                font-size: 18px;
+                font-weight: 500;
+                color: #ACACAC;
+
+                span {
+                    font-weight: 300;
+                    color: #fff;
+
+                }
+            }
+        }
+    }
+
+    .profileTabs {
+
+        .tab-wrap {
+            height: 50vh;
+
+            .tab__content {
+                height: 80%;
+            }
+        }
+
+        .tab {
+            display: none;
+            // height: 10px;
+            $max-tab-count: 9;
+            $tab-wrap-border-radius: 2px;
+        
+            @for $i from 1 through $max-tab-count {
+                &:checked:nth-of-type(#{$i})~.tab__content:nth-of-type(#{$i}) {
+                    opacity: 1;
+                    position: relative;
+                    top: 0;
+                    z-index: 2;
+                    
+                }
+        
+                & .tab__result:nth-of-type(#{$i}) {
+                    z-index: 100;
+                }
+            }
+        
+            &:first-of-type:not(:last-of-type)+label {
+                border-top-right-radius: 2;
+                border-bottom-right-radius: 0;
+            }
+        
+            &:not(:first-of-type):not(:last-of-type)+label {
+                border-radius: 2;
+            }
+        
+            &:last-of-type:not(:first-of-type)+label {
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+            }
+        
+            &:checked+label {
+                color: #FFFFFF;
+                box-shadow: none;
+                border: 1px solid #565656;
+        
+                border-radius: 2px 2px 0px 0px;
+                border-bottom: none;
+                cursor: default;
+        
+            }
+        
+            +label {
+                box-shadow: 0 -1px 0 #565656 inset;
+                cursor: pointer;
+                display: block;
+                text-decoration: none;
+                color: #333;
+                flex-grow: 3;
+                text-align: center;
+                user-select: none;
+                text-align: center;
+                font-weight: 500;
+                height: 35px;
+                box-sizing: border-box;
+                padding: 10px;
+        
+            }
+        
+            &__content {
+                padding: 30px 25px;
+                background-color: transparent;
+                position: absolute;
+                width: 100%;
+                z-index: -1;
+                opacity: 0;
+                left: 0;
+                border-radius: $tab-wrap-border-radius;
+                border: 1px solid #565656;
+                border-top: none;
+                border-radius: 0px 0px 2px 2px;
+            }
+        }
+    }
+    
+    @mixin tab_content_flex_col {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .tab1_content {
+        @include tab_content_flex_col();
+        gap: 10px;
+
+        > div {
+            font-size: 20px;
+            color: #ACACAC;
+            font-weight: 500;
+
+            span {
+                color: #fff;
+                font-weight: 300;
+            }
+        }
+        
+    }
+
+    .tab2_content {
+        @include tab_content_flex_col();
+        gap: 30px;
+        
+        .title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #888888;
+        }
+    }
+}

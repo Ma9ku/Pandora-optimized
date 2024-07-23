@@ -1,0 +1,59 @@
+.new-dosie-page {
+    &.dark {
+        --main-bg-color: '#20272C';
+        --secondary-bg-color: '#2E3740';
+
+        --main-text-color: '#FFF';
+        --main-text-color-faded: '';
+    }
+
+    &.light {
+        --main-bg-color: '#E7E9EC';
+        --secondary-bg-color: '#F4F4F5';
+
+        --main-text-color: '#000';
+        --main-text-color-faded: '';
+    }
+
+    position: relative;
+    width: 100%;
+
+    padding: 80px 70px 330px 70px;
+    box-sizing: border-box;
+
+    background-color: var(--main-background-color);
+
+    font-family: Ubuntu;
+
+    .change-theme-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+
+        > * {
+            font-size: 20px;
+            cursor: pointer;
+        }
+    }
+
+    .row-info {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+
+        @media screen and (max-width: 1000px) {
+            flex-direction: column;
+        }
+
+        &:first-child {
+
+            @media screen and (max-width: 1000px) {
+                max-height: max-content;
+            }
+        }
+
+        &+.row-info {
+            margin-top: 21px;
+        }
+    }
+}

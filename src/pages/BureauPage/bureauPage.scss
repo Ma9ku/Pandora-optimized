@@ -1,0 +1,217 @@
+$max-tab-count: 2;
+$tab-wrap-border-radius: 2px;
+
+.bureauPage {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+
+    .tab-wrap {
+        height: 500px !important;
+    }
+
+    .bureauTabs {
+        width: 90%;
+        height: 20%;
+        
+        margin: 0 auto;
+        padding-top: 50px;
+        padding-bottom: 50px;
+
+    }
+
+    .filterBlock {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+            
+        height: 50px !important;
+
+        padding: 0 100px;
+
+        > div:nth-child(1) {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 20px;
+
+        }
+
+        > div:nth-child(2) {
+            display: flex;
+        }
+    }
+
+    .applicantsTable {
+
+    }
+
+    .tab__content {
+        // border: 1px solid red;
+        padding: 50px 100px;
+
+        > div {
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+        }
+    }
+
+    .tab-wrap {
+        position: relative;
+    
+        max-width: 100%;
+    
+        display: flex;
+        flex-wrap: wrap;
+    
+        
+        border-radius: $tab-wrap-border-radius;
+        list-style: none;
+    }
+    
+    .tab__content {
+        background: #0D0F11 !important;
+        height: 60vh;
+        overflow-y: scroll !important; 
+        &::-webkit-scrollbar {
+            display: none;
+        }
+        -ms-overflow-style: none; 
+        scrollbar-width: none; 
+    
+        padding-top: 50px !important;
+    }
+    
+    @media only screen and (max-height: 700px) {
+        .tab__content {
+            height: 60vh;
+        }
+    }
+    
+    @media only screen and (max-height: 500px) {
+        .tab__content {
+            height: 50vh;
+        }
+    }
+    
+    @media only screen and (min-height: 1000px) {
+        .tab__content {
+            height: 70vh;
+        }
+    }
+    
+    .tab {
+        display: none;
+        // height: 10px;
+    
+        @for $i from 1 through $max-tab-count {
+            &:checked:nth-of-type(#{$i})~.tab__content:nth-of-type(#{$i}) {
+                opacity: 1;
+                position: relative;
+                top: 0;
+                z-index: 2;
+                
+            }
+    
+            & .tab__result:nth-of-type(#{$i}) {
+                z-index: 2;
+            }
+        }
+    
+        &:first-of-type:not(:last-of-type)+label {
+            border-top-right-radius: 2;
+            border-bottom-right-radius: 0;
+        }
+    
+        &:not(:first-of-type):not(:last-of-type)+label {
+            border-radius: 2;
+        }
+    
+        &:last-of-type:not(:first-of-type)+label {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+    
+        &:checked+label {
+            color: #FFFFFF;
+            box-shadow: none;
+            border: 1px solid #565656;
+    
+            border-radius: 2px 2px 0px 0px;
+            border-bottom: none;
+            cursor: default;
+    
+        }
+    
+        +label {
+            box-shadow: 0 -1px 0 #565656 inset;
+            cursor: pointer;
+            display: block;
+            text-decoration: none;
+            color: #333;
+            flex-grow: 3;
+            text-align: center;
+            user-select: none;
+            text-align: center;
+            font-weight: 500;
+            height: 35px;
+            box-sizing: border-box;
+            padding: 10px;
+    
+        }
+    
+        &__content {
+            padding: 30px 25px;
+            background-color: transparent;
+            position: absolute;
+            width: 100%;
+            z-index: -1;
+            opacity: 0;
+            left: 0;
+            border-radius: $tab-wrap-border-radius;
+            border: 1px solid #565656;
+            border-top: none;
+            border-radius: 0px 0px 2px 2px;
+        }
+    }
+    
+    // .css-8atqhb {
+    //     width: 90%;
+    // }
+    .searchPage .searchResultBlock {
+        width: 90%;
+    
+    
+        margin-left: 64px;
+        margin-top: 60px;
+        // color: white
+    
+        p {
+            font-family: 'Montserrat';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 26px;
+            line-height: 32px;
+            color: #fff;
+    
+            margin-bottom: 20px;
+        }
+    
+        table {
+            th {
+                border-right: 1px solid #6D6D6D;
+                padding: 8px 16px;
+            }
+    
+            th:last-child {
+                border-right: none;
+            }
+    
+            td {
+                padding-top: 25px;
+            }
+        }
+    }
+}

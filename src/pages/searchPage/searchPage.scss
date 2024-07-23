@@ -1,0 +1,221 @@
+body {
+    
+}
+
+.searchPage {
+    // border: 1px red solid;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+
+    font-family: 'Montserrat';
+
+    background-color: #0D0F11 !important;
+    background-image: url(./../../images/bg-image.png) !important;
+    background-size: 110% !important;
+    background-position: center;
+
+    display: flex;
+    flex-direction: row;
+    // gap: 20px;
+    
+}
+
+
+
+.searchtabs {
+    position: relative;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 2%;
+
+    
+    // border: 1px solid green;
+}
+
+.tab-label {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 18px;
+    color: #7B7B7B;
+}
+
+.buttonSearch {
+    font-family: 'Montserrat';
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 18px;
+
+    text-transform: capitalize;
+
+    color: #FFFFFF;
+}
+
+.fieldText {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+
+    color: #FFFFFF;
+}
+
+$max-tab-count: 5;
+$tab-wrap-border-radius: 2px;
+
+.tab-wrap {
+    position: relative;
+
+    max-width: 100%;
+
+    display: flex;
+    flex-wrap: wrap;
+
+    
+    border-radius: $tab-wrap-border-radius;
+    list-style: none;
+}
+
+.tab__content {
+    background: #0D0F11 !important;
+    height: 70vh;
+    overflow-y: scroll !important; 
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    -ms-overflow-style: none; 
+    scrollbar-width: none; 
+
+    padding-top: 50px !important;
+}
+
+@media only screen and (max-height: 700px) {
+    .tab__content {
+        height: 55vh;
+    }
+}
+
+@media only screen and (max-height: 500px) {
+    .tab__content {
+        height: 45vh;
+    }
+}
+
+@media only screen and (min-height: 1000px) {
+    .tab__content {
+        height: 73vh;
+    }
+}
+
+.tab {
+    display: none;
+    // height: 10px;
+
+    @for $i from 1 through $max-tab-count {
+        &:checked:nth-of-type(#{$i})~.tab__content:nth-of-type(#{$i}) {
+            opacity: 1;
+            position: relative;
+            top: 0;
+            z-index: 2;
+            
+        }
+
+        & .tab__result:nth-of-type(#{$i}) {
+            z-index: 100;
+        }
+    }
+
+    &:first-of-type:not(:last-of-type)+label {
+        border-top-right-radius: 2;
+        border-bottom-right-radius: 0;
+    }
+
+    &:not(:first-of-type):not(:last-of-type)+label {
+        border-radius: 2;
+    }
+
+    &:last-of-type:not(:first-of-type)+label {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    &:checked+label {
+        color: #FFFFFF;
+        box-shadow: none;
+        border: 1px solid #565656;
+
+        border-radius: 2px 2px 0px 0px;
+        border-bottom: none;
+        cursor: default;
+
+    }
+
+    +label {
+        box-shadow: 0 -1px 0 #565656 inset;
+        cursor: pointer;
+        display: block;
+        text-decoration: none;
+        color: #333;
+        flex-grow: 3;
+        text-align: center;
+        user-select: none;
+        text-align: center;
+        font-weight: 500;
+        height: 35px;
+        box-sizing: border-box;
+        padding: 10px;
+
+    }
+
+    &__content {
+        padding: 30px 25px;
+        background-color: transparent;
+        position: absolute;
+        width: 100%;
+        z-index: -1;
+        opacity: 0;
+        left: 0;
+        border-radius: $tab-wrap-border-radius;
+        border: 1px solid #565656;
+        border-top: none;
+        border-radius: 0px 0px 2px 2px;
+    }
+}
+
+// .css-8atqhb {
+//     width: 90%;
+// }
+.searchPage .searchResultBlock {
+    width: 90%;
+
+
+    margin-left: 64px;
+    margin-top: 60px;
+    // color: white
+
+    p {
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 26px;
+        line-height: 32px;
+        color: #fff;
+
+        margin-bottom: 20px;
+    }
+
+    table {
+        th {
+            border-right: 1px solid #6D6D6D;
+            padding: 8px 16px;
+        }
+
+        th:last-child {
+            border-right: none;
+        }
+
+        td {
+            padding-top: 25px;
+        }
+    }
+}

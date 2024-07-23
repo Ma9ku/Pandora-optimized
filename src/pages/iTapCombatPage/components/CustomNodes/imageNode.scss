@@ -1,0 +1,58 @@
+.image-node-overlay {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    cursor: move; /* Добавляем курсор перетаскивания */
+    transition: transform 0.2s ease; /* Плавное переходное изменение масштаба */
+}
+
+.image-node-img {
+    max-width: 500px;
+    max-height: 500px;
+    pointer-events: none;
+}
+
+.image-node-close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: #fff;
+    color: #000;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 1001;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .image-node-img {
+    max-width: 500px;  // Максимальная ширина
+    max-height: 500px; // Максимальная высота
+    width: auto;
+    height: auto;
+  }
+  
+  .image-node-overlay {
+    user-select: none; /* Предотвращает выделение текста */
+  }
+  
+  .image-node-overlay.dragging {
+    cursor: move;
+  }
+  

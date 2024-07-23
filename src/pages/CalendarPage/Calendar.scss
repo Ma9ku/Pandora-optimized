@@ -1,0 +1,116 @@
+.calendarPage {
+    position: relative;
+
+    padding: 50px;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+
+    // background-color: gray;
+
+    overflow: hidden !important;
+}
+
+.calendarPage .calendar-container {
+    width: calc(55% - 60px);
+}
+.calendarPage .events-block {
+    width: calc(45% - 80px);
+}
+
+.calendarPage .events-block {
+    padding-top: 65px;
+
+}
+
+.calendarPage .calendar-container {
+}
+
+.event-info {
+    &:not(:last-child) {
+        border-bottom: 2px solid gray;
+    }
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+
+    // background-color: rgb(125, 125, 125);
+
+    padding: 20px;
+
+    .event-header {
+        width: 100%;
+        
+        display: flex;
+        flex-direction: column;
+        gap: 0px;
+
+        .event-date {
+            font-size: 16px;
+            font-weight: bold;
+            font-family: 'Montserrat', sans-serif;
+
+            color: rgb(83, 83, 83);
+        }
+
+        .event-title {
+            font-size: 30px;
+            font-weight: normal;
+            font-family: 'Montserrat', sans-serif;
+
+            color: white;
+        }
+    }
+
+    .event-body {
+        width: 100%;
+        // background-color: red;
+
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+
+        .event-desc {
+            font-size: 16px;
+            font-weight: normal;
+            font-family: 'Montserrat', sans-serif;
+
+            text-align: justify;
+
+            color: white;
+        }
+    }
+
+}
+
+.dialogInput {
+    // margin-top: 30px;
+    padding-left: 10px;
+    background: none;
+    color: #ffffff;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid rgb(143, 143, 143);
+    font-size: 1em;
+    transition: all ease .5s;
+
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 13px;
+}
+
+.dialogInput:focus {
+    outline: none;
+    border-bottom: 1px solid white;
+    transition: all ease .5s;
+}
+
+.today {
+}

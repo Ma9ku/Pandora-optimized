@@ -1,0 +1,70 @@
+.big-collapsable-block {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    &+.big-collapsable-block {
+        margin-top: 30px;
+    }
+
+    > .title {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        color: #FFF;
+
+        padding-bottom: 15px;
+        border-bottom: 1px solid rgba(#FFF, 0.2);
+
+        > *:first-child {
+            margin-right: 8px;
+            font-size: 20px;
+        }
+
+        .title-text {
+            font-size: 1rem;
+            font-weight: 700;
+            line-height: 20.68px;
+            text-align: left;
+            margin-right: 14px;
+
+            text-transform: uppercase;
+        }
+
+        > *:last-child {
+            font-size: 20px;
+            cursor: pointer;
+
+            transition: transform 0.2s ease-in-out;
+
+            &:hover {
+                transform: scale(120%);
+            }
+        }
+
+        &.open > *:last-child {
+            font-size: 30px;
+            transition: transform 0.2s ease-in-out;
+            cursor: pointer;
+
+            &:hover {
+                transform: scale(90%);
+            }
+        }
+    }
+
+    .body {
+        overflow: hidden;
+        transition: height 0.3s ease, padding 0.3s ease;
+
+        &.closed {
+            height: 0;
+            padding: 0;
+        }
+
+        &.opened {
+            height: auto;
+            padding: 15px 0;
+        }
+    }
+}
