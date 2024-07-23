@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
-import { HiDotsVertical, HiOutlineChevronDoubleLeft, HiOutlineChevronDoubleRight, HiOutlineChevronLeft, HiOutlineChevronRight } from "react-icons/hi";
+// import { HiDotsVertical, HiOutlineChevronDoubleLeft, HiOutlineChevronDoubleRight, HiOutlineChevronLeft, HiOutlineChevronRight } from "react-icons/hi";
 import { MdRepeatOn } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import Layout from "../../../components/eTanuComponents/layout";
@@ -99,13 +99,13 @@ const HistoryPage = () => {
           </div>
 
           <div className="page-control" >
-            <HiOutlineChevronDoubleLeft 
+            {/* <HiOutlineChevronDoubleLeft 
               onClick={() => {
                 setPage(1);
                 // updatePage(1)
               }}
-            />
-            <HiOutlineChevronLeft 
+            /> */}
+            {/* <HiOutlineChevronLeft 
               onClick={() => {
                 let newPage = page;
                 if (newPage - 1 <= 1) newPage = 1;
@@ -114,9 +114,9 @@ const HistoryPage = () => {
                 setPage(newPage);
                 // updatePage(newPage);
               }}
-            />
+            /> */}
             <div className="page-indicator">{page} - {maxPage}</div>
-            <HiOutlineChevronRight 
+            {/* <HiOutlineChevronRight 
               onClick={() => {
                 let newPage = page;
                 if (newPage + 1 >= maxPage) newPage = maxPage;
@@ -125,13 +125,13 @@ const HistoryPage = () => {
                 setPage(newPage);
                 // updatePage(newPage);
               }}
-            />
-            <HiOutlineChevronDoubleRight 
+            /> */}
+            {/* <HiOutlineChevronDoubleRight 
               onClick={() => {
                 setPage(maxPage);
                 // updatePage(maxPage);
               }}
-            />
+            /> */}
           </div>
         </div>
       </div>
@@ -205,10 +205,10 @@ const SearchCard = ({ history, onRepeatSearch }) => {
     <div className="card">
       <img src={photo} alt={date} />
       <div className="info-block">
-        <HiDotsVertical
+        {/* <HiDotsVertical
           className="hiDotsicon"
           onClick={() => setInfoOpen((prev) => !prev)}
-        />
+        /> */}
         {infoOpen ? (
           <div className="info">
             <div>Дата поиска: </div>
