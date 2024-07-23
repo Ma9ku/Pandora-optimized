@@ -15,7 +15,7 @@ function PersonCard({
 }) {
     // const { pIIN } = useData();
     // const { iin } = useParams();
-    const iin = _iin ? _iin : useParams();
+    const iin = _iin ? _iin : "";
 
     const [ isLoading, setLoading ] = useState(true);
 
