@@ -11,7 +11,7 @@ export default class TableLog extends Component {
     }
 
     // componentDidMount() {
-    //     axios.get(`http://localhost:9091/api/finpol/main/logs`)
+    //     axios.get(`http://localhost:9091/api/pandora/main/logs`)
     //       .then(res => {
     //         const logs = res.data;
     //         this.setState({ logs });

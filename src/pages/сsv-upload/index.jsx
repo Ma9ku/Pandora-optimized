@@ -43,8 +43,8 @@ const CSVUpload = () => {
 
         try {
             const url = ['add_property/person', 'add_property/company'].includes(endpoint)
-                ? `http://10.202.20.92:9091/${endpoint}/`
-                : `http://10.202.20.92:9091/${endpoint}/type=${relationshipType}/`;
+                ? `http://10.202.20.92:8081/${endpoint}/`
+                : `http://10.202.20.92:8081/${endpoint}/type=${relationshipType}/`;
 
             const response = await axios.post(url, formData, {
                 headers: {

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import authHeader from './auth-header';
 
-const API_URL = 'http://10.202.20.92:9091/api/finpol/main/';
+const API_URL = 'http://10.202.20.92:8081/api/pandora/main/';
 
 class UserService {
   getPublicContent() {
