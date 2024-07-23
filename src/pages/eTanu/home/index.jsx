@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import { FaCheckCircle } from "react-icons/fa";
 import { FiUpload } from "react-icons/fi";
-import { HiDotsVertical } from "react-icons/hi";
+// import { HiDotsVertical } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 import Layout from "../../../components/eTanuComponents/layout";
 import { useAuth } from '../../../context/authContext';
@@ -231,10 +231,10 @@ const Search_Card = ({ history }) => {
     <div className="card" ref={cardRef}>
       <img src={photo} alt={date} />0
       <div className="info-block">
-        <HiDotsVertical className="icon" 
+        {/* <HiDotsVertical className="icon" 
           onMouseEnter={() => setInfoOpen(true)} 
           onMouseLeave={() => setInfoOpen(false)}
-        />
+        /> */}
         {infoOpen && (
           <div className="info">
             <div>Дата поиска: </div>
