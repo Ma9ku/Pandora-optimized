@@ -38,7 +38,7 @@ section {
 }
 
 .countStats > div div:nth-child(1) {
-    font-family: 'Montserrat';
+    font-family: 'Ubuntu';
     font-style: normal;
     font-weight: 700;
     font-size: 15px;
@@ -48,7 +48,7 @@ section {
 
 
 .countStats > div div:nth-child(2) {
-    font-family: 'Montserrat';
+    font-family: 'Ubuntu';
     font-style: normal;
     font-weight: 700;
     font-size: 96px;
@@ -58,7 +58,7 @@ section {
 }
 
 .lastQuery > div:nth-child(2) {
-    font-family: 'Montserrat';
+    font-family: 'Ubuntu';
     font-style: normal;
     font-weight: 700;
     font-size: 20px;
@@ -68,7 +68,7 @@ section {
 }
 
 .lastQuery > div:nth-child(3) {
-    font-family: 'Montserrat';
+    font-family: 'Ubuntu';
     font-style: normal;
     font-weight: 700;
     font-size: 20px;
@@ -90,7 +90,7 @@ section {
 }
 
 .userInfo > div:nth-child(1) > span {
-    font-family: 'Montserrat';
+    font-family: 'Ubuntu';
     font-style: normal;
     font-weight: 700;
     font-size: 35px;
@@ -166,7 +166,7 @@ section > div:nth-child(2) {
 
 .uitableHead a {
     color: #616161;
-    font-family: 'Montserrat';
+    font-family: 'Ubuntu';
     font-weight: 700;
     font-size: 20px;
 }

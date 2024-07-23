@@ -1,6 +1,6 @@
 @font-face {
-    font-family: 'Montserrat';
-    // src: url('../../font/Montserrat/static/Montserrat-Regular.ttf') format('truetype');
+    font-family: 'Ubuntu';
+    // src: url('../../font/Ubuntu/static/Ubuntu-Regular.ttf') format('truetype');
 }
 .login-page {
     margin-top: 0;
@@ -10,7 +10,7 @@
     height: 100vh; // Make sure the div takes up the full viewport height
     width: 100vw; // 
     * {
-        font-family: 'Montserrat';
+        font-family: 'Ubuntu';
     }
     
     .warning-block {

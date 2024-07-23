@@ -16,7 +16,7 @@ import queryString from 'query-string';
 
 const tdStyle = {
     color: "#fff",
-    fontFamily: 'Montserrat',
+    fontFamily: 'Ubuntu',
     fontStyle: 'normal',
     fontWeight: 500,
     fontSize: '15px',
@@ -24,7 +24,7 @@ const tdStyle = {
 }
 
 const thStyle = {
-    fontFamily: 'Montserrat',
+    fontFamily: 'Ubuntu',
     fontStyle: 'normal',
     fontWeight: 500,
     fontSize: "15px",

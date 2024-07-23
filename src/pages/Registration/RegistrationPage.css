@@ -43,7 +43,7 @@ section .title div {
 }
 
 section .title div:nth-child(1) {
-    font-family: 'Montserrat';
+    font-family: 'Ubuntu';
     font-style: normal;
     font-weight: 700;
     font-size: 62px;
@@ -52,7 +52,7 @@ section .title div:nth-child(1) {
 }
 
 section .title div:nth-child(2) {
-    font-family: 'Montserrat';
+    font-family: 'Ubuntu';
     font-style: normal;
     font-weight: 700;
     font-size: 43px;

@@ -14,7 +14,7 @@ import './tabContent_iin.scss';
 const inputStyle = {
     height: "3px", 
     color: "#fff", 
-    fontFamily: 'Montserrat', 
+    fontFamily: 'Ubuntu', 
     fontStyle: "normal", 
     fontWeight: 500, 
     fontSize: "14px", 

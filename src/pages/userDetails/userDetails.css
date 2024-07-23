@@ -10,14 +10,14 @@
     .noUserDetails{
         color: #a1a1a1 !important;
         margin-top: 20px;
-        font-family: 'Montserrat';
+        font-family: 'Ubuntu';
         font-weight: 700;
         font-size: 30px;
     }
     
     .userDetailsTable {
         color: #616161 ;
-        font-family: 'Montserrat';
+        font-family: 'Ubuntu';
         font-weight: 700;
         font-size: 20px;
     }
@@ -93,7 +93,7 @@
 }
 
 .userInfo > div:nth-child(1) > span {
-    font-family: 'Montserrat';
+    font-family: 'Ubuntu';
     font-style: normal;
     font-weight: 700;
     font-size: 35px;
@@ -137,7 +137,7 @@
 }
 
 .countStatsUser > div div:nth-child(1) {
-    font-family: 'Montserrat';
+    font-family: 'Ubuntu';
     font-style: normal;
     font-weight: 700;
     font-size: 15px;
@@ -149,7 +149,7 @@
 .countStatsUser > div:nth-child(2) div:nth-child(2),
 .countStatsUser > div:nth-child(3) div:nth-child(2) 
 {
-    font-family: 'Montserrat';
+    font-family: 'Ubuntu';
     font-style: normal;
     font-weight: 700;
     font-size: 96px;
@@ -161,7 +161,7 @@
 .countStatsUser > div:nth-child(1) div:nth-child(2),
 .countStatsUser > div:nth-child(1) div:nth-child(3) 
 {
-    font-family: 'Montserrat';
+    font-family: 'Ubuntu';
     font-style: normal;
     font-weight: 700;
     font-size: 40px;

@@ -23,7 +23,7 @@ function BureauPage(props) {
     const inputStyle = {
         height: '50px',
         color: "#fff", 
-        fontFamily: 'Montserrat', 
+        fontFamily: 'Ubuntu', 
         fontStyle: "normal", 
         fontWeight: 500, 
         fontSize: "14px", 

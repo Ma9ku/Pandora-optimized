@@ -181,7 +181,7 @@ function OracleTable(props) {
           // },
         },
         typography: {
-          fontFamily: 'Montserrat',
+          fontFamily: 'Ubuntu',
           fontSize: 13
         },
         components: {

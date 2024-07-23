@@ -15,7 +15,7 @@ import { dossierURL } from '../../../data/dossier';
 const inputStyle = {
     height: "3px", 
     color: "#fff", 
-    fontFamily: 'Montserrat', 
+    fontFamily: 'Ubuntu', 
     fontStyle: "normal", 
     fontWeight: 500, 
     fontSize: "13px", 

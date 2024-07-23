@@ -50,7 +50,7 @@ function App() {
       mode: 'dark',
     },
     typography: {
-      fontFamily: 'Montserrat',
+      fontFamily: 'Ubuntu',
       fontSize: 14
     },
   })
@@ -60,7 +60,7 @@ function App() {
       mode: 'dark',
     },
     typography: {
-      fontFamily: 'Montserrat',
+      fontFamily: 'Ubuntu',
       fontSize: 13
     },
     components: {
