@@ -150,13 +150,13 @@ function App() {
                 <SearchPage/>
               </>
             }/>
-            <Route path='/profiler/person/:iin' element={
+            {/* <Route path='/profiler/person/:iin' element={
               <>
                 <GrayNavbar/>
                 <DosiePage/>
               </>
-            }/>
-            <Route path='/new-profiler/person/:iin' element={
+            }/> */}
+            <Route path='/profiler/person/:iin' element={
               <DataProvider>
                 <GrayNavbar/>
                 <NewDosiePage/>
