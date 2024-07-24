@@ -76,7 +76,10 @@ function RelationsTab({data, hierarchy, iin}) {
                         <div className="actions">
                             <ActionButton 
                                 value={'Перейти'}
-                                onClick={() => {}}
+                                onClick={() => {
+                                    const url = `/profiler/person/` + relIIN
+                                    window.open(url, '_blank', 'noopener,noreferrer')
+                                  }}
                             />
                         </div>
                     ) : null
