@@ -8,7 +8,7 @@ import AdditionalInfoTab from './../AdditionalInfoTab';
 import MainInfoTab from './../MainInfoTab';
 import { useTheme } from '../../../context/themeContext';
 
-const dossierURL = 'http://10.202.20.92:8081/api/pandora/dossier/';  // Replace with the actual URL
+const dossierURL = 'http://localhost:8081/api/pandora/dossier/';  // Replace with the actual URL
 
 function InfoTabs() {
     const [tab, setTab] = useState(0);

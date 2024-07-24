@@ -1,1 +1,1 @@
-export const dossierURL = 'http://10.202.20.92:8081/api/pandora/dossier/'
+export const dossierURL = 'http://localhost:8081/api/pandora/dossier/'

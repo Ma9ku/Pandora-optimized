@@ -51,6 +51,8 @@ const UlDosiePage = (props) => {
 
 
     const [menuOpen, setMenuOpen] = useState(false)
+    const userSession = JSON.parse(localStorage.getItem("user"))
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + userSession.accessToken
 
     useEffect(() => {
         const searchIIN = () => {

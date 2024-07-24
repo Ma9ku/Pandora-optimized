@@ -10,7 +10,7 @@ import IconButton from '@mui/material/IconButton';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import axios from 'axios';
-const baseURL = 'http://10.202.20.92:9095/'
+const baseURL = 'http://localhost:9095/'
 const SideBar = (props) => {
     const userSession = JSON.parse(localStorage.getItem("user"))
 

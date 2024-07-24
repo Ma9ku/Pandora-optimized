@@ -409,12 +409,12 @@ function Row(props) {
     useEffect(() => {
         if (open) {
             if (place == 'Астана') {
-                axios.get("http://10.202.20.92:8081/api/pandora/main/3users1").then(res => {
+                axios.get("http://localhost:8081/api/pandora/main/3users1").then(res => {
                     setWorkers(res.data)
                     console.log(res.data)
                 })
             } else {
-                axios.get("http://10.202.20.92:8081/api/pandora/main/3users2").then(res => {
+                axios.get("http://localhost:8081/api/pandora/main/3users2").then(res => {
                     setWorkers(res.data)
                     console.log(res.data)
                 })

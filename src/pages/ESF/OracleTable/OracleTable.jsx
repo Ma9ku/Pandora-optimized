@@ -48,7 +48,7 @@ function userAdmin() {
     // }
 }
 
-const baseURL = "http://10.202.20.92:8081/"
+const baseURL = "http://localhost:8081/"
 const fields = {
   "DESCRIPTION": "Описание товара",
   "UNIT_CODE": "Код товара",
@@ -417,7 +417,7 @@ function ResultTable(props) {
     const {list, columns} = props
     const downloadSchema = (row) => {
 
-        axios.get('http://10.202.20.92:8081/export-to-pdf/' + row.messOfmId + '/' + row.memberId, {responseType: 'blob'}).then(res=> {
+        axios.get('http://localhost:8081/export-to-pdf/' + row.messOfmId + '/' + row.memberId, {responseType: 'blob'}).then(res=> {
             const url = window.URL.createObjectURL(new Blob([res.data]))
             const link = document.createElement('a')
             link.href = url

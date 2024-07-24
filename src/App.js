@@ -32,13 +32,13 @@ import OracleTable from "./pages/OracleTable/OracleTable";
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import SearchPage from './pages/searchPage/SearchPage';
 import SupersetPage from "./pages/Superset/SupersetPage";
-import UlDosiePage from './pages/ulDosPage/UlDosiePage';
+// import UlDosiePage from './pages/ulDosPage/UlDosiePage';
+import UlDosiePage from "./pages/new-dosie-ul-page";
 import WorkersPage from './pages/WorkersPage/WorkersPage';
 import CSVUpload from "./pages/сsv-upload";
 import DataProvider from "./context/dosieDataContext";
 
 import { MyThemeProvider } from "./context/themeContext";
-
 function App() {
   const userSession = JSON.parse(localStorage.getItem("user"))
 

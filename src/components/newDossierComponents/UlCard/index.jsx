@@ -26,6 +26,8 @@ function UlCard({
     const [reg_date, setRegDate] = useState('');
     
     const [riskPercentage, setriskPercentage] = useState(0);
+    const userSession = JSON.parse(localStorage.getItem("user"))
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + userSession.accessToken
 
     useEffect(() => {
         if (_iin) {
@@ -36,13 +38,13 @@ function UlCard({
         const fetchData = () => {
             setLoading(true);
 
-            axios.get(`${dossierURL}cc`, {params: { bin: bin }})
+            axios.get(`${dossierURL}ulCard`, {params: { bin: bin }})
                 .then(res => {
-                    console.log(res.data)
-
-                    setUlName();
-                    setUlStatus();
-                    setRegDate();
+                    console.log("cc", res.data)
+                    
+                    setUlName(res.data?.name);
+                    setUlStatus(res.data?.status);
+                    setRegDate(res.data?.regDate);
                 })
                 .catch(err => console.log(err))
                 .finally(() => {

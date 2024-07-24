@@ -4,7 +4,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import authService from '../../services/auth.service';
 import './side-bar.scss';
-const baseURL = 'http://10.202.20.92:9095/'
+const baseURL = 'http://localhost:9095/'
 const SideBar = (props) => {
     const userSession = JSON.parse(localStorage.getItem("user"))
 

@@ -7,7 +7,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import UsersTable from "../../components/itapComponents copy/UsersTable/UsersTable";
 import './AdminPage.css';
 
-const baseURL = "http://10.202.20.92:8081/api/pandora/main"
+const baseURL = "http://localhost:8081/api/pandora/main"
 
 const AdminPage = (props) => {
     const userSession = JSON.parse(localStorage.getItem("user"))
