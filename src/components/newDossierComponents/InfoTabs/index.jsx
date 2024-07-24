@@ -6,16 +6,19 @@ import './style.scss';
 import RisksTab from './../RisksTab';
 import AdditionalInfoTab from './../AdditionalInfoTab';
 import MainInfoTab from './../MainInfoTab';
+import { useTheme } from '../../../context/themeContext';
 
 function InfoTabs() {
     const [tab, setTab] = useState(0);
+
+    const { theme } = useTheme();
 
     useEffect(() => {
         console.log(tab);
     }, [tab])
 
     return ( 
-        <div className="info-tabs-block">
+        <div className={`info-tabs-block ${theme}`}>
 
             <Tabs tab={tab} setTab={setTab}/>
 

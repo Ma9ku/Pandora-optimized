@@ -8,17 +8,21 @@ import { FaLocationDot } from "react-icons/fa6";
 import { RiMapPinTimeFill } from "react-icons/ri";
 
 import TableRow from '../TableRow';
+import { useTheme } from '../../../context/themeContext';
 
 function DocsCard({
-    _iin,
+    _iin = null,
     secondary = false,
 }) {
+    const { theme } = useTheme();
+
     const [passports, setPassports] = useState([]);
     const [transportDocs, setTransportDocs] = useState([]);
     const [iinDocs, setIinDocs] = useState([]);
     const [transports, setTransports] = useState([]);
 
-    const iin = _iin ? _iin : 790303402568;
+    let { iin } = useParams();
+    iin = _iin ? _iin : iin;
 
     const [isLoading, setLoading] = useState(true);
 
@@ -33,14 +37,16 @@ function DocsCard({
 
             axios.get(`${dossierURL}getFirstRowByIin`, { params: { iin: iin } })
                 .then(res => {
+                    console.log('docs', res.data);
+
                     const { mvIinDocList, mvAutoFls } = res.data;
 
                     mvIinDocList.map(doc => {
-                        if (doc.doc_type_ru_name === 'Водительское удостоверение') {
-                            setTransportDocs(prev => [...prev, doc]);
-                        } else {
-                            setIinDocs(prev => [...prev, doc]);
-                        }
+                        // if (doc.doc_type_ru_name === 'Водительское удостоверение') {
+                            // setTransportDocs(prev => [...prev, doc]);
+                        // } else {
+                        setIinDocs(prev => [...prev, doc]);
+                        // }
                     });
 
                     setTransports([
@@ -72,28 +78,38 @@ function DocsCard({
     }
 
     return (
-        <div className={`docs-card-block ${secondary ? 'secondary' : ''}`}>
-            <Block
-                title_text={'УДОСТОВЕРЕНИЕ ЛИЧНОСТИ'}
-                title_icon={<TfiIdBadge />}
-                data={{
-                    'Орган выдачи': 'МВД РК',
-                    'Срок действия': '12/03/2030',
-                    'Номер документа': '12324332',
-                    'Дата выдачи': '12/03/2020'
-                }}
-            />
+        <div className={`docs-card-block ${theme} ${secondary ? 'secondary' : ''}`}>
+            { 
+                iinDocs && iinDocs.length > 0 
+                    ? (
+                        <Block
+                            title_text={'УДОСТОВЕРЕНИЕ ЛИЧНОСТИ'}
+                            title_icon={<TfiIdBadge />}
+                            data={{
+                                'Орган выдачи': iinDocs[0].issue_organization_ru_name,
+                                'Срок действия': iinDocs[0].expiry_date,
+                                'Номер документа': iinDocs[0].doc_number,
+                                'Дата выдачи': iinDocs[0].issue_date
+                            }}
+                        />
+                    ) : null
+            }
 
-            <Block
-                title_text={'ПАСПОРТ'}
-                title_icon={<TfiIdBadge />}
-                data={{
-                    'Орган выдачи': 'МВД РК',
-                    'Срок действия': '12/03/2030',
-                    'Номер документа': '12324332',
-                    'Дата выдачи': '12/03/2020'
-                }}
-            />
+            {
+                passports && passports.length > 0 
+                    ? (
+                        <Block
+                            title_text={'ПАСПОРТ'}
+                            title_icon={<TfiIdBadge />}
+                            data={{
+                                'Орган выдачи': 'МВД РК',
+                                'Срок действия': '12/03/2030',
+                                'Номер документа': '12324332',
+                                'Дата выдачи': '12/03/2020'
+                            }}
+                        />
+                    ) : null
+            }
 
             <Block
                 title_body={<>
@@ -140,19 +156,16 @@ const Block = ({ title_text, title_icon, title_body = null, data, body = null })
             if (data === null) return [];
             if (typeof data !== 'object') return [];
 
-            console.log('keys', Object.keys(data));
             return Object.keys(data);
         });
 
         if (typeof data === 'object' && Object.keys(data).length >= 2) {
             setMid(prev => {
-                console.log('mid is', Math.ceil(Object.keys(data).length / 2));
                 return Math.ceil(Object.keys(data).length / 2);
             });
         }
 
         if (typeof data === 'object' && Object.keys(data).length < 2) {
-            console.log('mid is -1');
             setMid(-1);
         }
     }, [data]);
@@ -198,7 +211,6 @@ const Block = ({ title_text, title_icon, title_body = null, data, body = null })
                                     <tbody>
                                         {
                                             keys.slice(0, mid).map((key, index) => {
-                                                console.log(key);
 
                                                 return (
                                                     <TableRow
@@ -217,8 +229,6 @@ const Block = ({ title_text, title_icon, title_body = null, data, body = null })
                                     <tbody>
                                         {
                                             keys.slice(mid).map((key, index) => {
-                                                console.log(key);
-
                                                 return (
                                                     <TableRow
                                                         key={index}

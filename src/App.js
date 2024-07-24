@@ -37,6 +37,8 @@ import WorkersPage from './pages/WorkersPage/WorkersPage';
 import CSVUpload from "./pages/сsv-upload";
 import DataProvider from "./context/dosieDataContext";
 
+import { MyThemeProvider } from "./context/themeContext";
+
 function App() {
   const userSession = JSON.parse(localStorage.getItem("user"))
 
@@ -84,6 +86,8 @@ function App() {
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
+        <MyThemeProvider>
+
         <Router>
             <AuthProvider>
               <SearchProvider>
@@ -266,13 +270,10 @@ function App() {
             }/>
             </Routes>
         </Router>
+
+        </MyThemeProvider>
       </ThemeProvider>
-      <ThemeProvider theme={esfTheme}>
-        <Router>
-          <Routes>
-          </Routes>
-        </Router>
-      </ThemeProvider>
+     
     </div>
   )
 }

@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import { BsArrowsCollapse } from "react-icons/bs";
 import './style.scss';
+import { useTheme } from '../../../context/themeContext';
 
 function BigCollapsableBlock({ children, icon, name }) {
     const [open, setOpen] = useState(false);
+    const { theme } = useTheme();
 
     const toggleOpen = () => {
         setOpen(prev => !prev);
     };
 
     return (
-        <div className="big-collapsable-block">
+        <div className={`big-collapsable-block ${theme}`}>
             <div className={`title ${open ? 'open' : 'closed'}`}>
                 {icon}
                 <div className="title-text">

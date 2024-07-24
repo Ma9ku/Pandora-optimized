@@ -8,21 +8,30 @@ import { dossierURL } from '../../../data/dossier';
 import { useParams } from 'react-router-dom';
 
 import { FaCheck } from "react-icons/fa6";
+import { useTheme } from '../../../context/themeContext';
 
 function PersonCard({
     _iin,
     secondary = false
 }) {
-    // const { pIIN } = useData();
-    // const { iin } = useParams();
-    const iin = _iin ? _iin : "";
+    const { theme } = useTheme();
+
+    let { iin } = useParams();
+    iin = _iin ? _iin : iin;
+
 
     const [ isLoading, setLoading ] = useState(true);
+    const [ error, setError ] = useState('');
 
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [patronymic, setPatronymic] = useState('');
     const [nationality, setNationality] = useState('');
+    const [citizenship, setCitizenship] = useState('');
+    const [lifeStatus, setLifeStatus] = useState('');
+    const [birthDate, setBirthDate] = useState('');
+    const [photo, setPhoto] = useState('');
+    const [isResident, setIsResident] = useState(false);
 
     const [riskPercentage, setriskPercentage] = useState(0);
 
@@ -39,12 +48,17 @@ function PersonCard({
                 .then(res => {
                     console.log(res.data)
 
-                    const { mvFls, riskPercentage } = res.data;
+                    const { mvFls, riskPercentage, photoDbf } = res.data;
                     setFirstName(mvFls[0].first_name);
                     setLastName(mvFls[0].last_name);
                     setPatronymic(mvFls[0].patronymic);
                     setNationality(mvFls[0].nationality_ru_name);
                     setriskPercentage(riskPercentage);
+                    setCitizenship(mvFls[0].citizenship_ru_name);
+                    setLifeStatus(mvFls[0].life_status_ru_name);
+                    setBirthDate(mvFls[0].birth_date);
+                    setPhoto(photoDbf[0].photo)
+                    setIsResident(mvFls[0].is_resident)
                 })
                 .catch(err => console.log(err))
                 .finally(() => {
@@ -64,10 +78,10 @@ function PersonCard({
     }
 
     return ( 
-        <div className={`person-card-block ${secondary ? 'secondary' : ''}`}>
+        <div className={`person-card-block ${theme} ${secondary ? 'secondary' : ''}`}>
             <div className="resident">
                 <div className="check">
-                    <FaCheck />
+                    { !isResident ? <FaCheck /> : null}
                 </div>
                 <div>Нерезидент</div>
             </div>
@@ -75,8 +89,8 @@ function PersonCard({
             <div className="person-image">
                 <img 
                     src={
-                        // `data:image/png;base64, ${data.photoDbf[0].photo}`
-                        mockPersonImage
+                        `data:image/png;base64, ${photo}`
+                        // mockPersonImage
                     } 
                     alt="PERSON" />
             </div>
@@ -87,11 +101,11 @@ function PersonCard({
                     <TableRow label={'Фамилия'} value={lastName} />
                     <TableRow label={'Имя'} value={firstName}/>
                     <TableRow label={'Отчество'} value={patronymic}/>
-                    <TableRow label={'Статус'} value={'Ахмедия'}/>
-                    <TableRow label={'Гражданство'} value={nationality}/>
+                    <TableRow label={'Статус'} value={lifeStatus}/>
+                    <TableRow label={'Гражданство'} value={citizenship}/>
                     <TableRow label={'Национальность'} value={nationality}/>
                     <TableRow label={'Место рождения'} value={'Ахмедия'}/>
-                    <TableRow label={'Дата рождения'} value={'Ахмедия'}/>
+                    <TableRow label={'Дата рождения'} value={birthDate}/>
                 </table>
             </div>
 
@@ -104,7 +118,7 @@ function PersonCard({
                 />
                 <StatCircle 
                     label={'Риски'} 
-                    value={65} 
+                    value={riskPercentage} 
                     color={'#CC4A4A'}
                     secondaryColor={'#DD9C9C'}
                 />

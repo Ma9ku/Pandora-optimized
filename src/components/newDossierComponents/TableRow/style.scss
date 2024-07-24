@@ -1,20 +1,55 @@
+// Define theme variables
+$dark-theme: (
+  main-bg-color: #2E3740,
+  secondary-bg-color: #20272C,
+  text-color: #FFF,
+  hover-bg-color: rgba(#FFF, 0.2),
+  border-color: rgba(#FFF, 0.2),
+  secondary-text-color: rgba(#FFF, 0.7)
+);
+
+$light-theme: (
+  main-bg-color: #F4F4F5,
+  secondary-bg-color: #E0E0E0,
+  text-color: #000,
+  hover-bg-color: rgba(#000, 0.2),
+  border-color: rgba(#000, 0.2),
+  secondary-text-color: rgba(#000, 0.7)
+);
+
+@mixin theme($theme) {
+  color: map-get($theme, text-color);
+
+  td {
+    color: map-get($theme, text-color);
+    
+    &:not(:first-child) {
+      color: map-get($theme, secondary-text-color);
+    }
+  }
+}
+
 .table-row {
- 
-    td {
-        min-width: 180px;
-        vertical-align: text-top;
-    }
+  @include theme($dark-theme); // Default theme
 
-    > td:first-child {
-        font-weight: 500;
-        line-height: 16.09px;
-        text-align: left;
-    }
+  &.light {
+    @include theme($light-theme);
+  }
 
-    > td:not(:first-child) {
-        font-weight: 400;
-        line-height: 16.09px;
-        text-align: left;
-        color: rgba($color: #FFF, $alpha: .7);
-    }
+  td {
+    min-width: 180px;
+    vertical-align: text-top;
+  }
+
+  > td:first-child {
+    font-weight: 500;
+    line-height: 16.09px;
+    text-align: left;
+  }
+
+  > td:not(:first-child) {
+    font-weight: 400;
+    line-height: 16.09px;
+    text-align: left;
+  }
 }

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import './style.scss';
+import { useTheme } from '../../../context/themeContext';
 
 function SimpleTable({
     columns,
@@ -8,10 +9,12 @@ function SimpleTable({
     onRowClick = null
 }) {
 
+    const { theme } = useTheme();
+
     if (columns.lenght === 0) return null;
 
     return ( 
-        <table className='simple-table'>
+        <table className={`simple-table ${theme}`}>
             <thead>
                 <tr>
                 {

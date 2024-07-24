@@ -1,122 +1,124 @@
+// Define theme variables
+$dark-theme: (
+  main-bg-color: #2E3740,
+  secondary-bg-color: #20272C,
+  text-color: #FFF,
+  hover-bg-color: rgba(#FFF, 0.2),
+  button-hover-bg-color: #232a30,
+  button-active-bg-color: rgb(14, 19, 22),
+  border-color: #2E3740,
+  thead-bg-color: #111B22,
+  thead-text-color: rgba(#FFF, 0.7),
+  tbody-bg-color: rgba(#FFF, 0.1)
+);
+
+$light-theme: (
+  main-bg-color: #F4F4F5,
+  secondary-bg-color: #E0E0E0,
+  text-color: #000,
+  hover-bg-color: rgba(#000, 0.2),
+  button-hover-bg-color: #c4c4c4,
+  button-active-bg-color: #a4a4a4,
+  border-color: #F4F4F5,
+  thead-bg-color: #E6E6E6,
+  thead-text-color: rgba(#000, 0.7),
+  tbody-bg-color: rgba(#000, 0.1)
+);
+
+@mixin theme($theme) {
+  color: map-get($theme, text-color);
+
+  tbody > tr:hover td {
+    background-color: map-get($theme, hover-bg-color);
+  }
+
+  button {
+    background-color: map-get($theme, secondary-bg-color);
+    color: map-get($theme, text-color);
+
+    &:hover {
+      background-color: map-get($theme, button-hover-bg-color);
+    }
+
+    &:active {
+      background-color: map-get($theme, button-active-bg-color);
+    }
+  }
+
+  tr > td:not(:last-child),
+  tr > th:not(:last-child) {
+    border-right: solid map-get($theme, border-color) 6px;
+  }
+
+  tbody > tr:not(:last-child),
+  thead > tr {
+    border-bottom: solid map-get($theme, border-color) 6px;
+  }
+
+  thead {
+    th {
+      background-color: map-get($theme, thead-bg-color);
+      color: map-get($theme, thead-text-color);
+
+      &[align='left'] {
+        padding-left: 25px;
+      }
+
+      &[align='right'] {
+        padding-right: 25px;
+      }
+    }
+  }
+
+  tbody {
+    td {
+      background-color: map-get($theme, tbody-bg-color);
+
+      &[align='left'] {
+        padding-left: 25px;
+      }
+
+      &[align='right'] {
+        padding-right: 25px;
+      }
+    }
+  }
+}
+
 .simple-table {
-    border-collapse: collapse;
+  @include theme($dark-theme); // Default theme
 
-    
-    width: 100%;
+  &.light {
+    @include theme($light-theme);
+  }
 
-    color: #fff;
+  border-collapse: collapse;
+  width: 100%;
 
-    th, td {
-        padding: 15px 0px;
+  th, td {
+    padding: 15px 0px;
+    font-size: 0.8rem;
+  }
+
+  tbody {
+    > tr:last-child {
+      > td:first-child {
+        border-bottom-left-radius: 6px;
+      }
+
+      > td:last-child {
+        border-bottom-right-radius: 6px;
+      }
+    }
+  }
+
+  thead {
+    > tr > th:first-child {
+      border-top-left-radius: 6px;
     }
 
-    tbody > tr {
-
-        &:hover {
-
-            td {
-                background-color: rgba($color: #FFF, $alpha: .2);
-            }
-
-        }
+    > tr > th:last-child {
+      border-top-right-radius: 6px;
     }
-
-    button {
-        background-color: #20272C;
-
-        font-size: 0.8rem;
-        font-weight: 500;
-        line-height: 16.09px;
-        text-align: center;
-        color: #FFF;
-
-        width: 200px;
-        padding: 10px 0px;
-
-        outline: none;
-        border: none;
-        border-radius: 5px;
-
-        cursor: pointer;
-
-        &:hover {
-            background-color: #232a30;
-        }
-
-        &:active {
-            background-color: rgb(14, 19, 22);
-        }
-    }
-
-    tr > td:not(:last-child),
-    tr > th:not(:last-child) {
-        border-right: solid #2E3740 6px;
-    }
-
-    tbody > tr:not(:last-child),
-    thead > tr {
-        border-bottom: solid #2E3740 6px;
-    }
-
-    thead { 
-        > tr > th:first-child {
-            border-top-left-radius: 6px;
-        }
-
-        > tr > th:last-child {
-            border-top-right-radius: 6px;
-        }
-
-        th {
-            background-color: #111B22;
-            color: rgba($color: #FFF, $alpha: .7);
-    
-            font-size: 0.8rem;
-            font-weight: 500;
-            line-height: 16.09px;
-            text-align: center;
-
-            &[align = 'left'] {
-                text-align: left;
-                padding-left: 25px;
-            }
-
-            &[align = 'right'] {
-                text-align: left;
-                padding-right: 25px;
-            }
-        }
-    }
-
-    tbody {
-        td {
-            background-color: rgba($color: #FFF, $alpha: .1);
-            text-align: center;
-
-            font-size: 0.8rem;
-            font-weight: 500;
-            line-height: 16.09px;
-            text-align: center;
-
-            &[align = 'left'] {
-                text-align: left;
-                padding-left: 25px;
-            }
-
-            &[align = 'right'] {
-                text-align: left;
-                padding-right: 25px;
-            }
-        }
-
-        > tr:last-child {
-            > td:first-child {
-                border-bottom-left-radius: 6px;
-            }
-
-            > td:last-child {
-                border-bottom-right-radius: 6px;
-            }
-        }
-    }
+  }
 }

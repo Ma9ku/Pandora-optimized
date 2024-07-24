@@ -1,59 +1,62 @@
+// Define theme variables
+$dark-theme: (
+  main-bg-color: #20272C,
+  secondary-bg-color: #2E3740,
+  main-text-color: #FFF
+);
+
+$light-theme: (
+  main-bg-color: #E7E9EC,
+  secondary-bg-color: #F4F4F5,
+  main-text-color: #000
+);
+
+@mixin theme($theme) {
+  background-color: map-get($theme, main-bg-color);
+  color: map-get($theme, main-text-color);
+}
+
 .new-dosie-page {
-    &.dark {
-        --main-bg-color: '#20272C';
-        --secondary-bg-color: '#2E3740';
+  @include theme($dark-theme); // Default theme
 
-        --main-text-color: '#FFF';
-        --main-text-color-faded: '';
+  &.light {
+    @include theme($light-theme);
+  }
+
+  position: relative;
+  width: 100%;
+  padding: 80px 70px 330px 70px;
+  box-sizing: border-box;
+  font-family: Ubuntu;
+
+  .change-theme-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+    > * {
+      font-size: 20px;
+      cursor: pointer;
+    }
+  }
+
+  .row-info {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+
+    @media screen and (max-width: 1000px) {
+      flex-direction: column;
     }
 
-    &.light {
-        --main-bg-color: '#E7E9EC';
-        --secondary-bg-color: '#F4F4F5';
-
-        --main-text-color: '#000';
-        --main-text-color-faded: '';
+    &:first-child {
+      @media screen and (max-width: 1000px) {
+        max-height: max-content;
+      }
     }
 
-    position: relative;
-    width: 100%;
-
-    padding: 80px 70px 330px 70px;
-    box-sizing: border-box;
-
-    background-color: var(--main-background-color);
-
-    font-family: Ubuntu;
-
-    .change-theme-btn {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-
-        > * {
-            font-size: 20px;
-            cursor: pointer;
-        }
+    & + .row-info {
+      margin-top: 21px;
     }
-
-    .row-info {
-        display: flex;
-        flex-direction: row;
-        gap: 10px;
-
-        @media screen and (max-width: 1000px) {
-            flex-direction: column;
-        }
-
-        &:first-child {
-
-            @media screen and (max-width: 1000px) {
-                max-height: max-content;
-            }
-        }
-
-        &+.row-info {
-            margin-top: 21px;
-        }
-    }
+  }
 }

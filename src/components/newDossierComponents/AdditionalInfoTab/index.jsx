@@ -9,7 +9,7 @@ import { PiGear, PiMedalMilitary } from "react-icons/pi";
 
 import SmallCollapsableBlock from '../SmallCollapsableBlock';
 import SimpleTable from '../SimpleTable';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import CollapsableContainer from '../CollapsableContainer';
 import VerticalTable from '../VerticalTable';
 import ActionButton from '../UI/ActionButton';
@@ -17,241 +17,78 @@ import TwoColumn from '../TwoColumn';
 import SimpleText from '../UI/Text';
 import { FaBuildingUser } from 'react-icons/fa6';
 import { BsCashStack, BsPerson } from 'react-icons/bs';
+import axios from 'axios';
+import { dossierURL } from '../../../data/dossier';
+import Education from './Blocks/Education';
+import Buildings from './Blocks/Buildings';
+import Transport from './Blocks/Transport';
+import Equipment from './Blocks/Equipment';
+import OtherTransport from './Blocks/OtherTransport';
+import Military from './Blocks/Military';
+import FlUl from './Blocks/FlUL';
+import Ipkh from './Blocks/Ipkh';
+import Pension from './Blocks/Pension';
 
 function AdditionalInfoTab() {
+
+    let { iin } = useParams()
+
+    const [isLoading, setLoading] = useState(true);
+
+    const [data, setData] = useState(null);
+
+    useEffect(() => {
+
+        const fetchData = () => {
+            setLoading(true);
+
+            axios.get(`${dossierURL}profile`, { params: { iin: iin } })
+                .then(res => {
+                    console.log('additional tab', res.data);
+                    setData(res.data);
+                })
+                .catch(err => console.log(err))
+                .finally(() => {
+                    setLoading(false);
+                });
+        }
+
+        if (iin) {
+            fetchData();
+        }
+    }, [iin]);
+
+    if (isLoading) {
+        return null;
+    }
+
     return ( 
         <>
-            <BigCollapsableBlock 
-                icon={<HiOutlineAcademicCap />}
-                name={'СВЕДЕНИЯ ПО ОБРАЗОВАНИЮ'}
-            >
-                <SmallCollapsableBlock 
-                    name={'Среднее образование'}
-                    count={2}
-                >
-                    <SimpleTable 
-                        columns={[
-                            'БИН',
-                            'Название',
-                            'Тип школы',
-                            'Год поступления',
-                            'Год окончания',
-                            'Нагрудный знак',
-                            'Класс'
-                        ]}
-                        rows={[
-                            [
-                                '163465765890',
-                                'Школа-гимназия...',
-                                'Лицей',
-                                '1/09/2010',
-                                '15/06/2020',
-                                'Нагрудный знак',
-                                '9'
-                            ],
-                            [
-                                '163465765890',
-                                'Школа-гимназия...',
-                                'Лицей',
-                                '1/09/2010',
-                                '15/06/2020',
-                                'Нагрудный знак',
-                                '11'
-                            ],
-                        ]}
-                    />
-                </SmallCollapsableBlock>
+            <Education 
+                data={{
+                    schools: data ? data.schools : [],
+                    universities: data ? data.universities : []
+                }}
+            />
 
-                <SmallCollapsableBlock 
-                    name={'Высшее образование '}
-                    count={1}
-                >
-                    <SimpleTable 
-                        columns={[
-                            'БИН ВУЗА',
-                            'Название',
-                            'Тип ВУЗ',
-                            'Год поступления',
-                            'Год окончания',
-                            'Специальность',
-                        ]}
-                        rows={[
-                            [
-                                '163465765890',
-                                'Astana IT University',
-                                'Акционерное',
-                                '1/09/2010',
-                                '15/06/2020',
-                                'Software Engineering',
-                            ],
-                        ]}
-                    />
-                </SmallCollapsableBlock>
-            </BigCollapsableBlock>
+            <Buildings 
+                data={data ? data.mvRnOlds : []}
+            />
 
-            <BigCollapsableBlock 
-                icon={<PiHouseLine />}
-                name={'СВЕДЕНИЯ ПО РЕЕСТРУ НЕДВИЖИМОСТИ'}
-            >
-                <SmallCollapsableBlock 
-                    name={'Текущие'}
-                    count={1}
-                >
-                    <CollapsableContainer
-                        name={'1. Квартира, Cтатус: "текущий", 2019-02-04 -'}
-                    >
-                        <VerticalTable 
-                            data={{
-                                'Кадастровый номер №': '123032653567',
-                                'Адрес': 'Иванов Иван Иванович',
-                                'Правообладатель': '141592653589',
-                                'Этажность': '6/9',
-                                'Площадь общая': '103',
-                                'Жилая площадь': '86',
-                                'Вид документа': 'ДКП',
-                                'Номер документа': '№113 от 18/07/2024 ДКП',
-                                'Дата документа': '10/07/2024',
-                                'Дата регистрации': '12/10/2012',
-                                'Дата прекращения': '---',
-                                'ИИН/БИН продавца': '793238453526',
-                                'ФИО/Наименование продавца': 'Bazis',
-                                'Сумма сделки (стоимость)': '33 000 000',
-                            }}
-                        />
-                        <div className="actions">
-                            <ActionButton 
-                                onClick={() => {}}
-                                value={'Детальный просмотр (Купил-Продал)'}
-                            />
-                        </div>
-                    </CollapsableContainer>
-                </SmallCollapsableBlock>
+            {/* mvAutoFls */}
+            <Transport data={data.mvAutoFls}/>
 
-                <SmallCollapsableBlock 
-                    name={'Исторические'}
-                    count={1}
-                >
-                    <CollapsableContainer
-                        name={'1. Квартира, Cтатус: "текущий", 2019-02-04 -'}
-                    >
-                        <VerticalTable 
-                            data={{
-                                'Кадастровый номер №': '123032653567',
-                                'Адрес': 'Иванов Иван Иванович',
-                                'Правообладатель': '141592653589',
-                                'Этажность': '6/9',
-                                'Площадь общая': '103',
-                                'Жилая площадь': '86',
-                                'Вид документа': 'ДКП',
-                                'Номер документа': '№113 от 18/07/2024 ДКП',
-                                'Дата документа': '10/07/2024',
-                                'Дата регистрации': '12/10/2012',
-                                'Дата прекращения': '---',
-                                'ИИН/БИН продавца': '793238453526',
-                                'ФИО/Наименование продавца': 'Bazis',
-                                'Сумма сделки (стоимость)': '33 000 000',
-                            }}
-                        />
-                        <div className="actions">
-                            <ActionButton 
-                                onClick={() => {}}
-                                value={'Детальный просмотр (Купил-Продал)'}
-                            />
-                        </div>
-                    </CollapsableContainer>
-                </SmallCollapsableBlock>
-            </BigCollapsableBlock>
+            <OtherTransport />
 
-            <BigCollapsableBlock 
-                icon={<IoCarSharp />}
-                name={'СВЕДЕНИЯ ПО ТРАНСПОРТУ'}
-            >
-                <TwoColumn>
-                    <CollapsableContainer
-                        name={'1. BMW M4, Регистрационный номер №A314SPY, Статус: текущий, 2021-03-12 - '}
-                    >
-                        <VerticalTable 
-                            twoColumn={false}
-                            data={{
-                                'Дата регистрации с': '12/03/2021',
-                                'Дата регистрации по': '---',
-                                'Категория': 'B',
-                                'Дата выдачи свидетельства': '12/03/2021',
-                                'Серия и регистрационный № свидетельства': 'UN21313, 1290312',
-                                'VIN/Кузов/Шасси': 'KZDS213',
-                                'Год выпуска ТС': '2020',
-                                'Объем двигателя см.куб': '5',
-                                'Цвет': 'BLACK',
-                                'Масса без нагрузки': '3210',
-                                'Разрешенная max масса': '3700',
-                                'Особые отметки': 'Договор',
-                                'Отметка о снятии с учета': '12/09/2020'
-                            }}
-                        />
-                    </CollapsableContainer>
-                    <CollapsableContainer
-                        name={'2. TOYOTA CAMRY, Регистрационный номер №A484DPN, Статус: исторический, 2005-09-13 - 2009-04-10'}
-                    >
-                    
-                    </CollapsableContainer>
-                </TwoColumn>
+            <Equipment data={data.equipment}/>
 
-            </BigCollapsableBlock>
+            <Military data={data.militaryAccounting2Entities}/>
 
-            <BigCollapsableBlock 
-                icon={<LuSailboat />}
-                name={'ДРУГИЕ ВИДЫ ТРАНСПОРТА'}
-            >
-                <SimpleText>Нет данных</SimpleText>
-            </BigCollapsableBlock>
+            <FlUl data={data.mvUlFounderFls}/>
 
-            <BigCollapsableBlock 
-                icon={<PiGear />}
-                name={'ТЕХНИКА'}
-            >
-                <SimpleText>Нет данных</SimpleText>
-            </BigCollapsableBlock>
+            <Pension data={data.flPensionContrs}/>
 
-            <BigCollapsableBlock 
-                icon={<PiMedalMilitary />}
-                name={'ВОИНСКИЙ УЧЕТ'}
-            >
-                <SimpleTable 
-                    columns={[
-                        'БИН',
-                        'Наименование',
-                        'Дата службы'
-                    ]}
-                    rows={[
-                        [
-                            '163465765890',
-                            'Войнская часть',
-                            '3/09/2023 - '
-                        ]
-                    ]}
-                />
-            </BigCollapsableBlock>
-
-            <BigCollapsableBlock 
-                icon={<FaBuildingUser />}
-                name={'Сведения об участии в ЮЛ'}
-            >
-                <SimpleText>Нет данных</SimpleText>
-            </BigCollapsableBlock>
-
-            <BigCollapsableBlock 
-                icon={<BsCashStack />}
-                name={'Пенсионные отчисления'}
-            >
-                <SimpleText>Нет данных</SimpleText>
-            </BigCollapsableBlock>
-
-            <BigCollapsableBlock 
-                icon={<BsPerson />}
-                name={'ИП/КХ'}
-            >
-                <SimpleText>Нет данных</SimpleText>
-            </BigCollapsableBlock>
+            <Ipkh data={data}/>
         </>
     );
 }

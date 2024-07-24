@@ -36,6 +36,7 @@ import UlDosiePage from './pages/ulDosPage/UlDosiePage';
 import WorkersPage from './pages/WorkersPage/WorkersPage';
 import CSVUpload from "./pages/сsv-upload";
 import DataProvider from "./context/dosieDataContext";
+import { MyThemeProvider } from "./context/themeContext";
 
 function App() {
   const userSession = JSON.parse(localStorage.getItem("user"))
@@ -50,7 +51,7 @@ function App() {
       mode: 'dark',
     },
     typography: {
-      fontFamily: 'Ubuntu',
+      fontFamily: 'Montserrat',
       fontSize: 14
     },
   })
@@ -60,7 +61,7 @@ function App() {
       mode: 'dark',
     },
     typography: {
-      fontFamily: 'Ubuntu',
+      fontFamily: 'Montserrat',
       fontSize: 13
     },
     components: {
@@ -84,7 +85,8 @@ function App() {
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
-        <Router>
+        <MyThemeProvider>
+          <Router>
             <AuthProvider>
               <SearchProvider>
                   <Routes>
@@ -96,182 +98,177 @@ function App() {
                   </Routes>
               </SearchProvider>
             </AuthProvider>
-          <Routes>
-            <Route path='/' element={
-              <>
-                <MainPage/>
-              </>
-            }/>
-            <Route path='/superset' element={
-              <>
-                <GrayNavbar/>
-                <SupersetPage/>
-              </>
-            }/>
-            <Route path='/workers' element={
-              <>
-                <GrayNavbar/>
-                <WorkersPage/>
-              </>
-            }/>
-            <Route path='/article/create' element={
-              <>
-                <GrayNavbar/>
-                <CreateArticlePage/>
-              </>
-            }/>
-            <Route path='/news' element={
-              <>
-                <NewsPage/>
-              </>
-            }/>
-            <Route path='/article/:id' element={
-              <>
-                <div style={{height: "12px"}}></div>
-                <GrayNavbar/>
-                <ArticlePage/>
-              </>
-            }/>
-            <Route path='/calendar' element={
-              <>
-                <GrayNavbar/>
-                <CalendarPage/>
-              </>
-            }/>
-            <Route path='/bureau' element={
-              <>
-                <GrayNavbar/>
-                <BureauPage/>
-              </>
-            }/>
-            <Route path='/profiler' element={
-              <>
-                <GrayNavbar/>
-                <SearchPage/>
-              </>
-            }/>
-            {/* <Route path='/profiler/person/:iin' element={
-              <>
-                <GrayNavbar/>
-                <DosiePage/>
-              </>
-            }/> */}
-            <Route path='/profiler/person/:iin' element={
-              <DataProvider>
-                <GrayNavbar/>
-                <NewDosiePage/>
-              </DataProvider>
-            }/>
-            <Route path='/profiler/ul/:bin' element={
-              <>
-                <GrayNavbar/>
-                <UlDosiePage/>
-              </>
-            }/>
-            <Route path="/itap" element={
-              <>
-                <GrayNavbar/>
-                  <Suspense fallback={<span class="loader"></span>}>
-                    <motion.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{ duration: 0.2 }}>
-                      <ITapPage />
-                    </motion.div>
-                  </Suspense>
-              </>
-            } />
-            <Route path="/itap/upload-csv" element={
+            <Routes>
+              <Route path='/' element={
+                <>
+                  <MainPage/>
+                </>
+              }/>
+              <Route path='/superset' element={
+                <>
+                  <GrayNavbar/>
+                  <SupersetPage/>
+                </>
+              }/>
+              <Route path='/workers' element={
+                <>
+                  <GrayNavbar/>
+                  <WorkersPage/>
+                </>
+              }/>
+              <Route path='/article/create' element={
+                <>
+                  <GrayNavbar/>
+                  <CreateArticlePage/>
+                </>
+              }/>
+              <Route path='/news' element={
+                <>
+                  <NewsPage/>
+                </>
+              }/>
+              <Route path='/article/:id' element={
+                <>
+                  <div style={{height: "12px"}}></div>
+                  <GrayNavbar/>
+                  <ArticlePage/>
+                </>
+              }/>
+              <Route path='/calendar' element={
+                <>
+                  <GrayNavbar/>
+                  <CalendarPage/>
+                </>
+              }/>
+              <Route path='/bureau' element={
+                <>
+                  <GrayNavbar/>
+                  <BureauPage/>
+                </>
+              }/>
+              <Route path='/profiler' element={
+                <>
+                  <GrayNavbar/>
+                  <SearchPage/>
+                </>
+              }/>
+              {/* <Route path='/profiler/person/:iin' element={
+                <>
+                  <GrayNavbar/>
+                  <DosiePage/>
+                </>
+              }/> */}
+              <Route path='/profiler/person/:iin' element={
+                <DataProvider>
+                  <GrayNavbar/>
+                  <NewDosiePage/>
+                </DataProvider>
+              }/>
+              <Route path='/profiler/ul/:bin' element={
+                <>
+                  <GrayNavbar/>
+                  <UlDosiePage/>
+                </>
+              }/>
+              <Route path="/itap" element={
                 <>
                   <GrayNavbar/>
                     <Suspense fallback={<span class="loader"></span>}>
                       <motion.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{ duration: 0.2 }}>
-                        <CSVUpload />
+                        <ITapPage />
                       </motion.div>
                     </Suspense>
                 </>
-            }/>
-            <Route path='/profile' element={
-              <>
-                <GrayNavbar/>
-                <ProfilePage/>
-              </>
-            }/>
-            <Route path='/bureau' element={
-              <>
-                <GrayNavbar/>
-                <BureauPage/>
-              </>
-            }/>
-            <Route path="/registration" element={
-              <>
+              } />
+              <Route path="/itap/upload-csv" element={
+                  <>
+                    <GrayNavbar/>
+                      <Suspense fallback={<span class="loader"></span>}>
+                        <motion.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{ duration: 0.2 }}>
+                          <CSVUpload />
+                        </motion.div>
+                      </Suspense>
+                  </>
+              }/>
+              <Route path='/profile' element={
+                <>
+                  <GrayNavbar/>
+                  <ProfilePage/>
+                </>
+              }/>
+              <Route path='/bureau' element={
+                <>
+                  <GrayNavbar/>
+                  <BureauPage/>
+                </>
+              }/>
+              <Route path="/registration" element={
+                <>
 
-                <GrayNavbar/>
+                  <GrayNavbar/>
+                  <Suspense fallback={<span class="loader"></span>}>
+                    <motion.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{ duration: 0.2 }}>
+                      <RegistrationPage/>
+                    </motion.div>
+                  </Suspense>
+                </>
+              } />
+              
+            <Route path="/login" element={
+              <>
                 <Suspense fallback={<span class="loader"></span>}>
                   <motion.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{ duration: 0.2 }}>
-                    <RegistrationPage/>
+                    <SignInPage />
                   </motion.div>
                 </Suspense>
               </>
             } />
-            
-          <Route path="/login" element={
-            <>
-              <Suspense fallback={<span class="loader"></span>}>
-                <motion.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{ duration: 0.2 }}>
-                  <SignInPage />
-                </motion.div>
-              </Suspense>
-            </>
-          } />
-          {console.log(userSession)}
-          <Route path="/table" element={
-            <>
-              <GrayNavbar/>
-              <Suspense fallback={<span className="loader"></span>}>
-              <motion.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{ duration: 0.2 }}>
-              <TableLog/>
-                  </motion.div>
-              </Suspense>
-            </>
-          } />
-          <Route path="/admin" element={
-            <>
-                  <GrayNavbar/>
-                  <Suspense fallback={<span class="loader"></span>}>
-                    <motion.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{ duration: 0.2 }}>
-                      <AdminPage/>
-                    </motion.div>
-                  </Suspense>
-                </>
-              }/>
-          <Route path="/users/:username" element={
-            <>
-              <GrayNavbar/>
-              <Suspense fallback={<span class="loader"></span>}>
-                <motion.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{ duration: 0.2 }}>
-                  <UserDetails/>
-                </motion.div>
-              </Suspense>
-            </>
-          }/>
-            <Route path='/oracle' element={
-              <>
-              <GrayNavbar/>
-              <OracleTable/>
-              </>
-            }/>
-            <Route path='/esf' element={
+            {console.log(userSession)}
+            <Route path="/table" element={
               <>
                 <GrayNavbar/>
-                <OracleTableESF/>
+                <Suspense fallback={<span className="loader"></span>}>
+                <motion.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{ duration: 0.2 }}>
+                <TableLog/>
+                    </motion.div>
+                </Suspense>
+              </>
+            } />
+            <Route path="/admin" element={
+              <>
+                    <GrayNavbar/>
+                    <Suspense fallback={<span class="loader"></span>}>
+                      <motion.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{ duration: 0.2 }}>
+                        <AdminPage/>
+                      </motion.div>
+                    </Suspense>
+                  </>
+                }/>
+            <Route path="/users/:username" element={
+              <>
+                <GrayNavbar/>
+                <Suspense fallback={<span class="loader"></span>}>
+                  <motion.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{ duration: 0.2 }}>
+                    <UserDetails/>
+                  </motion.div>
+                </Suspense>
               </>
             }/>
-            </Routes>
-        </Router>
-      </ThemeProvider>
-      <ThemeProvider theme={esfTheme}>
-        <Router>
-          <Routes>
-          </Routes>
-        </Router>
+              <Route path='/oracle' element={
+                <>
+                <GrayNavbar/>
+                <OracleTable/>
+                </>
+              }/>
+              <Route path='/esf' element={
+                <>
+                  <GrayNavbar/>
+                  <OracleTableESF/>
+                </>
+              }/>
+              </Routes>
+          </Router>
+        </MyThemeProvider>
       </ThemeProvider>
     </div>
   )
