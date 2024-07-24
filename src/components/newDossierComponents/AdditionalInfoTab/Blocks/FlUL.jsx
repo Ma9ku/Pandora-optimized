@@ -16,19 +16,23 @@ function FlUl({
                     ? (
                         <SimpleTable 
                             columns={[
+                                'Идентификатор ЮЛ',
+                                'Дата регистрации',
                                 'БИН',
-                                'Депозит',
-                                'Доля',
-                                'Дата регистрации'
+                                'Наименование ЮЛ',
+                                // 'Риски',
                             ]}
                             rows={
                                 data 
                                     ? data.map(item => {
+                                        console.log("flul", item)
+
                                         return [
+                                            item.idUL || '---',
+                                            item.reg_date || '---',
                                             item.bin_org || '---',
-                                            item.deposit || '---',
-                                            item.share || '---',
-                                            item.reg_date || '---'
+                                            item.name || '---',
+                                            // <button>Перейти</button>,
                                         ]
                                     })
                                     : [] 
