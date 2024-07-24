@@ -63,7 +63,7 @@ function SimpleTable({
                                 </td>
                             }
 
-                            return <td onClick={handleClick} key={index}>{columnRow}</td>
+                            return <td align='center' onClick={handleClick} key={index}>{columnRow}</td>
                         })
                     }
 
