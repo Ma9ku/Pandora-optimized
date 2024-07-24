@@ -27,7 +27,7 @@ function AdditionalInfoTab() {
         const fetchData = () => {
             setLoading(true);
 
-            axios.get(`${dossierURL}profile`, { params: { iin: iin } })
+            axios.get(`${dossierURL}additionalInfo`, { params: { iin: iin } })
                 .then(res => {
                     console.log('additional tab', res.data);
                     setData(res.data);
@@ -74,7 +74,7 @@ function AdditionalInfoTab() {
 
             <FlUl data={data.mvUlFounderFls}/>
 
-            <Pension data={data.flPensionContrs}/>
+            <Pension data={data.pensions}/>
 
             <Ipkh data={data}/>
         </>
