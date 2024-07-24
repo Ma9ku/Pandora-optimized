@@ -113,7 +113,7 @@ function DosiePage() {
                         icon={<PiFilePdf />}
                     />
                 </div>
-                <PersonCard />
+                <PersonCard setModalOpen={setModalOpen} setPhotoModal={setPhoto}/>
                 <DocsCard />
             </div>
             <div className="row-info">
