@@ -82,8 +82,8 @@ $light-theme: (
         padding-right: 25px;
       }
 
-      &[aling='center'] {
-        text-align: center;
+      &[align='center'] {
+        text-align: center
       }
     }
   }
@@ -124,5 +124,9 @@ $light-theme: (
     > tr > th:last-child {
       border-top-right-radius: 6px;
     }
+  }
+
+  &+.row-info {
+    margin-top: 20px;
   }
 }
