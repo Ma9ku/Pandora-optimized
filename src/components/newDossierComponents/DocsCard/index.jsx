@@ -9,6 +9,7 @@ import { RiMapPinTimeFill } from "react-icons/ri";
 
 import TableRow from '../TableRow';
 import { useTheme } from '../../../context/themeContext';
+import SimpleText from '../UI/Text';
 
 function DocsCard({
     _iin = null,
@@ -20,6 +21,8 @@ function DocsCard({
     const [transportDocs, setTransportDocs] = useState([]);
     const [iinDocs, setIinDocs] = useState([]);
     const [transports, setTransports] = useState([]);
+    const [addressesPerm, setAddressesPerm] = useState([])
+    const [addressesTemp, setAddressesTemp] = useState([])
 
     let { iin } = useParams();
     iin = _iin ? _iin : iin;
@@ -39,7 +42,7 @@ function DocsCard({
                 .then(res => {
                     console.log('docs', res.data);
 
-                    const { mvIinDocList, mvAutoFls } = res.data;
+                    const { mvIinDocList, mvAutoFls, regAddressFls } = res.data;
 
                     mvIinDocList.map(doc => {
                         // if (doc.doc_type_ru_name === 'Водительское удостоверение') {
@@ -48,7 +51,8 @@ function DocsCard({
                         setIinDocs(prev => [...prev, doc]);
                         // }
                     });
-
+                    setAddressesPerm(regAddressFls.filter(x => x.registration_type != 'Temporary'))
+                    setAddressesTemp(regAddressFls.filter(x => x.registration_type == 'Temporary'))
                     setTransports([
                         ...mvAutoFls,
                         {
@@ -92,7 +96,11 @@ function DocsCard({
                                 'Дата выдачи': iinDocs[0].issue_date
                             }}
                         />
-                    ) : null
+                    ) :  
+                    <Block
+                        title_text={'УДОСТОВЕРЕНИЕ ЛИЧНОСТИ'}
+                        title_icon={<TfiIdBadge />}
+                    />
             }
 
             {
@@ -108,65 +116,89 @@ function DocsCard({
                                 'Дата выдачи': '12/03/2020'
                             }}
                         />
-                    ) : null
+                    ) :  
+                    <Block
+                        title_text={'ПАСПОРТ'}
+                        title_icon={<TfiIdBadge />}
+                    />
             }
 
-            <Block
-                title_body={<>
-                    <FaLocationDot />
-                    <div className="title-text">АДРЕС ПРОПИСКИ</div>
-                    <div className='text-button'>Регистрация ФЛ на одном адресе</div>
-                </>}
-                data={{
-                    'Область/Город респуб. значения': 'Астана',
-                    'Регион/Район': 'Есиль',
-                    'Населенный пункт/Город': 'Астана',
-                    'Дата регистрации прописки': '12/03/2020',
-                    'Улица': 'Сарайшык',
-                    'Дом': '10',
-                    'Квартира': '65',
-                    'Дата снятия с прописки': '12/03/2024'
-                }}
-            />
+            {addressesPerm && addressesPerm.length > 0 ?
+                <Block
+                    title_body={<>
+                        <FaLocationDot />
+                        <div className="title-text">АДРЕС ПРОПИСКИ</div>
+                        <div className='text-button'>Регистрация ФЛ на одном адресе</div>
+                    </>}
+                    data={{
+                        'Область/Город респуб. значения': addressesPerm[0].region,
+                        'Регион/Район': addressesPerm[0].district,
+                        'Населенный пункт/Город': addressesPerm[0].city,
+                        'Дата регистрации прописки': addressesPerm[0].reg_date,
+                        'Улица': addressesPerm[0].street,
+                        'Дом': addressesPerm[0].building,
+                        'Квартира': addressesPerm[0].apartment_number,
+                        'Дата снятия с прописки': addressesPerm[0].reg_end_date
+                    }}
+                /> : 
+                <Block
+                    title_body={<>
+                        <FaLocationDot />
+                        <div className="title-text">АДРЕС ПРОПИСКИ</div>
+                        <div className='text-button'>Регистрация ФЛ на одном адресе</div>
+                    </>}
+                />
+            }
 
-            <Block
+            {addressesTemp && addressesTemp.length > 0 ? 
+                <Block
+                    title_text={'АДРЕС ВРЕМЕННОЙ РЕГИСТРАЦИИ'}
+                    title_icon={<RiMapPinTimeFill />}
+                    data={{
+                        'Область/Город респуб. значения': addressesTemp[0].region,
+                        'Регион/Район': addressesTemp[0].district,
+                        'Населенный пункт/Город': addressesTemp[0].city,
+                        'Дата регистрации прописки': addressesTemp[0].reg_date,
+                        'Улица': addressesTemp[0].street,
+                        'Дом': addressesTemp[0].building,
+                        'Квартира': addressesTemp[0].apartment_number,
+                        'Дата снятия с прописки': addressesTemp[0].reg_end_date
+                    }}
+                /> : 
+                <Block
                 title_text={'АДРЕС ВРЕМЕННОЙ РЕГИСТРАЦИИ'}
                 title_icon={<RiMapPinTimeFill />}
-                data={{
-                    'Область/Город респуб. значения': 'Астана',
-                    'Регион/Район': 'Есиль',
-                    'Населенный пункт/Город': 'Астана',
-                    'Дата регистрации прописки': '12/03/2020',
-                    'Улица': 'Сарайшык',
-                    'Дом': '10',
-                    'Квартира': '65',
-                    'Дата снятия с прописки': '12/03/2024'
-                }}
-            />
+            /> 
+            } 
+            
         </div>
     );
 }
 
-const Block = ({ title_text, title_icon, title_body = null, data, body = null }) => {
+const Block = ({ title_text, title_icon, title_body = null, data = null, body = null }) => {
     const [keys, setKeys] = useState([]);
     const [mid, setMid] = useState(0);
 
     useEffect(() => {
-        setKeys(prev => {
-            if (data === null) return [];
-            if (typeof data !== 'object') return [];
-
-            return Object.keys(data);
-        });
-
-        if (typeof data === 'object' && Object.keys(data).length >= 2) {
-            setMid(prev => {
-                return Math.ceil(Object.keys(data).length / 2);
+        if (data == null) {
+            setMid(-2)
+        } else {
+            setKeys(prev => {
+                if (data === null) return [];
+                if (typeof data !== 'object') return [];
+    
+                return Object.keys(data);
             });
-        }
-
-        if (typeof data === 'object' && Object.keys(data).length < 2) {
-            setMid(-1);
+    
+            if (typeof data === 'object' && Object.keys(data).length >= 2) {
+                setMid(prev => {
+                    return Math.ceil(Object.keys(data).length / 2);
+                });
+            }
+    
+            if (typeof data === 'object' && Object.keys(data).length < 2) {
+                setMid(-1);
+            }
         }
     }, [data]);
 
@@ -204,7 +236,13 @@ const Block = ({ title_text, title_icon, title_body = null, data, body = null })
                             </div>
                         </div>
                     )
-                    : (
+                    : 
+                    mid == -2 ? 
+                    <SimpleText >
+                        Нет данных
+                    </SimpleText>
+                    :
+                    (
                         <div className="body">
                             <div className="column">
                                 <table>

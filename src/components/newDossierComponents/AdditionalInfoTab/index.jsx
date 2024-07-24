@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import { useParams } from 'react-router-dom';
-
+import '../spinner.scss'
 import axios from 'axios';
 import { dossierURL } from '../../../data/dossier';
 import Education from './Blocks/Education';
@@ -44,9 +44,12 @@ function AdditionalInfoTab() {
     }, [iin]);
 
     if (isLoading) {
-        return null;
+        return (
+            <a>...Loading</a>
+        )
+        ;
     }
-
+    
     return ( 
         <>
             <Education 

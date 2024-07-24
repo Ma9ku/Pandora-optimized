@@ -11,6 +11,7 @@ import { PiFilePdf, PiFileXls } from 'react-icons/pi';
 import IconButton from '../../components/newDossierComponents/UI/IconButton';
 import axios from 'axios';
 import { dossierURL } from '../../data/dossier';
+import { IoCloseOutline } from 'react-icons/io5';
 
 function DosiePage() {
     const { iin } = useParams();
@@ -52,6 +53,9 @@ function DosiePage() {
                 console.log('downloading doc ul err', err)
             })
     }
+    const [modalOpen, setModalOpen] = useState(false);
+
+    const [photo, setPhoto] = useState("")
 
     useEffect(() => {
         pSetIIN(iin);
@@ -60,6 +64,18 @@ function DosiePage() {
     useEffect(() => {
         document.body.className = theme;
     }, [theme]);
+
+    useEffect(() => {
+        if (modalOpen) {
+            document.body.classList.add('no-scroll');
+        } else {
+            document.body.classList.remove('no-scroll');
+        }
+    }, [modalOpen]);
+
+    const handleModalClose = () => {
+        setModalOpen(false);
+    };
 
     return (
         <div className={`new-dosie-page ${theme}`}>
@@ -70,6 +86,21 @@ function DosiePage() {
                     <FaMoon onClick={() => setTheme('dark')} />
                 )}
             </div>
+            {modalOpen && (
+                <div className="modal-overlay" onClick={handleModalClose}>
+                
+                    <div className="modal-photo-preview">
+                        <div className='close-button'>
+                            <a>X</a>
+                        </div>
+                        <img
+                        id='myimage'
+                        src={`data:image/png;base64, ${photo}`}
+                        alt="PERSON"
+                        />
+                    </div>
+                </div>
+                )}
             <div className="row-info">
                 <div className="icon-buttons">
                     <IconButton 
@@ -90,5 +121,7 @@ function DosiePage() {
         </div>
     );
 }
+
+
 
 export default DosiePage;

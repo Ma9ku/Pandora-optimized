@@ -9,10 +9,13 @@ import { useParams } from 'react-router-dom';
 
 import { FaCheck } from "react-icons/fa6";
 import { useTheme } from '../../../context/themeContext';
+import { MdOutlineRemoveRedEye } from 'react-icons/md';
 
 function PersonCard({
     _iin,
-    secondary = false
+    secondary = false,
+    setPhotoModal,
+    setModalOpen
 }) {
     const { theme } = useTheme();
 
@@ -58,6 +61,7 @@ function PersonCard({
                     setLifeStatus(mvFls[0].life_status_ru_name);
                     setBirthDate(mvFls[0].birth_date);
                     setPhoto(photoDbf[0].photo)
+                    setPhotoModal(photoDbf[0].photo)
                     setIsResident(mvFls[0].is_resident)
                 })
                 .catch(err => console.log(err))
@@ -86,7 +90,11 @@ function PersonCard({
                 <div>Резидент</div>
             </div>
 
-            <div className="person-image">
+            <div className="person-image" onClick={setModalOpen}>
+                <div className='hidden-button'>
+                    <MdOutlineRemoveRedEye />
+                    <a>Предпросмотр</a>
+                </div>
                 <img 
                     src={
                         `data:image/png;base64, ${photo}`

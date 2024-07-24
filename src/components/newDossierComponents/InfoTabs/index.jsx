@@ -58,13 +58,13 @@ const Tabs = ({
                 className={tab === 1 ? `active` : ''}
                 onClick={() => setTab(1)}
             >
-                Доп. информация
+                Дополнительная информация
             </div>
             <div 
                 className={tab === 2 ? `active` : ''}
                 onClick={() => setTab(2)}
             >
-                Связанные лица
+                Связи
             </div>
             <div 
                 className={tab === 3 ? `active` : ''}

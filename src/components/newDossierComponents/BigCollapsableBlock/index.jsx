@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BsArrowsCollapse } from "react-icons/bs";
 import './style.scss';
 import { useTheme } from '../../../context/themeContext';
 
-function BigCollapsableBlock({ children, icon, name }) {
-    const [open, setOpen] = useState(false);
+function BigCollapsableBlock({ children, icon, name, defaultOpen = false }) {
+    const [open, setOpen] = useState(defaultOpen);
     const { theme } = useTheme();
 
     const toggleOpen = () => {
