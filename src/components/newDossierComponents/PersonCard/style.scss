@@ -95,6 +95,7 @@ $light-theme: (
     min-height: 525px;
   }
 
+
   .resident {
     position: absolute;
     top: 18px;
@@ -131,6 +132,7 @@ $light-theme: (
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    position: relative;
 
     img {
       border-radius: 50%;
@@ -139,6 +141,37 @@ $light-theme: (
       max-width: 142px;
       max-height: 142px;
       object-fit: cover;
+      transition: filter 0.3s;
+    }
+
+    .hidden-button {
+      display: none;
+      position: absolute; 
+      top: 50%; 
+      left: 50%; 
+      transform: translate(-50%, -50%); 
+      color: white;
+      padding: 5px;
+      z-index: 1; 
+      align-items: center; 
+      justify-content: center; 
+      gap: 5px; 
+      cursor: pointer;
+
+      a {
+        font-size: 14px;
+        font-weight: 100;
+        
+      }
+    }
+
+    &:hover {
+      .hidden-button {
+        display: flex;
+      }
+      img {
+        filter: brightness(0.3);
+      }
     }
   }
 

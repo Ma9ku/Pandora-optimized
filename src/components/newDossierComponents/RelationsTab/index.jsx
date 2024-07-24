@@ -15,6 +15,7 @@ const RelationsTab = (() => {
             <BigCollapsableBlock
                 icon={<MdFamilyRestroom />}
                 name={'СВЕДЕНИЯ О РОДСТВЕННИКАХ ФЛ'}
+                defaultOpen={true}
             >
                 <SimpleTable 
                     columns={[
