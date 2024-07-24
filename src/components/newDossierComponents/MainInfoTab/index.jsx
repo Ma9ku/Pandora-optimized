@@ -11,30 +11,10 @@ import SameAddress from '../RisksTab/Blocks/SameAddress';
 const dossierURL = 'http://10.202.20.92:8081/api/pandora/dossier/';
 
 
-function MainInfoTab() {
+function MainInfoTab({data}) {
     const { iin } = useParams();
     const [isLoading, setLoading] = useState(true);
-    const [data, setData] = useState(null);
-
-    useEffect(() => {
-        const fetchData = () => {
-            setLoading(true);
-
-            axios.get(`${dossierURL}generalInfo`, { params: { iin: iin } })
-                .then(res => {
-                    console.log('generalInfo data', res.data);
-                    setData(res.data);
-                })
-                .catch(err => console.log(err))
-                .finally(() => {
-                    setLoading(false);
-                });
-        }
-
-        if (iin) {
-            fetchData();
-        }
-    }, [iin]);
+  
     return ( 
         <>
             <GeneralInfo />

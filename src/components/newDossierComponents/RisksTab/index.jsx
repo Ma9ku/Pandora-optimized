@@ -30,34 +30,7 @@ import Administrative from './Blocks/Administrative';
 // Your dossier URL
 const dossierURL = 'http://10.202.20.92:8081/api/pandora/dossier/';  // Replace with the actual URL
 
-function RisksTab() {
-    const { iin } = useParams();
-    const [isLoading, setLoading] = useState(true);
-    const [data, setData] = useState(null);
-
-    useEffect(() => {
-        const fetchData = () => {
-            setLoading(true);
-
-            axios.get(`${dossierURL}getRiskByIin`, { params: { iin: iin } })
-                .then(res => {
-                    console.log('risks tab data', res.data);
-                    setData(res.data);
-                })
-                .catch(err => console.log(err))
-                .finally(() => {
-                    setLoading(false);
-                });
-        }
-
-        if (iin) {
-            fetchData();
-        }
-    }, [iin]);
-
-    if (isLoading) {
-        return <div>Loading...</div>;
-    }
+function RisksTab({data}) {
 
     return (
         <>

@@ -70,6 +70,8 @@ function TabContent_UL(props) {
 
     const searchName = async () => {
         setLoading(true)
+        const userSession = JSON.parse(localStorage.getItem("user"))
+
         let resName = ""
         if (vin == '') {
             if (ulNameType == 'begin') {
@@ -84,12 +86,14 @@ function TabContent_UL(props) {
             }
             
             console.log(req)
+            axios.defaults.headers.common['Authorization'] = 'Bearer ' + userSession.accessToken
             axios.get(dossierURL+'binname', {params: req}).then(res => {
                 console.log(res.data)
                 setResult(res.data)
                 setLoading(false)
             })
         } else {
+            axios.defaults.headers.common['Authorization'] = 'Bearer ' + userSession.accessToken
             axios.get(dossierURL+'byvinkuzovul', {params: {vin: vin}}).then(res => {
                 console.log(res.data)
                 setResult(res.data)

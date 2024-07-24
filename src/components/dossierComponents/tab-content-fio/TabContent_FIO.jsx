@@ -21,7 +21,7 @@ import './tabContent_fio.scss';
 
 import { dossierURL } from '../../../data/dossier';
 import DopInfoBlock from '../dop-info-block/DopInfoBlock';
-// const baseURL = 'http://localhost:9095/'
+// const baseURL = 'http://10.202.20.92:9095/'
 const selectStyle = {
     width: '200px',
     height: '35px',
@@ -134,6 +134,8 @@ function TabContent_FIO(props) {
             email: email
         }
         console.log(req)
+        const userSession = JSON.parse(localStorage.getItem("user"))
+        axios.defaults.headers.common['Authorization'] = 'Bearer ' + userSession.accessToken
         axios.get(dossierURL+'additionalfio', {params: req}).then(res => {
             console.log(res.data)
             setResult(res.data)
@@ -235,14 +237,9 @@ function TabContent_FIO(props) {
                 </div>
             </div>
             
-
-            <div className='dopInfa'>
 {/* 
-                <div onClick={() => setShowDopInfo((prev) => !prev)}>
-                    <div>Дополнительные данные</div>
-                    <div>{showDopInfo ? "HideIcon" : "ShowIcon"}</div>
-                </div>
-                <DopInfoBlock show={showDopInfo}/> */}
+            <div className='dopInfa'>
+
                 <TableContainer sx={{marginTop: 0, backgroundColor: '#0D0F11'}} style={{ overflow: 'unset'}}>
                     <Table aria-label="collapsible table" className="uitable">
                         <TableRow className="uitablerow" sx={{height:'10px',}} style={{borderBottom: 'hidden'}}>
@@ -279,7 +276,7 @@ function TabContent_FIO(props) {
                         </TableRow>
                     </Table>
                 </TableContainer>
-            </div>
+            </div> */}
 
             <div style={{display: "flex", justifyContent: "flex-start", paddingLeft: "70%"}}>
                 <Button sx={zaprosButtonStyle} variant="contained" onClick={searchFIO}>

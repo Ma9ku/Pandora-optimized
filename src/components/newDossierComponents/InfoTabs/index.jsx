@@ -16,6 +16,12 @@ function InfoTabs() {
     const { iin } = useParams();
     const [nonEmptyArraysCount, setNonEmptyArraysCount] = useState(0);
 
+    const [loading, setLoading] = useState(true)
+
+    const [generalInfo, setGeneralInfo] = useState({})
+    const [additionalInfo, setAdditionalInfo] = useState({})
+    const [risksInfo, setRisksInfo] = useState({})
+
     useEffect(() => {
         console.log(tab);
     }, [tab]);
@@ -53,21 +59,73 @@ function InfoTabs() {
         }
     }, [iin]);
 
+    useEffect(() => {
+        const fetchGeneralInfo = () => {
+            setLoading(true);
+
+            axios.get(`${dossierURL}generalInfo`, { params: { iin: iin } })
+                .then(res => {
+                    console.log('generalInfo data', res.data);
+                    setGeneralInfo(res.data);
+                })
+                .catch(err => console.log(err))
+                .finally(() => {
+                    setLoading(false);
+                });
+        }
+        const fetchAdditionalInfo = () => {
+            setLoading(true);
+
+            axios.get(`${dossierURL}additionalInfo`, { params: { iin: iin } })
+                .then(res => {
+                    console.log('additional tab', res.data);
+                    setAdditionalInfo(res.data);
+                })
+                .catch(err => console.log(err))
+                .finally(() => {
+                    setLoading(false);
+                });
+        }
+        const fetchRisks = () => {
+            setLoading(true);
+
+            axios.get(`${dossierURL}getRiskByIin`, { params: { iin: iin } })
+                .then(res => {
+                    console.log('risks tab data', res.data);
+                    setRisksInfo(res.data);
+                })
+                .catch(err => console.log(err))
+                .finally(() => {
+                    setLoading(false);
+                });
+        }
+
+        if (tab == 0) {
+            fetchGeneralInfo()
+        } else if (tab == 1) {
+            fetchAdditionalInfo()
+        } else if (tab == 3) {
+            fetchRisks()
+        }
+    }, [tab]);
+
     return ( 
         <div className={`info-tabs-block ${theme}`}>
             <Tabs tab={tab} setTab={setTab} nonEmptyArraysCount={nonEmptyArraysCount} />
             <div className="tab-content">
-                {
-                    tab === 0
-                        ? <MainInfoTab />
+                {loading == true ?
+                    <div>...Loading</div>
+                    : tab === 0
+                    ? <MainInfoTab data={generalInfo}/>
                     : tab === 1 
-                        ? <AdditionalInfoTab />
+                        ? <AdditionalInfoTab data={additionalInfo}/>
                     : tab === 2
                         ? <RelationsTab />
                     : tab === 3
-                        ? <RisksTab />
+                        ? <RisksTab data={risksInfo}/>
                     : <>ERROR NOT CORRECT TAB</>
                 }
+            
             </div>
         </div>
     );

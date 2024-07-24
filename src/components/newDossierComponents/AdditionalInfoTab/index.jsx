@@ -14,41 +14,9 @@ import FlUl from './Blocks/FlUL';
 import Ipkh from './Blocks/Ipkh';
 import Pension from './Blocks/Pension';
 
-function AdditionalInfoTab() {
+function AdditionalInfoTab({data}) {
 
     let { iin } = useParams()
-
-    const [isLoading, setLoading] = useState(true);
-
-    const [data, setData] = useState(null);
-
-    useEffect(() => {
-
-        const fetchData = () => {
-            setLoading(true);
-
-            axios.get(`${dossierURL}additionalInfo`, { params: { iin: iin } })
-                .then(res => {
-                    console.log('additional tab', res.data);
-                    setData(res.data);
-                })
-                .catch(err => console.log(err))
-                .finally(() => {
-                    setLoading(false);
-                });
-        }
-
-        if (iin) {
-            fetchData();
-        }
-    }, [iin]);
-
-    if (isLoading) {
-        return (
-            <a>...Loading</a>
-        )
-        ;
-    }
     
     return ( 
         <>

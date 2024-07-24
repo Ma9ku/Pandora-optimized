@@ -50,6 +50,8 @@ function TabConent_BIN(props) {
         const params = {bin: bin, email: email}
         setLoading(true)
         console.log(params)
+        const userSession = JSON.parse(localStorage.getItem("user"))
+        axios.defaults.headers.common['Authorization'] = 'Bearer ' + userSession.accessToken
         axios.get(dossierURL+'bin', {params: params}).then(res => {
             console.log(res.data)
             setResult(res.data)

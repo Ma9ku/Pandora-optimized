@@ -40,6 +40,10 @@ function PersonCard({
 
     const [riskPercentage, setriskPercentage] = useState(0);
 
+    const userSession = JSON.parse(localStorage.getItem("user"))
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + userSession.accessToken
+
+
     useEffect(() => {
         if (_iin) {
             setLoading(false)

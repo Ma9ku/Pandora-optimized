@@ -41,10 +41,14 @@ const zaprosButtonStyle = {
 function TabConent_IIN(props) {
     const [iin, setIIN] = React.useState('');
     const [doc, setDoc] = useState('')
+    const [phone, setPhone] = useState('');
+    const [mail, setMail] = useState('');
     const [result, setResult] = React.useState(null);
     const [photo, setPhoto] = React.useState('')
     const [loading, setLoading] = React.useState(false)
     const email = localStorage.getItem("email")
+    const userSession = JSON.parse(localStorage.getItem("user"))
+
 
     const handleSelectPerson = (photo) => {
         setPhoto(photo)
@@ -59,6 +63,7 @@ function TabConent_IIN(props) {
         const params = { iin: iin, email: email }
         setLoading(true)
         console.log(params)
+        axios.defaults.headers.common['Authorization'] = 'Bearer ' + userSession.accessToken
         axios.get(dossierURL+'iin', {params: params}).then(res => {
             console.log(res.data)
             setResult(res.data)
@@ -68,10 +73,37 @@ function TabConent_IIN(props) {
     }
     const searchDoc = async () => {
         console.log(loading)
-        const params = {doc_number: doc}
+        const params = {doc: doc}
         setLoading(true)
         console.log(params)
-        axios.get(dossierURL+'bydoc_number', {params: params}).then(res => {
+        axios.defaults.headers.common['Authorization'] = 'Bearer ' + userSession.accessToken
+        axios.get(dossierURL+'nomer_doc', {params: params}).then(res => {
+            console.log(res.data)
+            setResult(res.data)
+            setLoading(false)
+        })
+        setPhoto('')
+    }
+    const searchPhone = async () => {
+        console.log(loading)
+        const params = {phone: phone}
+        setLoading(true)
+        console.log(params)
+        axios.defaults.headers.common['Authorization'] = 'Bearer ' + userSession.accessToken
+        axios.get(dossierURL+'byphone', {params: params}).then(res => {
+            console.log(res.data)
+            setResult(res.data)
+            setLoading(false)
+        })
+        setPhoto('')
+    }
+    const searchEmail = async () => {
+        console.log(loading)
+        const params = {email: mail}
+        setLoading(true)
+        console.log(params)
+        axios.defaults.headers.common['Authorization'] = 'Bearer ' + userSession.accessToken
+        axios.get(dossierURL+'byemail', {params: params}).then(res => {
             console.log(res.data)
             setResult(res.data)
             setLoading(false)
@@ -162,8 +194,10 @@ function TabConent_IIN(props) {
                                 }} 
                                 id="outlined-basic" 
                                 inputProps={{ style: inputStyle,'aria-label': 'Without label' }} 
+                                value={phone}
+                                       onChange={(e) => setPhone(e.target.value)}
                                 variant="outlined" />
-                            <Button sx={zaprosButtonStyle} variant="contained">
+                            <Button sx={zaprosButtonStyle} onClick= {() => searchPhone()} variant="contained">
                                 <span className='buttonSearch'>Запрос</span>
                             </Button>
                         </div>
@@ -189,8 +223,10 @@ function TabConent_IIN(props) {
                                 }} 
                                 id="outlined-basic" 
                                 inputProps={{ style: inputStyle,'aria-label': 'Without label' }} 
+                                value={mail}
+                                onChange={(e) => setMail(e.target.value)}
                                 variant="outlined" />
-                            <Button sx={zaprosButtonStyle} variant="contained">
+                            <Button sx={zaprosButtonStyle} onClick= {() => searchEmail()} variant="contained">
                                 <span className='buttonSearch'>Запрос</span>
                             </Button>
                         </div>

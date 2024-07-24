@@ -20,6 +20,8 @@ function DosiePage() {
     const [loading, isLoading] = useState(true);
     const [modalOpen, setModalOpen] = useState(false);
     const [photo, setPhoto] = useState("")
+    const userSession = JSON.parse(localStorage.getItem("user"))
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + userSession.accessToken
     
     const handleDownloadDoc = () => {
         axios.get(`${dossierURL}downloadFlDoc/${iin}`, { responseType: 'arraybuffer' })
