@@ -217,11 +217,6 @@ const MainPage = (props) => {
                         </div>
                     </div>
                 </div>
-
-                <div style={{ width: '80%', margin: '0 auto', paddingTop: '5%' }}>
-                    {/* <a style={{display: 'block', fontSize: '32px', fontWeight: 600}}>Lorem ipsum dolor sit amet</a> */}
-                    {/* <a style={{marginTop: '32px', display: 'block', width: '55%', fontSize: '28px', fontWeight: 500}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a> */}
-                </div>
                 <div style={{ width: '80%', display: 'flex', justifyContent: 'space-around', margin: '0 auto', paddingTop: '50px' }}>
                     <div className="toolPan" onClick={() => { navigate('/itap') }} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                         <img style={{ display: 'block', margin: '0 auto', marginTop: '10px' }} src={itapL} />
@@ -234,7 +229,7 @@ const MainPage = (props) => {
                         <a className='context-text' style={{ fontSize: '18px', fontWeight: 300, textAlign: 'center' }}>Аналитичесие отчеты</a>
                     </div>
                 </div>
-                <div style={{ width: '80%', display: 'flex', justifyContent: 'space-around', margin: '0 auto', paddingTop: '50px' }}>
+                <div style={{ width: '80%', display: 'flex', justifyContent: 'space-around', margin: '0 auto', paddingTop: '20px' }}>
                     <div className="toolPan" onClick={() => { navigate('/profiler') }} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                         <img style={{ display: 'block', margin: '0 auto', marginTop: '10px' }} src={profilerL} />
                         <a style={{ display: 'block', fontSize: '23px', fontWeight: 700 }}></a>
@@ -246,7 +241,7 @@ const MainPage = (props) => {
                         <a className='context-text' style={{ fontSize: '18px', fontWeight: 300, textAlign: 'center', paddingTop: '8px' }}>ESF</a>
                     </div>
                 </div>
-                <div style={{ width: '80%', display: 'flex', justifyContent: 'space-around', margin: '0 auto', paddingTop: '50px' }}>
+                <div style={{ width: '80%', display: 'flex', justifyContent: 'space-around', margin: '0 auto', paddingTop: '20px' }}>
                     <div className="toolPan" onClick={() => { navigate('/eTanu') }} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                         <img style={{ display: 'block', margin: '0 auto', marginTop: '10px', width: '102px' }} src={eTanu} />
                         <a style={{ display: 'block', fontSize: '23px', fontWeight: 700 }}></a>

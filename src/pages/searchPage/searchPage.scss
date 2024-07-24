@@ -29,6 +29,8 @@ body {
     margin: 0 auto;
     margin-top: 2%;
 
+    height: 75vh;
+
     
     // border: 1px solid green;
 }
@@ -70,15 +72,20 @@ $tab-wrap-border-radius: 2px;
 
     display: flex;
     flex-wrap: wrap;
-
     
     border-radius: $tab-wrap-border-radius;
     list-style: none;
+    background: #0D0F11 !important;
+    // border: 1px solid red;
+
 }
 
 .tab__content {
     background: #0D0F11 !important;
-    height: 70vh;
+    // height: ;
+    height: 75vh;
+    // border: 1px solid red;
+
     overflow-y: scroll !important; 
     &::-webkit-scrollbar {
         display: none;

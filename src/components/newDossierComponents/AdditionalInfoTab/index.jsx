@@ -1,22 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import BigCollapsableBlock from '../BigCollapsableBlock';
 
-import { HiOutlineAcademicCap } from "react-icons/hi2";
-import { IoCarSharp } from "react-icons/io5";
-import { PiHouseLine } from "react-icons/pi";
-import { LuSailboat } from "react-icons/lu";
-import { PiGear, PiMedalMilitary } from "react-icons/pi";
+import { useParams } from 'react-router-dom';
 
-import SmallCollapsableBlock from '../SmallCollapsableBlock';
-import SimpleTable from '../SimpleTable';
-import { Link, useParams } from 'react-router-dom';
-import CollapsableContainer from '../CollapsableContainer';
-import VerticalTable from '../VerticalTable';
-import ActionButton from '../UI/ActionButton';
-import TwoColumn from '../TwoColumn';
-import SimpleText from '../UI/Text';
-import { FaBuildingUser } from 'react-icons/fa6';
-import { BsCashStack, BsPerson } from 'react-icons/bs';
 import axios from 'axios';
 import { dossierURL } from '../../../data/dossier';
 import Education from './Blocks/Education';
