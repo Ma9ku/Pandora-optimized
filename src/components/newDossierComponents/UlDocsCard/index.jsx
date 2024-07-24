@@ -16,6 +16,8 @@ function UlDocsCard({
 
     const [passports, setPassports] = useState([]);
 
+    const [data, setData] = useState({})
+
     let { bin } = useParams();
 
     const [isLoading, setLoading] = useState(true);
@@ -24,10 +26,10 @@ function UlDocsCard({
         const fetchData = () => {
             setLoading(true);
 
-            axios.get(`${dossierURL}cc`, { params: { bin: bin } })
+            axios.get(`${dossierURL}ulAddresses`, { params: { bin: bin } })
                 .then(res => {
                     console.log('docs', res.data);
-
+                    setData(res.data)
                 })
                 .catch(err => console.log(err))
                 .finally(() => {
@@ -56,12 +58,12 @@ function UlDocsCard({
                     <div className='text-button'>Регистрация ЮЛ на одном адресе</div>
                 </>}
                 data={{
-                    'Область': 'Астана',
-                    'Город': 'Есиль',
-                    'Район': '12/03/2020',
-                    'Улица': 'Сарайшык',
-                    'Номер дома': '10',
-                    'Номер помещения': '12/03/2024'
+                    'Область': data.reg_addr_region_ru,
+                    'Город': data.reg_addr_locality_ru,
+                    'Район': data.reg_addr_district_ru,
+                    'Улица': data.reg_addr_street_ru,
+                    'Номер дома': data.reg_addr_bulding_num,
+                    'Номер помещения': data.reg_addr_office
                 }}
             />
         </div>
