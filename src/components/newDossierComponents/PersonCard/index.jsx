@@ -85,9 +85,9 @@ function PersonCard({
         <div className={`person-card-block ${theme} ${secondary ? 'secondary' : ''}`}>
             <div className="resident">
                 <div className="check">
-                    { !isResident ? <FaCheck /> : null}
+                    { isResident ? <FaCheck /> : null}
                 </div>
-                <div>Нерезидент</div>
+                <div>Резидент</div>
             </div>
 
             <div className="person-image" onClick={setModalOpen}>

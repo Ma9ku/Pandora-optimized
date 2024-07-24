@@ -92,6 +92,8 @@ $light-theme: (
   }
   
   .row-info {
+    position: relative;
+    
     display: flex;
     flex-direction: row;
     gap: 10px;
@@ -108,6 +110,16 @@ $light-theme: (
 
     & + .row-info {
       margin-top: 21px;
+    }
+
+    > .icon-buttons {
+      position: absolute;
+      top: -40px;
+      right: 0x;
+
+      display: flex;
+      flex-direction: row;
+      gap: 3px;
     }
   }
 }
