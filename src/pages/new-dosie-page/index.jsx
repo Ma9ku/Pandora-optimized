@@ -18,7 +18,9 @@ function DosiePage() {
     const { theme, setTheme } = useTheme();
     const { pIIN, pSetIIN } = useData();
     const [loading, isLoading] = useState(true);
-
+    const [modalOpen, setModalOpen] = useState(false);
+    const [photo, setPhoto] = useState("")
+    
     const handleDownloadDoc = () => {
         axios.get(`${dossierURL}downloadFlDoc/${iin}`, { responseType: 'arraybuffer' })
             .then(res => {
@@ -55,9 +57,6 @@ function DosiePage() {
                 console.log('downloading doc ul err', err)
             })
     }
-    const [modalOpen, setModalOpen] = useState(false);
-
-    const [photo, setPhoto] = useState("")
 
     useEffect(() => {
         pSetIIN(iin);
@@ -114,7 +113,7 @@ function DosiePage() {
                         icon={<PiFilePdf />}
                     />
                 </div>
-                <PersonCard />
+                <PersonCard setModalOpen={setModalOpen} setPhotoModal={setPhoto}/>
                 <DocsCard />
             </div>
             <div className="row-info">
