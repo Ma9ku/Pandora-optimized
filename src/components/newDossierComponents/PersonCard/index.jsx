@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import mockPersonImage from './../../../assets/mock-person-image.png'
 
+import noPhotoUser from './image/noPhotoUser.png'
 import './style.scss';
 import axios from 'axios';
 import { dossierURL } from '../../../data/dossier';
@@ -95,12 +96,17 @@ function PersonCard({
                     <MdOutlineRemoveRedEye />
                     <a>Предпросмотр</a>
                 </div>
+                {photo ? (
                 <img 
-                    src={
-                        `data:image/png;base64, ${photo}`
-                        // mockPersonImage
-                    } 
-                    alt="PERSON" />
+                    src={`data:image/png;base64,${photo}`} 
+                    alt="PERSON" 
+                />
+            ) : (
+                <img 
+                    src={noPhotoUser} 
+                    alt="PERSON" 
+                />
+            )}
             </div>
 
             <div className="person-info">
