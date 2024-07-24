@@ -23,7 +23,7 @@ function DosiePage() {
     }, [theme]);
 
     return (
-        <div className="new-dosie-page">
+        <div className={`new-dosie-page ${theme}`}>
             <div className="change-theme-btn">
                 {theme === 'dark' ? (
                     <FaSun onClick={() => setTheme('light')} />
