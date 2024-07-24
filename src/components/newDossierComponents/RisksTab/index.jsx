@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-// import { dossierURL } from '../../data/dossier';
 import { useParams } from 'react-router-dom';
 
+// Import the blocks
 import ESF from './Blocks/ESF';
 import ForcedTreatment from './Blocks/ForcedTreatment';
 import Criminal from './Blocks/Criminal';
@@ -27,36 +27,77 @@ import Missing from './Blocks/Missing';
 import Unemployed from './Blocks/Unemployed';
 import Administrative from './Blocks/Administrative';
 
+// Your dossier URL
+const dossierURL = 'http://10.202.20.92:8081/api/pandora/dossier/';  // Replace with the actual URL
+
 function RisksTab() {
     const { iin } = useParams();
+    const [isLoading, setLoading] = useState(true);
+    const [data, setData] = useState(null);
 
-    const [ isLoading, setLoading ] = useState(true);
+    useEffect(() => {
+        const fetchData = () => {
+            setLoading(true);
 
-    return ( 
+            axios.get(`${dossierURL}getRiskByIin`, { params: { iin: iin } })
+                .then(res => {
+                    console.log('risks tab data', res.data);
+                    setData(res.data);
+                })
+                .catch(err => console.log(err))
+                .finally(() => {
+                    setLoading(false);
+                });
+        }
+
+        if (iin) {
+            fetchData();
+        }
+    }, [iin]);
+
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
+
+    return (
         <>
-            <ESF />
-            <ForcedTreatment />
-            <Criminal />
-            <MinZdrav />
-            <Drugs />
-            <NDS />
-            <RiskUL />
-            <Orphanage />
-            <Kartochki />
-            <Attend1D />
-            <OMN />
-            <Inactive />
-            <Beneficiary />
-            <Amoral />
-            <PKB />
-            <Debt />
-            <Incompetent />
-            <Examination />
-            <Dismissed />
-            <Discipline />
-            <Missing />
-            <Unemployed />
-            <Administrative />
+            <ESF data={data ? data.blockEsfs : []} /> {/*completed */}
+
+            {/* <ForcedTreatment data={data ? data.forcedTreatment : []} /> нету */}
+
+            <Criminal data={data ? data.criminals : []} />{/*completed */}
+            <MinZdrav data={data ? data.mzEntities : []} />{/*completed */}
+            <Drugs data={data ? data.drugAddicts : []} />{/*пустой */}
+
+            {/* <NDS data={data ? data.ndsEntities : []} />null */}
+            {/* <RiskUL data={data ? data.riskUL : []} />нету */}
+
+            <Orphanage data={data ? data.orphans : []} /> {/*completed */}
+
+            {/* <Kartochki data={data ? data.kartochki : []} />нету */}
+            {/* <Attend1D data={data ? data.attend1D : []} />нету */}
+
+            <OMN data={data ? data.omns : []} /> {/*completed */}
+            <Inactive data={data ? data.dormants : []} /> {/*completed */}
+            <Beneficiary data={data ? data.beneficiariesLists : []} /> {/*completed */}
+            <Amoral data={data ? data.immoralLifestyles : []} />{/*null */}
+            <PKB data={data ? data.firstCreditBureauEntities : []} />{/*completed */}
+
+            {/* <Debt data={data ? data.debt : []} />нету */}
+
+            <Incompetent data={data ? data.incapacitateds : []} /> {/*completed */}
+
+            {/* <Examination data={data ? data.examination : []} />нету */}
+
+            <Dismissed data={data ? data.dismissals : []} /> {/*completed */}
+
+            {/* <Discipline data={data ? data.discipline : []} />нету */}
+
+            <Missing data={data ? data.wantedListEntities : []} /> {/*completed */}
+
+            {/* <Unemployed data={data ? data.unemployed : []} />нету */}
+
+            <Administrative data={data ? data.adms : []} /> {/*completed */}
         </>
     );
 }

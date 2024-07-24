@@ -2,37 +2,42 @@ import { BsFileLock } from 'react-icons/bs';
 import BigCollapsableBlock from '../../BigCollapsableBlock';
 import SimpleTable from '../../SimpleTable';
 import { useEffect, useState } from 'react';
+import SimpleText from '../../UI/Text';
 
-function ESF({
-    
-}) {
+function ESF({ data }) {
     const [rows, setRows] = useState([]);
 
     useEffect(() => {
-        setRows(prev => {
+        if (data) {
+            setRows(data.filter(item => item != null).map(item => [
+                item.ip_name || '---',
+                item.start_dt || '---',
+                item.reason || '---',
+                item.end_dt || '---',
+            ]));
+        } else {
+            setRows([]);
+        }
+    }, [data]);
 
-            return [
-                [ 'IpName1', 'BlockDate1', 'Reason1', 'RecoverDate1'],
-                [ 'IpName2', 'BlockDate2', 'Reason2', 'RecoverDate2'],
-            ]
-        })
-    }, [])
-
-    return ( 
+    return (
         <BigCollapsableBlock
             name={'Блокировка выписки ЭСФ'}
             icon={<BsFileLock />}
         >
-            <SimpleTable 
-                columns={[
-                    'Наименование ИП',
-                    'Дата блокировки',
-                    'Причина блокировки',
-                    'Датаs восстановления'
-                ]}
-                rows={rows}
-            />
-
+            {data && data.length > 0 ? (
+                <SimpleTable
+                    columns={[
+                        'Наименование ИП',
+                        'Дата блокировки',
+                        'Причина блокировки',
+                        'Дата восстановления'
+                    ]}
+                    rows={rows}
+                />
+            ) : (
+                <SimpleText>Нет данных</SimpleText>
+            )}
         </BigCollapsableBlock>
     );
 }
