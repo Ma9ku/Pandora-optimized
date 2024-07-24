@@ -28,7 +28,7 @@ import Unemployed from './Blocks/Unemployed';
 import Administrative from './Blocks/Administrative';
 
 // Your dossier URL
-const dossierURL = 'http://localhost:8081/api/pandora/dossier/';  // Replace with the actual URL
+const dossierURL = 'http://10.202.20.92:8081/api/pandora/dossier/';  // Replace with the actual URL
 
 function RisksTab({data}) {
 

@@ -47,7 +47,7 @@ function ETanu() {
     
 
       await axios.post(
-        'http://localhost:8081/etan',
+        'http://10.202.20.92:8081/etan',
         data,
         {
           headers: {
@@ -83,7 +83,7 @@ function ETanu() {
     if (authUserId) {
       if (!devMode) {
         axios.post(
-          'http://localhost:8081/api/v1/getUserInfo/',
+          'http://10.202.20.92:8081/api/v1/getUserInfo/',
           { 'auth_user_id': authUserId },
           { headers: { 'Authorization': 'Bearer ' + token } }
         ).then(res => {
@@ -192,7 +192,7 @@ const Search_Card = ({ history }) => {
   const { devMode } = useAuth();
   const mockImages = [history_mock_1, history_mock_2, history_mock_3, history_mock_4];
 
-  const PHOTO_URL = 'http://localhost:8081/history/';
+  const PHOTO_URL = 'http://10.202.20.92:8081/history/';
 
 
   useEffect(() => {

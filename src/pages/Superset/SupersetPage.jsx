@@ -19,7 +19,7 @@ function SupersetPage() {
 
         let url = event.target.id;
         
-        axios.get(`http://localhost:8081/dashboard/dashurl`)
+        axios.get(`http://10.202.20.92:8081/dashboard/dashurl`)
             .then(response => {
                 setDashboardUrl(response.data.url);
             })
@@ -33,7 +33,7 @@ function SupersetPage() {
 
         let url = event.target.id;
 
-        axios.get(`http://localhost:8081/dashboard/dashurl1`)
+        axios.get(`http://10.202.20.92:8081/dashboard/dashurl1`)
             .then(response => {
                 setDashboardUrl(response.data.url);
             })

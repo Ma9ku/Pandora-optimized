@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8081/api/pandora/auth/";
+const API_URL = "http://10.202.20.92:8081/api/pandora/auth/";
 
 class AuthService {
   login(username, password) {
