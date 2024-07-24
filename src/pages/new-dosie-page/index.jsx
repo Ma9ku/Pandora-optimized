@@ -40,11 +40,13 @@ function DosiePage() {
     const handleDownloadPdf = () => {
         axios.get(`${dossierURL}downloadFlPdf/${iin}`)
             .then(res => {
-                const url = window.URL.createObjectURL(new Blob([res.data]));
+                const pdfData = new Blob([res.data], { type: 'application/pdf' });
+                const pdfUrl = URL.createObjectURL(pdfData);
+
+                // Create a link element and click it to start the download
                 const link = document.createElement('a');
-                link.href = url;
-                // Set the desired file name here
-                link.setAttribute('download', `${iin}.pdf`);
+                link.href = pdfUrl;
+                link.download = `${iin}.pdf`;
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
