@@ -2,12 +2,12 @@ import BigCollapsableBlock from '../../BigCollapsableBlock';
 import { useEffect, useState } from 'react';
 import { FaFile } from 'react-icons/fa6';
 
-function GeneralInfo({ data }) {
+function FlInfo({ data }) {
     const [rows, setRows] = useState([]);
 
     useEffect(() => {
         if (data) {
-            setRows(data.map(item => [
+            setRows(data.filter(item => item != null).map(item => [
                 item.ip_name || '---',
                 item.start_dt || '---',
                 item.reason || '---',
@@ -28,4 +28,4 @@ function GeneralInfo({ data }) {
     );
 }
 
-export default GeneralInfo;
+export default FlInfo;

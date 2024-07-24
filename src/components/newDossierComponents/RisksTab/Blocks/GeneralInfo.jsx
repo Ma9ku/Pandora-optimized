@@ -7,7 +7,7 @@ function GeneralInfo({ data }) {
 
     useEffect(() => {
         if (data) {
-            setRows(data.map(item => [
+            setRows(data.filter(item => item != null).map(item => [
                 item.ip_name || '---',
                 item.start_dt || '---',
                 item.reason || '---',
