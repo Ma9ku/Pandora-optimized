@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import backVideo from './../mainPage/backgroundVideo.mp4';
 
@@ -9,9 +9,21 @@ const SignInPage = () => {
     const userSession = JSON.parse(localStorage.getItem("user"))
     const navigate = useNavigate()
 
+    const [error, setError] = useState("")
+
     useEffect(() => {
         const a = userSession ? navigate('/') : ""
     })
+
+    useEffect(() => {
+        if (error != "") {
+            const timer = setTimeout(() => {
+                setError("");
+            }, 5000);
+
+            return () => clearTimeout(timer);
+        }
+    }, [error])
 
     return (
         <>
@@ -22,8 +34,8 @@ const SignInPage = () => {
                                 zIndex: -2,
                                 top: 0,
                                 left: 0,
-                                width: '100%',
-                                // objectFit: 'cover',
+                                height: '100%',
+                                objectFit: 'cover',
                                 filter: 'grayscale(100%)'
                             }}>
                                 <source src={backVideo} type="video/mp4" />
@@ -31,6 +43,9 @@ const SignInPage = () => {
                             </video>
                     </div>
             {userSession ? navigate('/') : <></>}
+            <div className="error-block" style={{left: error != "" ? '20px' : '-500px'}}>
+                    <a>{error}</a>
+            </div>
             <div className="signInPageSection">
                 
                 <div className="title">
@@ -38,7 +53,7 @@ const SignInPage = () => {
                     </div>
 
 
-                <SignInForm></SignInForm>
+                <SignInForm setError={setError}></SignInForm>
 
             </div>
         </div>

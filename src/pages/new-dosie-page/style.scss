@@ -12,15 +12,19 @@ $light-theme: (
 );
 
 @mixin theme($theme) {
-  background-color: map-get($theme, main-bg-color);
+  // background-color: map-get($theme, main-bg-color);
   color: map-get($theme, main-text-color);
 }
 
 .new-dosie-page {
-  @include theme($dark-theme); // Default theme
+  @include theme($dark-theme);
 
+  &.dark {
+    background-color: #20272C;
+  }
   &.light {
     @include theme($light-theme);
+    background-color: #E7E9EC;
   }
 
   position: relative;
@@ -41,6 +45,8 @@ $light-theme: (
   }
 
   .row-info {
+    position: relative;
+    
     display: flex;
     flex-direction: row;
     gap: 10px;
@@ -57,6 +63,16 @@ $light-theme: (
 
     & + .row-info {
       margin-top: 21px;
+    }
+
+    > .icon-buttons {
+      position: absolute;
+      top: -40px;
+      right: 0x;
+
+      display: flex;
+      flex-direction: row;
+      gap: 3px;
     }
   }
 }

@@ -1,19 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './searchPage.scss'
 
-import TextField from '@mui/material/TextField';
-import FormControl from '@mui/material/FormControl';
-import Button from '@mui/material/Button';
 
-import { Link } from 'react-router-dom';
-
-import IconButton from '@mui/material/IconButton';
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
-import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 
 import authService from "../../services/auth.service";
-import SideBar from '../../components/side-bar';
-import Navbar from '../../components/dossierComponents/nav-bar/Navbar';
+
 import TabContent_IIN from '../../components/dossierComponents/tab-content-iin/TabContent_IIN';
 import TabContent_FIO from '../../components/dossierComponents/tab-content-fio/TabContent_FIO';
 import TabContent_BIN from '../../components/dossierComponents/tab-content-bin/TabContent_BIN';

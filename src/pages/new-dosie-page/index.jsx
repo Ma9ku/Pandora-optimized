@@ -7,12 +7,51 @@ import { useParams } from 'react-router-dom';
 import DataProvider, { useData } from '../../context/dosieDataContext';
 import { FaSun, FaMoon } from 'react-icons/fa6';
 import { useTheme } from '../../context/themeContext';
+import { PiFilePdf, PiFileXls } from 'react-icons/pi';
+import IconButton from '../../components/newDossierComponents/UI/IconButton';
+import axios from 'axios';
+import { dossierURL } from '../../data/dossier';
 
 function DosiePage() {
     const { iin } = useParams();
     const { theme, setTheme } = useTheme();
     const { pIIN, pSetIIN } = useData();
     const [loading, isLoading] = useState(true);
+
+    const handleDownloadDoc = () => {
+        axios.get(`${dossierURL}downloadFlDoc/${iin}`, { responseType: 'arraybuffer' })
+            .then(res => {
+                const url = window.URL.createObjectURL(new Blob([res.data]));
+                const link = document.createElement('a');
+                link.href = url;
+                // Set the desired file name here
+                link.setAttribute('download', `${iin}.docx`);
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            })
+            .catch(err => {
+                console.log('downloading doc fl err', err);
+            });
+    }
+    
+
+    const handleDownloadPdf = () => {
+        axios.get(`${dossierURL}downloadFlPdf/${iin}`)
+            .then(res => {
+                const url = window.URL.createObjectURL(new Blob([res.data]));
+                const link = document.createElement('a');
+                link.href = url;
+                // Set the desired file name here
+                link.setAttribute('download', `${iin}.pdf`);
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            })
+            .catch(err => {
+                console.log('downloading doc ul err', err)
+            })
+    }
 
     useEffect(() => {
         pSetIIN(iin);
@@ -23,7 +62,7 @@ function DosiePage() {
     }, [theme]);
 
     return (
-        <div className="new-dosie-page">
+        <div className={`new-dosie-page ${theme}`}>
             <div className="change-theme-btn">
                 {theme === 'dark' ? (
                     <FaSun onClick={() => setTheme('light')} />
@@ -32,6 +71,16 @@ function DosiePage() {
                 )}
             </div>
             <div className="row-info">
+                <div className="icon-buttons">
+                    <IconButton 
+                        onClick={handleDownloadDoc}
+                        icon={<PiFileXls />}
+                    />
+                    <IconButton 
+                        onClick={handleDownloadPdf}
+                        icon={<PiFilePdf />}
+                    />
+                </div>
                 <PersonCard />
                 <DocsCard />
             </div>

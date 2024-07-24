@@ -1,0 +1,38 @@
+.icon-button {
+    border-radius: 3px;
+    padding: 6px;
+    box-sizing: border-box;
+
+    width: 33px;
+    height: 33px;
+
+    cursor: pointer;
+    
+    > * {
+        font-size: 21px;
+    }
+
+    &.light {
+        background-color: #F4F4F5;
+
+        &:hover {
+            background-color: #949496;
+        }
+
+        > * {
+            color: #000;
+        }
+    }
+
+    &.dark {
+        background-color: #2E3740;
+
+        &:hover {
+            background-color: #191e23;
+        }
+
+        > * {
+            color: #fff;
+        }
+    }
+}
