@@ -1,16 +1,18 @@
+import { useTheme } from '../../../../context/themeContext';
 import './style.scss';
 
 function SimpleText({
     value,
     children
 }) {
+    const { theme } = useTheme();
 
     if (children) {
-        return <div className="simple-text">{children}</div>
+        return <div className={`simple-text ${theme}`}>{children}</div>
     }
 
     return ( 
-        <div className="simple-text">{value}</div>
+        <div className={`simple-text ${theme}`}>{value}</div>
     );
 }
 

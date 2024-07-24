@@ -2,8 +2,23 @@ import { CreditCardOffSharp } from "@mui/icons-material";
 import BigCollapsableBlock from "../../BigCollapsableBlock";
 import SimpleText from "../../UI/Text";
 import SimpleTable from "../../SimpleTable";
+import { useEffect, useState } from "react";
 
 function PKB({ data }) {
+    const [rows, setRows] = useState ();
+    useEffect (() =>{
+        if(data) {
+            setRows(data.filter(item => item != null).map(item => [
+                item.region || '---',
+                item.totalCountOfCredits || '---',
+                item.totalSumOfCredits || '---',
+                item.maxDelayDayNum1 || '---',
+                item.relevanceDate || '---',
+                item.finInstitutionsName || '---',
+                item.creditInFoid || '---',
+            ]))
+        }
+    }, [data])
     return ( 
         <BigCollapsableBlock
             name={'Первое Кредитное Бюро(ПКБ)'}
@@ -17,10 +32,9 @@ function PKB({ data }) {
                     'Максимальное количество дней просрочки',
                     'Актуальность',
                     'Наименование фин. институтов',
-                    'Общее количество займов',
                     'Общая сумма займов',
-                    'Максимальное количество дней просрочки',
                 ]}
+                rows={rows}
             />
         </BigCollapsableBlock>
     );

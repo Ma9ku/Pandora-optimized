@@ -1,9 +1,19 @@
+import { useEffect, useState } from "react";
 import { MedicationLiquid } from "@mui/icons-material";
 import SimpleText from "../../UI/Text";
 import BigCollapsableBlock from "../../BigCollapsableBlock";
 import SimpleTable from "../../SimpleTable";
 
 function Drugs({ data }) {
+    const [rows, setRows] = useState();
+    useEffect (() => {
+        if(data){
+            setRows(data.filter(item => item != null).map(item => [
+                item.fio || '---',
+                item.source || '---',
+            ]))
+        }
+    },[data])
     return ( 
         <BigCollapsableBlock
             name={'Сведения по наркотическим веществам'}
@@ -11,9 +21,7 @@ function Drugs({ data }) {
         >
             <SimpleTable 
                 columns={[ 'ФИО', 'Источник' ]}
-                rows={[
-                    [ '1', '1' ]
-                ]}
+                rows={rows}
             />
         </BigCollapsableBlock>
     );

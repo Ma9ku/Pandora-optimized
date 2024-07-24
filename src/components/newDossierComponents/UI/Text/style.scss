@@ -4,6 +4,12 @@
     line-height: 20.68px;
     text-align: left;
 
-    color: rgba($color: #FFF, $alpha: .75);
+    &.dark {
+        color: rgba($color: #FFF, $alpha: .75);
+    }
+
+    &.light {
+        color: rgba($color: #000, $alpha: .75);
+    }
 
 }
