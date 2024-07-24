@@ -52,35 +52,35 @@ function Criminal({ data }) {
 
             <SmallCollapsableBlock
                 name={'Осужденные прекращено судом'}
-                count={1}
+                count={0}
             >
                 
             </SmallCollapsableBlock>
 
             <SmallCollapsableBlock
                 name={'Сведения о судимости'}
-                count={1}
+                count={0}
             >
                 
             </SmallCollapsableBlock>
 
             <SmallCollapsableBlock
                 name={'Осужденные/Оправданные/прекращено органом'}
-                count={1}
+                count={0}
             >
                 
             </SmallCollapsableBlock>
 
             <SmallCollapsableBlock
                 name={'Осужденные за рубежом'}
-                count={1}
+                count={0}
             >
                 
             </SmallCollapsableBlock>
 
             <SmallCollapsableBlock
                 name={'Заключенные'}
-                count={1}
+                count={0}
             >
                 
             </SmallCollapsableBlock>
