@@ -112,6 +112,13 @@ $light-theme: (
       margin-top: 21px;
     }
 
+    & + .actions {
+      margin-top: 10px;
+      display: flex;
+      justify-content: flex-end;
+      flex-direction: row;
+    }
+
     > .icon-buttons {
       position: absolute;
       top: -40px;

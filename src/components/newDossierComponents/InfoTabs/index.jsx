@@ -14,8 +14,6 @@ function InfoTabs() {
     const [tab, setTab] = useState(0);
     const { theme } = useTheme();
     const { iin } = useParams();
-    const [isLoading, setLoading] = useState(true);
-    const [data, setData] = useState(null);
     const [nonEmptyArraysCount, setNonEmptyArraysCount] = useState(0);
 
     useEffect(() => {
@@ -24,12 +22,10 @@ function InfoTabs() {
 
     useEffect(() => {
         const fetchData = () => {
-            setLoading(true);
 
             axios.get(`${dossierURL}getRiskByIin`, { params: { iin: iin } })
                 .then(res => {
                     console.log('risks tab data', res.data);
-                    setData(res.data);
 
                     // Define the fields we are using
                     const fieldsToCheck = [
@@ -49,7 +45,6 @@ function InfoTabs() {
                 })
                 .catch(err => console.log(err))
                 .finally(() => {
-                    setLoading(false);
                 });
         }
 
@@ -57,10 +52,6 @@ function InfoTabs() {
             fetchData();
         }
     }, [iin]);
-
-    if (isLoading) {
-        return <div>Loading...</div>;
-    }
 
     return ( 
         <div className={`info-tabs-block ${theme}`}>
@@ -74,7 +65,7 @@ function InfoTabs() {
                     : tab === 2
                         ? <RelationsTab />
                     : tab === 3
-                        ? <RisksTab data={data} />
+                        ? <RisksTab />
                     : <>ERROR NOT CORRECT TAB</>
                 }
             </div>

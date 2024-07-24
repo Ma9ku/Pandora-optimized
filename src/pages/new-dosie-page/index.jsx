@@ -95,9 +95,9 @@ function DosiePage() {
                             <a>X</a>
                         </div>
                         <img
-                        id='myimage'
-                        src={`data:image/png;base64, ${photo}`}
-                        alt="PERSON"
+                            id='myimage'
+                            src={`data:image/png;base64, ${photo}`}
+                            alt="PERSON"
                         />
                     </div>
                 </div>

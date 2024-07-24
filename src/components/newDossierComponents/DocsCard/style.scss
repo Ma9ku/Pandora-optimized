@@ -2,13 +2,13 @@
 $dark-theme: (
   main-bg-color: #2E3740,
   main-text-color: #FFF,
-  secondary-bg-color: rgba(255, 255, 255, 0.2)
+  secondary-bg-color: rgba(#96A7C0, 0.2)
 );
 
 $light-theme: (
   main-bg-color: #F4F4F5,
   main-text-color: #000,
-  secondary-bg-color: rgba(0, 0, 0, 0.2)
+  secondary-bg-color: #E4E8EB
 );
 
 @mixin theme($theme) {

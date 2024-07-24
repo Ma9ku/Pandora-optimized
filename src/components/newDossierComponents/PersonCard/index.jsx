@@ -104,8 +104,9 @@ function PersonCard({
                 />
             ) : (
                 <img 
+                    className='no-user-photo'
                     src={noPhotoUser} 
-                    alt="PERSON" 
+                    alt="NO PERSON PHOTO" 
                 />
             )}
             </div>

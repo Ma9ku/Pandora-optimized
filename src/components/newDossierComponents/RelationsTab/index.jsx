@@ -6,6 +6,7 @@ import TwoColumn from "../TwoColumn";
 import PersonCard from "../PersonCard";
 import DocsCard from "../DocsCard";
 import { useState } from "react";
+import ActionButton from "../UI/ActionButton";
 
 const RelationsTab = (() => {
     const [relIIN, setRelIIN] = useState('');
@@ -19,7 +20,7 @@ const RelationsTab = (() => {
             >
                 <SimpleTable 
                     columns={[
-                        { value: 'Родство', align: 'left' },
+                        { value: 'Статус по отношению к родственнику', align: 'left' },
                         { value: 'ФИО', align: 'left' },
                         { value: 'Дата регистрации брака', align: 'center' },
                         { value: 'Дата расторжения брака', align: 'center' },
@@ -49,6 +50,17 @@ const RelationsTab = (() => {
                     ) : null
                 }
                
+                {
+                    relIIN && relIIN.length > 0
+                    ? (
+                        <div className="actions">
+                            <ActionButton 
+                                value={'Перейти'}
+                                onClick={() => {}}
+                            />
+                        </div>
+                    ) : null
+                }
             </BigCollapsableBlock>
         </>
     )
