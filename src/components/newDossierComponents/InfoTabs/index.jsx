@@ -20,6 +20,7 @@ function InfoTabs() {
 
     const [generalInfo, setGeneralInfo] = useState({})
     const [additionalInfo, setAdditionalInfo] = useState({})
+    const [relativesInfo, setRelativesInfo] = useState([])
     const [risksInfo, setRisksInfo] = useState({})
 
     useEffect(() => {
@@ -86,6 +87,32 @@ function InfoTabs() {
                     setLoading(false);
                 });
         }
+        const fetchRelatives = () => {
+            setLoading(true);
+
+            axios.get(`${dossierURL}getRelativesInfo`, { params: { iin: iin } })
+                .then(res => {
+                    console.log('relatives', res.data);
+                    const rows = res.data.map((item) => [
+
+                        item.relative_type,
+                      
+                        item.parent_fio,
+                      
+                        item.marriage_reg_date || '',
+                      
+                        item.marriage_divorce_date || '',
+                      
+                        item.parent_iin
+                      
+                    ]);
+                    setRelativesInfo(rows);
+                })
+                .catch(err => console.log(err))
+                .finally(() => {
+                    setLoading(false);
+                });
+        }
         const fetchRisks = () => {
             setLoading(true);
 
@@ -104,7 +131,9 @@ function InfoTabs() {
             fetchGeneralInfo()
         } else if (tab == 1) {
             fetchAdditionalInfo()
-        } else if (tab == 3) {
+        } else if (tab == 2) {
+            fetchRelatives()
+        }else if (tab == 3) {
             fetchRisks()
         }
     }, [tab]);
@@ -120,7 +149,7 @@ function InfoTabs() {
                     : tab === 1 
                         ? <AdditionalInfoTab data={additionalInfo}/>
                     : tab === 2
-                        ? <RelationsTab />
+                        ? <RelationsTab data={relativesInfo} iin={iin}/>
                     : tab === 3
                         ? <RisksTab data={risksInfo}/>
                     : <>ERROR NOT CORRECT TAB</>

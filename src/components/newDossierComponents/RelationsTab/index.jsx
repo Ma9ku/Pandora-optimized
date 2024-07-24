@@ -8,14 +8,41 @@ import DocsCard from "../DocsCard";
 import { useState } from "react";
 import ActionButton from "../UI/ActionButton";
 
-const RelationsTab = (() => {
+import HierarchyChart from "../../../pages/dosPage/Hierarchy";
+
+function RelationsTab({data, hierarchy, iin}) {
     const [relIIN, setRelIIN] = useState('');
+    const [hierarchyMode, setHierarchyMode] = useState(false)
+   
+
+    const setMode = () => {
+        setHierarchyMode(!hierarchyMode)
+    }
+
+    if (hierarchyMode) {
+        return (
+            <>
+            <BigCollapsableBlock
+                icon={<MdFamilyRestroom />}
+                name={'ВИЗУАЛИЗАЦИЯ СВЕДЕНИИ О РОДСТВЕННИКАХ ФЛ'}
+                switcher={setMode}
+                switcherText={"Таблица"}
+                defaultOpen={true}
+            >
+                <HierarchyChart iin={iin} />
+
+            </BigCollapsableBlock>
+            </>
+        )
+    }
 
     return (
         <>
             <BigCollapsableBlock
                 icon={<MdFamilyRestroom />}
                 name={'СВЕДЕНИЯ О РОДСТВЕННИКАХ ФЛ'}
+                switcher={setMode}
+                switcherText={"Визуализировать"}
                 defaultOpen={true}
             >
                 <SimpleTable 
@@ -26,14 +53,7 @@ const RelationsTab = (() => {
                         { value: 'Дата расторжения брака', align: 'center' },
                         { value: 'ИИН', align: 'left' },
                     ]}
-                    rows={[
-                        [
-                            'ОТЕЦ', 'Ахмедия Еркебулан Серикович', '', '', '710234551504'
-                        ],
-                        [
-                            'МАТЬ', 'Ахмедия Еркебулан Серикович', '', '', '710234551504'
-                        ],
-                    ]}
+                    rows={data}
                     onRowClick={(e) => {
                         console.log(e)
                         setRelIIN(e.row_data[4] || '')
@@ -64,6 +84,6 @@ const RelationsTab = (() => {
             </BigCollapsableBlock>
         </>
     )
-})
+}
 
 export default RelationsTab;

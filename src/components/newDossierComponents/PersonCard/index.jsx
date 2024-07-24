@@ -45,10 +45,8 @@ function PersonCard({
 
 
     useEffect(() => {
-        if (_iin) {
-            setLoading(false)
-            return;
-        };
+
+        console.log(iin)
         
         const fetchData = () => {
             setLoading(true);
@@ -78,6 +76,9 @@ function PersonCard({
 
         if (iin) {
             fetchData();
+        } else if (secondary) {
+            alert(_iin)
+            fetchData()
         }
     }, [iin])
 
@@ -124,7 +125,7 @@ function PersonCard({
                     <TableRow label={'Статус'} value={lifeStatus}/>
                     <TableRow label={'Гражданство'} value={citizenship}/>
                     <TableRow label={'Национальность'} value={nationality}/>
-                    <TableRow label={'Место рождения'} value={'Ахмедия'}/>
+                    <TableRow label={'Место рождения'} value={''}/>
                     <TableRow label={'Дата рождения'} value={birthDate}/>
                 </table>
             </div>

@@ -3,7 +3,7 @@ import { BsArrowsCollapse } from "react-icons/bs";
 import './style.scss';
 import { useTheme } from '../../../context/themeContext';
 
-function BigCollapsableBlock({ children, icon, name, defaultOpen = false }) {
+function BigCollapsableBlock({ children, switcher = null, switcherText = null, icon, name, defaultOpen = false }) {
     const [open, setOpen] = useState(defaultOpen);
     const { theme } = useTheme();
 
@@ -18,6 +18,11 @@ function BigCollapsableBlock({ children, icon, name, defaultOpen = false }) {
                 <div className="title-text">
                     {name}
                 </div>
+                {switcher != null && (
+                    <div className={`helper-button ${theme}`} onClick={switcher}>
+                        {switcherText}
+                    </div>
+                )}
                 <BsArrowsCollapse 
                     onClick={toggleOpen}
                 />

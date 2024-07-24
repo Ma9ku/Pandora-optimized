@@ -82,12 +82,14 @@ $light-theme: (
   align-items: center;
   border-radius: 10px;
   position: relative;
+  min-width: 430px;
+  min-height: 525px;
 
   &.loading {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 460px;
+    min-width: 430px;
     min-height: 525px;
   }
 

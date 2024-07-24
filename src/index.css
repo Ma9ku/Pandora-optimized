@@ -2,7 +2,11 @@
   font-family: 'Ubuntu';
   src: url(fonts/Ubuntu/Ubuntu-VariableFont_wght.ttf);
 } */
+html {
 
+  background-color: #0D0F11 !important;
+
+}
 :root {
   
 }
@@ -45,7 +49,7 @@ body {
   place-items: center;
   min-height: 100vh;
 
-  background-color: #0D0F11;
+  background-color: #20272C;
   /* background-image: url(./images/bg-image.png); */
   background-size: 100%;
   background-position: top left;
