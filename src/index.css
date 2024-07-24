@@ -41,7 +41,6 @@
 }
 
 body {
-  background-color: #0D0F11;
   display: flex;
   place-items: center;
   min-height: 100vh;
@@ -51,4 +50,12 @@ body {
   background-size: 100%;
   background-position: top left;
   background-repeat: no-repeat;
+}
+
+body.light {
+  background-color: #E7E9EC;
+}
+
+body.dark {
+  background-color: #0D0F11;
 }

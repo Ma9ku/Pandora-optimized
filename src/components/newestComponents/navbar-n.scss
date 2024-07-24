@@ -1,6 +1,18 @@
 .navbar-transparent {
-  background-color: rgba(217, 217, 217, 0.35);
   //opacity: 0.4;
+  &.light {
+    background-color: #f4f4f5;
+    color: #000;
+
+    .pandora-logo {
+      filter: invert(100%);
+    }
+  }
+
+  &.dark {
+    background-color: rgba(217, 217, 217, 0.35);
+    color: #fff;
+  }
 
   .pandora-logo {
     cursor: pointer;

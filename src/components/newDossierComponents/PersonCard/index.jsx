@@ -97,8 +97,10 @@ function PersonCard({
                 </div>
                 <img 
                     src={
+                        // photo 
+                        // ? 
+                        // : 
                         `data:image/png;base64, ${photo}`
-                        // mockPersonImage
                     } 
                     alt="PERSON" />
             </div>
