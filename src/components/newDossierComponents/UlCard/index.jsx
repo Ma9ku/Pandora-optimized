@@ -77,22 +77,29 @@ function UlCard({
     }
     
     const handleDownloadPdf = () => {
-        axios.get(`${dossierURL}downloadUlPdf/${bin}`)
-            .then(res => {
-                const pdfData = new Blob([res.data], { type: 'application/pdf' });
-                const pdfUrl = URL.createObjectURL(pdfData);
-
-                // Create a link element and click it to start the download
-                const link = document.createElement('a');
-                link.href = pdfUrl;
-                link.download = `${bin}.pdf`;
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-            })
-            .catch(err => {
-                console.log('downloading doc ul err', err)
-            })
+        axios.get(`${dossierURL}downloadUlPdf/${bin}`, { responseType: 'arraybuffer' })
+        .then(res => {
+            console.log('downloading', res.data);
+        
+            // Create a Blob from the PDF data
+            const pdfData = new Blob([res.data], { type: 'application/pdf' });
+            const pdfUrl = URL.createObjectURL(pdfData);
+        
+            // Create a link element and click it to start the download
+            const link = document.createElement('a');
+            link.href = pdfUrl;
+            link.download = `${bin}.pdf`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        
+            // Release the object URL after the download
+            URL.revokeObjectURL(pdfUrl);
+            
+        })
+        .catch(err => {
+            console.log('Error downloading the PDF', err);
+        });
     }
 
     if (isLoading) {
