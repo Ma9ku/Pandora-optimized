@@ -9,6 +9,8 @@ import downloadIcon from './down-arrow-download-svgrepo-com.svg';
 import { dirIcon, baseIcon } from '../../images/icons';
 import { hierachies } from './HierarchyLocal/hierarhyLocal';
 import html2canvas from 'html2canvas';
+import exportIcon from '../../assets/img/export-svgrepo-com.png'
+import { CiExport } from "react-icons/ci";
 
 function HierarchyChart({ iin }) {
   const chartRef = useRef(null);
@@ -224,7 +226,7 @@ function HierarchyChart({ iin }) {
       {Object.keys(data).length ? (
         <div className='schema-risks'>
           <div ref={chartRef} style={{ textAlign: 'center', width: '100%', height: '85vh' }}></div>
-          <img ref={exportButtonRef} onClick={exportChartAsImage} src={downloadIcon} alt="Download" />
+          <img ref={exportButtonRef} onClick={exportChartAsImage} src={exportIcon} alt="Download" />
         </div>
       ) : null}
     </>
