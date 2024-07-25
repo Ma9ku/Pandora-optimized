@@ -41,7 +41,7 @@ function Education({
                     university.study_type,
                     university.start_date,
                     university.end_date,
-                    university.spec_name_2,
+                    university.spec_name,
                 ]
             })
         })
