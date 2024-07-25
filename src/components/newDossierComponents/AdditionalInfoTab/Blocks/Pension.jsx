@@ -30,8 +30,9 @@ function Pension({
                                             item.bin || '---',
                                             item.name || '---',
                                             item.period || '---',
-                                            item.sum010 || '---',
-                                            item.sum012 || '---',
+                                            item.sum010 ? item.sum010.toLocaleString('ru-RU') : '---',
+
+                                            item.sum012 ? item.sum012.toLocaleString('ru-RU') : '---',
                                             // <button>Перейти</button>,
                                         ]
                                     })
