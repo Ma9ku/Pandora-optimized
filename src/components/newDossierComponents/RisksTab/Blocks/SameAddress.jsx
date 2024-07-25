@@ -4,7 +4,7 @@ import { FaFile } from 'react-icons/fa6';
 import SimpleText from '../../UI/Text';
 import SimpleTable from '../../SimpleTable';
 
-function SameAddress({ data }) {
+function SameAddress({ data, defaultOpen = false }) {
     const [rows, setRows] = useState([]);
 
     useEffect(() => {
@@ -24,6 +24,7 @@ function SameAddress({ data }) {
         <BigCollapsableBlock 
         icon={<FaFile />}
         name={'Регистрация ФЛ на одном адресе'}
+        defaultOpen={defaultOpen}
     >
             {data && data.length > 0 ? (
                 <SimpleTable

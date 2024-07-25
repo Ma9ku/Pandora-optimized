@@ -258,4 +258,14 @@ $light-theme: (
       }
     }
   }
+
+  > .icon-buttons {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+  }
 }

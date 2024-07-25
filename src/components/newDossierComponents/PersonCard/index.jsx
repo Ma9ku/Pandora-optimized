@@ -8,6 +8,8 @@ import { useParams } from 'react-router-dom';
 import { FaCheck } from "react-icons/fa6";
 import { useTheme } from '../../../context/themeContext';
 import { MdOutlineRemoveRedEye } from 'react-icons/md';
+import { PiFileDoc, PiFilePdf } from 'react-icons/pi';
+import IconButton from '../UI/IconButton';
 
 function PersonCard({
     _iin,
@@ -71,6 +73,51 @@ function PersonCard({
         }
     }, [iin]);
 
+    const handleDownloadDoc = () => {
+        axios.get(`${dossierURL}downloadFlDoc/${iin}`, { responseType: 'arraybuffer' })
+            .then(res => {
+                const url = window.URL.createObjectURL(new Blob([res.data]));
+                const link = document.createElement('a');
+                link.href = url;
+                // Set the desired file name here
+                link.setAttribute('download', `${iin}.docx`);
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            })
+            .catch(err => {
+                console.log('downloading doc fl err', err);
+            });
+    }
+    
+
+    const handleDownloadPdf = () => {
+        axios.get(`${dossierURL}downloadFlPdf/${iin}`, { responseType: 'arraybuffer' })
+        .then(res => {
+            console.log('downloading', res.data);
+        
+            // Create a Blob from the PDF data
+            const pdfData = new Blob([res.data], { type: 'application/pdf' });
+            const pdfUrl = URL.createObjectURL(pdfData);
+        
+            // Create a link element and click it to start the download
+            const link = document.createElement('a');
+            link.href = pdfUrl;
+            link.download = `${iin}.pdf`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        
+            // Release the object URL after the download
+            URL.revokeObjectURL(pdfUrl);
+            
+        })
+        .catch(err => {
+            console.log('Error downloading the PDF', err);
+        });
+      
+    }
+
     if (isLoading) {
         return <div className={`person-card-block loading ${secondary ? 'secondary' : ''}`}>
             ...Loading
@@ -79,6 +126,17 @@ function PersonCard({
 
     return (
         <div className={`person-card-block ${theme} ${secondary ? 'secondary' : ''}`}>
+            <div className="icon-buttons">
+                <IconButton 
+                    onClick={handleDownloadDoc}
+                    icon={<PiFileDoc />}
+                />
+                <IconButton 
+                    onClick={handleDownloadPdf}
+                    icon={<PiFilePdf />}
+                />
+            </div>
+
             <div className="resident">
                 <div className="check">
                     {isResident ? <FaCheck /> : null}

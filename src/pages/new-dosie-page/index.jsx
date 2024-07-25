@@ -19,47 +19,14 @@ function DosiePage() {
     const { pIIN, pSetIIN } = useData();
     const [loading, isLoading] = useState(true);
     const [modalOpen, setModalOpen] = useState(false);
+<<<<<<< HEAD
     const [tab, setTab] = useState(0);
+=======
+    const [sameAddressFls, setSameAddressFls] = useState([])
+>>>>>>> 48e09e3c7efe5cbbf80da2fc24c752d489a5fb81
     const [photo, setPhoto] = useState("")
     const userSession = JSON.parse(localStorage.getItem("user"))
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + userSession.accessToken
-    
-    const handleDownloadDoc = () => {
-        axios.get(`${dossierURL}downloadFlDoc/${iin}`, { responseType: 'arraybuffer' })
-            .then(res => {
-                const url = window.URL.createObjectURL(new Blob([res.data]));
-                const link = document.createElement('a');
-                link.href = url;
-                // Set the desired file name here
-                link.setAttribute('download', `${iin}.docx`);
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-            })
-            .catch(err => {
-                console.log('downloading doc fl err', err);
-            });
-    }
-    
-
-    const handleDownloadPdf = () => {
-        axios.get(`${dossierURL}downloadFlPdf/${iin}`)
-            .then(res => {
-                const pdfData = new Blob([res.data], { type: 'application/pdf' });
-                const pdfUrl = URL.createObjectURL(pdfData);
-
-                // Create a link element and click it to start the download
-                const link = document.createElement('a');
-                link.href = pdfUrl;
-                link.download = `${iin}.pdf`;
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-            })
-            .catch(err => {
-                console.log('downloading doc ul err', err)
-            })
-    }
 
     useEffect(() => {
         pSetIIN(iin);
@@ -106,6 +73,7 @@ function DosiePage() {
                 </div>
                 )}
             <div className="row-info">
+<<<<<<< HEAD
                 <div className="icon-buttons">
                     <IconButton 
                         onClick={handleDownloadDoc}
@@ -121,6 +89,13 @@ function DosiePage() {
             </div>
             <div className="row-info">
             <InfoTabs tab={tab} setTab={setTab} />
+=======
+                <PersonCard setModalOpen={setModalOpen} setPhotoModal={setPhoto}/>
+                <DocsCard sameAddressFls={sameAddressFls}/>
+            </div>
+            <div className="row-info">
+                <InfoTabs setSameAddressFls={setSameAddressFls}/>
+>>>>>>> 48e09e3c7efe5cbbf80da2fc24c752d489a5fb81
             </div>
         </div>
     );

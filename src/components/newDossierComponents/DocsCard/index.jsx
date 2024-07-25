@@ -4,18 +4,21 @@ import axios from 'axios';
 import { dossierURL } from '../../../data/dossier';
 import { useParams } from 'react-router-dom';
 import { TfiIdBadge } from "react-icons/tfi";
-import { FaLocationDot } from "react-icons/fa6";
+import { FaLocationDot, FaXmark } from "react-icons/fa6";
 import { RiMapPinTimeFill } from "react-icons/ri";
 
 import TableRow from '../TableRow';
 import { useTheme } from '../../../context/themeContext';
 import SimpleText from '../UI/Text';
+import SameAddress from '../RisksTab/Blocks/SameAddress';
 
 function DocsCard({
     _iin = null,
     secondary = false,
+    sameAddressFls = []
 }) {
     const { theme } = useTheme();
+    const [ addressModalOpen, setAddressModalOpen ] = useState(false);
 
     const [passports, setPassports] = useState([]);
     const [transportDocs, setTransportDocs] = useState([]);
@@ -83,6 +86,25 @@ function DocsCard({
 
     return (
         <div className={`docs-card-block ${theme} ${secondary ? 'secondary' : ''}`}>
+            {
+                addressModalOpen ? (
+                    <div className="address-modal">
+                        <div className="modal-container">
+                            <div 
+                                className="modal-dim"
+                                onClick={() => setAddressModalOpen(false)}
+                            ></div>
+                            <div className="modal-body-wrapper">
+                                <div className="modal-body">
+                                    <div className="close" onClick={() => setAddressModalOpen(false)}><FaXmark /></div>
+                                    <SameAddress data={sameAddressFls ? sameAddressFls : []} defaultOpen={true}/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                ) : null
+            }
+
             { 
                 iinDocs && iinDocs.length > 0 
                     ? (
@@ -128,7 +150,12 @@ function DocsCard({
                     title_body={<>
                         <FaLocationDot />
                         <div className="title-text">АДРЕС ПРОПИСКИ</div>
-                        <div className='text-button'>Регистрация ФЛ на одном адресе</div>
+                        <div 
+                            className='text-button'
+                            onClick={() => {
+                                setAddressModalOpen(true);
+                            }}
+                        >Регистрация ФЛ на одном адресе</div>
                     </>}
                     data={{
                         'Область/Город респуб. значения': addressesPerm[0].region,
