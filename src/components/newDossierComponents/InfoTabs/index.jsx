@@ -9,13 +9,7 @@ import MainInfoTab from './../MainInfoTab';
 import { useTheme } from '../../../context/themeContext';
 import { dossierURL } from '../../../data/dossier';
 
-<<<<<<< HEAD
-function InfoTabs({ tab, setTab }) {
-=======
-
-function InfoTabs({setSameAddressFls}) {
-    const [tab, setTab] = useState(0);
->>>>>>> 48e09e3c7efe5cbbf80da2fc24c752d489a5fb81
+function InfoTabs({ tab, setTab, setSameAddressFls }) {
     const { theme } = useTheme();
     const { iin } = useParams();
     const [nonEmptyArraysCount, setNonEmptyArraysCount] = useState(0);

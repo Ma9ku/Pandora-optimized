@@ -19,11 +19,8 @@ function DosiePage() {
     const { pIIN, pSetIIN } = useData();
     const [loading, isLoading] = useState(true);
     const [modalOpen, setModalOpen] = useState(false);
-<<<<<<< HEAD
     const [tab, setTab] = useState(0);
-=======
     const [sameAddressFls, setSameAddressFls] = useState([])
->>>>>>> 48e09e3c7efe5cbbf80da2fc24c752d489a5fb81
     const [photo, setPhoto] = useState("")
     const userSession = JSON.parse(localStorage.getItem("user"))
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + userSession.accessToken
@@ -73,7 +70,6 @@ function DosiePage() {
                 </div>
                 )}
             <div className="row-info">
-<<<<<<< HEAD
                 <div className="icon-buttons">
                     <IconButton 
                         onClick={handleDownloadDoc}
@@ -88,14 +84,7 @@ function DosiePage() {
                 <DocsCard />
             </div>
             <div className="row-info">
-            <InfoTabs tab={tab} setTab={setTab} />
-=======
-                <PersonCard setModalOpen={setModalOpen} setPhotoModal={setPhoto}/>
-                <DocsCard sameAddressFls={sameAddressFls}/>
-            </div>
-            <div className="row-info">
-                <InfoTabs setSameAddressFls={setSameAddressFls}/>
->>>>>>> 48e09e3c7efe5cbbf80da2fc24c752d489a5fb81
+            <InfoTabs tab={tab} setTab={setTab} setSameAddressFls={setSameAddressFls}/>
             </div>
         </div>
     );
