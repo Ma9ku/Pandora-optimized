@@ -31,7 +31,7 @@ function Criminal({ data }) {
         >
             <SmallCollapsableBlock
                 name={'Осужденные'}
-                count={1}
+                count={data ? data.length : 0}
             >
                 {data && data.length > 0 ? (
                 <SimpleTable 
