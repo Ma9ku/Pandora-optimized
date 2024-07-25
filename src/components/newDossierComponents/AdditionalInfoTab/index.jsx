@@ -42,7 +42,7 @@ function AdditionalInfoTab({data}) {
 
             <FlUl data={data.mvUlFounderFls || []}/>
 
-            <Pension data={data.pensions || []}/>
+            <Pension data={data.pensions || []} iin={iin}/>
 
             <Ipkh data={data || []}/>
         </>

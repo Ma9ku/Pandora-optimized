@@ -11,6 +11,7 @@ import TableRow from '../TableRow';
 import { useTheme } from '../../../context/themeContext';
 import SimpleText from '../UI/Text';
 import SameAddress from '../RisksTab/Blocks/SameAddress';
+import ModalWindow from '../modalWindow';
 
 function DocsCard({
     _iin = null,
@@ -88,20 +89,9 @@ function DocsCard({
         <div className={`docs-card-block ${theme} ${secondary ? 'secondary' : ''}`}>
             {
                 addressModalOpen ? (
-                    <div className="address-modal">
-                        <div className="modal-container">
-                            <div 
-                                className="modal-dim"
-                                onClick={() => setAddressModalOpen(false)}
-                            ></div>
-                            <div className="modal-body-wrapper">
-                                <div className="modal-body">
-                                    <div className="close" onClick={() => setAddressModalOpen(false)}><FaXmark /></div>
-                                    <SameAddress data={sameAddressFls ? sameAddressFls : []} defaultOpen={true}/>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <ModalWindow closer={setAddressModalOpen}>
+                        <SameAddress data={sameAddressFls ? sameAddressFls : []} defaultOpen={true}/>
+                    </ModalWindow>
                 ) : null
             }
 

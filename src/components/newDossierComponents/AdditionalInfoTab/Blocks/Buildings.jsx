@@ -5,11 +5,20 @@ import SmallCollapsableBlock from "../../SmallCollapsableBlock";
 import BigCollapsableBlock from "../../BigCollapsableBlock";
 import { PiHouseLine } from "react-icons/pi";
 import ActionButton from "../../UI/ActionButton";
+import ModalWindow from "../../modalWindow";
+import axios from "axios";
+import SimpleTable from "../../SimpleTable";
+import { dossierURL } from "../../../../data/dossier";
 
 function Buildings({ data }) {
     const [actuals, setActuals] = useState([]);
     const [history, setHistory] = useState([]);
 
+    const [list, setList] = useState([])
+    const [modalOpen, setModalOpen] = useState(false);
+    const userSession = JSON.parse(localStorage.getItem("user"))
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + userSession.accessToken
+  
     useEffect(() => {
         console.log(data);
 
@@ -23,6 +32,20 @@ function Buildings({ data }) {
             return data.filter(item => item.register_status_rus !== 'актуальная');
         });
     }, [data]);
+
+    const fetchData = (cadastral_num, address) => {
+        axios.get(`${dossierURL}rnDetails`, { params: { cadastral: cadastral_num, address: address } })
+            .then(res => {
+                // setRisksInfo(res.data);
+                setModalOpen(true)
+                setList(res.data)
+                console.log("sd", res.data)
+            })
+            .catch(err => console.log(err))
+            .finally(() => {
+                // setLoading(false);
+            });
+    }
 
     return (
         <>
@@ -61,7 +84,9 @@ function Buildings({ data }) {
                                 />
                                 <div className="actions">
                                     <ActionButton 
-                                        onClick={() => {}}
+                                        onClick={() => {
+                                            setModalOpen(true);
+                                        }}
                                         value={'Детальный просмотр (Купил-Продал)'}
                                     />
                                 </div>
@@ -99,7 +124,9 @@ function Buildings({ data }) {
                                 />
                                 <div className="actions">
                                     <ActionButton 
-                                        onClick={() => {}}
+                                        onClick={() => {
+                                            setModalOpen(true);
+                                        }}
                                         value={'Детальный просмотр (Купил-Продал)'}
                                     />
                                 </div>
@@ -108,6 +135,59 @@ function Buildings({ data }) {
                     })}
                 </SmallCollapsableBlock>
             </BigCollapsableBlock>
+            
+            {
+                modalOpen 
+                ? (
+                    <ModalWindow
+                        closer={(open) => setModalOpen(open)}
+                    >
+                        <SimpleTable 
+                          columns={[
+                            "Название вида",
+                            "Кадастровый номер",
+                            "Владелец права",
+                            "Адрес",
+                            "Этажность",
+                            "Сумма сделки",
+                            "Жилая площадь",
+                            "Общая площадь",
+                            "Тип документа",
+                            "Номер документа",
+                            "Дата",
+                            "Статус РН",
+                            "ИН владельца",
+                            "Имя владельца",
+                            "Дата регистрации"
+                          ]}
+                          rows={
+                            list 
+                            ? list.map(item => {
+                                // console.log("flul", item)
+                                return [
+                                    item.nameOfKind,
+                                    item.cadastrialNumber,
+                                    item.rightOwner,
+                                    item.address,
+                                    item.floorness,
+                                    item.sumOfDeal,
+                                    item.livingArea,
+                                    item.allArea,
+                                    item.typeOfDoc,
+                                    item.documentNumber,
+                                    item.date,
+                                    item.statusRn,
+                                    item.inOfOwner,
+                                    item.ownerName,
+                                    item.dateOfRegistration
+                                ]
+                            })
+                            : [] 
+                        }
+                        />
+                    </ModalWindow>
+                ) : null
+            }
         </>
     );
 }
