@@ -1,33 +1,29 @@
 import React, { useState, useEffect } from 'react';
-
-import mockPersonImage from './../../../assets/mock-person-image.png'
-
-import noPhotoUser from './image/noPhotoUser.png'
+import mockPersonImage from './../../../assets/mock-person-image.png';
+import noPhotoUser from './image/noPhotoUser.png';
 import './style.scss';
 import axios from 'axios';
 import { dossierURL } from '../../../data/dossier';
 import { useParams } from 'react-router-dom';
-
 import { FaCheck } from "react-icons/fa6";
 import { useTheme } from '../../../context/themeContext';
 import { MdOutlineRemoveRedEye } from 'react-icons/md';
 import { PiFileDoc, PiFilePdf } from 'react-icons/pi';
 import IconButton from '../UI/IconButton';
 
-
 function PersonCard({
     _iin,
     secondary = false,
     setPhotoModal,
-    setModalOpen
+    setModalOpen,
+    setTab
 }) {
     const { theme } = useTheme();
-
     let { iin } = useParams();
     iin = _iin ? _iin : iin;
 
-    const [ isLoading, setLoading ] = useState(true);
-    const [ error, setError ] = useState('');
+    const [isLoading, setLoading] = useState(true);
+    const [error, setError] = useState('');
 
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -39,48 +35,43 @@ function PersonCard({
     const [photo, setPhoto] = useState('');
     const [isResident, setIsResident] = useState(false);
 
-    const [riskPercentage, setriskPercentage] = useState(0);
+    const [riskPercentage, setRiskPercentage] = useState(0);
 
-    const userSession = JSON.parse(localStorage.getItem("user"))
-    axios.defaults.headers.common['Authorization'] = 'Bearer ' + userSession.accessToken
+    const userSession = JSON.parse(localStorage.getItem("user"));
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + userSession.accessToken;
 
     useEffect(() => {
-
-        console.log(iin)
-        
         const fetchData = () => {
             setLoading(true);
 
-            axios.get(`${dossierURL}getFirstRowByIin`, {params: { iin: iin }})
+            axios.get(`${dossierURL}getFirstRowByIin`, { params: { iin: iin } })
                 .then(res => {
-                    console.log(res.data)
-
                     const { mvFls, riskPercentage, photoDbf } = res.data;
                     setFirstName(mvFls[0].first_name);
                     setLastName(mvFls[0].last_name);
                     setPatronymic(mvFls[0].patronymic);
                     setNationality(mvFls[0].nationality_ru_name);
-                    setriskPercentage(riskPercentage);
+                    setRiskPercentage(riskPercentage);
                     setCitizenship(mvFls[0].citizenship_ru_name);
                     setLifeStatus(mvFls[0].life_status_ru_name);
                     setBirthDate(mvFls[0].birth_date);
-                    setPhoto(photoDbf[0].photo)
-                    setPhotoModal(photoDbf[0].photo)
-                    setIsResident(mvFls[0].is_resident)
+                    setPhoto(photoDbf[0].photo);
+                    setPhotoModal(photoDbf[0].photo);
+                    setIsResident(mvFls[0].is_resident);
                 })
                 .catch(err => console.log(err))
                 .finally(() => {
                     setLoading(false);
-                })
-        }
+                });
+        };
 
         if (iin) {
             fetchData();
         } else if (secondary) {
-            alert(_iin)
-            fetchData()
+            alert(_iin);
+            fetchData();
         }
-    }, [iin])
+    }, [iin]);
 
     const handleDownloadDoc = () => {
         axios.get(`${dossierURL}downloadFlDoc/${iin}`, { responseType: 'arraybuffer' })
@@ -130,10 +121,10 @@ function PersonCard({
     if (isLoading) {
         return <div className={`person-card-block loading ${secondary ? 'secondary' : ''}`}>
             ...Loading
-        </div>
+        </div>;
     }
 
-    return ( 
+    return (
         <div className={`person-card-block ${theme} ${secondary ? 'secondary' : ''}`}>
             <div className="icon-buttons">
                 <IconButton 
@@ -148,7 +139,7 @@ function PersonCard({
 
             <div className="resident">
                 <div className="check">
-                    { isResident ? <FaCheck /> : null}
+                    {isResident ? <FaCheck /> : null}
                 </div>
                 <div>Резидент</div>
             </div>
@@ -159,30 +150,30 @@ function PersonCard({
                     <a>Предпросмотр</a>
                 </div>
                 {photo ? (
-                <img 
-                    src={`data:image/png;base64,${photo}`} 
-                    alt="PERSON" 
-                />
-            ) : (
-                <img 
-                    className='no-user-photo'
-                    src={noPhotoUser} 
-                    alt="NO PERSON PHOTO" 
-                />
-            )}
+                    <img 
+                        src={`data:image/png;base64,${photo}`} 
+                        alt="PERSON" 
+                    />
+                ) : (
+                    <img 
+                        className='no-user-photo'
+                        src={noPhotoUser} 
+                        alt="NO PERSON PHOTO" 
+                    />
+                )}
             </div>
 
             <div className="person-info">
                 <table>
-                    <TableRow label={'ИИН'} value={iin}/>
+                    <TableRow label={'ИИН'} value={iin} />
                     <TableRow label={'Фамилия'} value={lastName} />
-                    <TableRow label={'Имя'} value={firstName}/>
-                    <TableRow label={'Отчество'} value={patronymic}/>
-                    <TableRow label={'Статус'} value={lifeStatus}/>
-                    <TableRow label={'Гражданство'} value={citizenship}/>
-                    <TableRow label={'Национальность'} value={nationality}/>
-                    <TableRow label={'Место рождения'} value={''}/>
-                    <TableRow label={'Дата рождения'} value={birthDate}/>
+                    <TableRow label={'Имя'} value={firstName} />
+                    <TableRow label={'Отчество'} value={patronymic} />
+                    <TableRow label={'Статус'} value={lifeStatus} />
+                    <TableRow label={'Гражданство'} value={citizenship} />
+                    <TableRow label={'Национальность'} value={nationality} />
+                    <TableRow label={'Место рождения'} value={''} />
+                    <TableRow label={'Дата рождения'} value={birthDate} />
                 </table>
             </div>
 
@@ -198,36 +189,38 @@ function PersonCard({
                     value={riskPercentage} 
                     color={'#CC4A4A'}
                     secondaryColor={'#DD9C9C'}
+                    onClick={() => {
+                        setTab(3);
+                        window.scrollBy({
+                            top: 650,
+                            behavior: 'smooth'
+                        });
+                    }}    
                 />
             </div>
         </div>
     );
 }
 
-const TableRow = ({
-    label, value
-}) => {
-
-    return <tr>
-        <td>{label}</td>
-        <td>{value}</td>
-    </tr>
+const TableRow = ({ label, value }) => {
+    return (
+        <tr>
+            <td>{label}</td>
+            <td>{value}</td>
+        </tr>
+    );
 }
 
-const StatCircle = ({
-    label, value, color, secondaryColor
-}) => {
-
+const StatCircle = ({ label, value, color, secondaryColor, onClick }) => {
     return (
-        <div style={{ '--border-width-percentage': `${value}%`, '--border-color': color, '--secondary-color': secondaryColor }}>
+        <div style={{ '--border-width-percentage': `${value}%`, '--border-color': color, '--secondary-color': secondaryColor }} onClick={onClick}>
             <div className="value-wrapper">
-                <div className={`value ${value > 80 ? 'danger' : ''}`} >{value}%</div>
+                <div className={`value ${value > 80 ? 'danger' : ''}`}>{value}%</div>
             </div>
-            <div className="value-wrapper-back">
-            </div>
+            <div className="value-wrapper-back"></div>
             <div className="label">{label}</div>
         </div>
-    )
+    );
 }
 
 export default PersonCard;

@@ -19,6 +19,7 @@ function DosiePage() {
     const { pIIN, pSetIIN } = useData();
     const [loading, isLoading] = useState(true);
     const [modalOpen, setModalOpen] = useState(false);
+    const [tab, setTab] = useState(0);
     const [sameAddressFls, setSameAddressFls] = useState([])
     const [photo, setPhoto] = useState("")
     const userSession = JSON.parse(localStorage.getItem("user"))
@@ -69,11 +70,21 @@ function DosiePage() {
                 </div>
                 )}
             <div className="row-info">
-                <PersonCard setModalOpen={setModalOpen} setPhotoModal={setPhoto}/>
-                <DocsCard sameAddressFls={sameAddressFls}/>
+                <div className="icon-buttons">
+                    <IconButton 
+                        onClick={handleDownloadDoc}
+                        icon={<PiFileDoc />}
+                    />
+                    <IconButton 
+                        onClick={handleDownloadPdf}
+                        icon={<PiFilePdf />}
+                    />
+                </div>
+                <PersonCard setModalOpen={setModalOpen} setPhotoModal={setPhoto} setTab={setTab}/>
+                <DocsCard />
             </div>
             <div className="row-info">
-                <InfoTabs setSameAddressFls={setSameAddressFls}/>
+            <InfoTabs tab={tab} setTab={setTab} setSameAddressFls={setSameAddressFls}/>
             </div>
         </div>
     );
