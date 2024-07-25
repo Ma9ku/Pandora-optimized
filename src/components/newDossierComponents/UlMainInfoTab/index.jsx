@@ -15,11 +15,11 @@ function UlMainInfoTabs({
 
     return ( 
         <>
+            <Buhgalter data={data ? data.accountantListEntities : []} />
             <UlInfo data={[]}/>
             <OKED data={[]}/>
             <RegUl1Address data={[]}/>
-            <Contacts data={[]}/>
-            <Buhgalter data={[]} />
+            <Contacts data={data ? data.fl_contacts : []}/>
             <DL data={[]} />
         </>
     );

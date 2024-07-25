@@ -16,6 +16,7 @@ function UlRisksTab({
 }) {
     return ( 
         <>
+            <Adms data={data ? data.adms : []}/>
             <BlockESF data={[]}/>
             <OPG data={[]}/>
             <OPG_Acts data={[]}/>
@@ -27,7 +28,6 @@ function UlRisksTab({
             <PKB data={[]}/>
             <Debt data={[]}/>
             <Proverki data={[]}/>
-            <Adms data={[]}/>
         </>
     );
 }

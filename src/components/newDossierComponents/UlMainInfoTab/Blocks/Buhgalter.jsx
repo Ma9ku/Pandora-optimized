@@ -1,6 +1,7 @@
 import { BsCashStack } from "react-icons/bs";
 import BigCollapsableBlock from "../../BigCollapsableBlock";
 import SimpleText from "../../UI/Text";
+import SimpleTable from "../../SimpleTable";
 
 function Buhgalter({
     data
@@ -10,7 +11,26 @@ function Buhgalter({
             name={'Бухгалтеры'}
             icon={<BsCashStack />}
         >
-            <SimpleText>Нет данных</SimpleText>
+            {
+                data && data.length > 0
+                    ? <SimpleTable 
+                            columns={[
+                                'ИИН',
+                                'Фамилия',
+                                'Имя',
+                            ]}
+                            rows={
+                                data
+                                .filter(item => item !== null || item !== undefined)
+                                .map(item => [
+                                    item.iin || '---',
+                                    item.lname || '---',
+                                    item.fname || '---',
+                                ])
+                            }   
+                        />
+                    : <SimpleText>Нет данных</SimpleText>
+            }
         </BigCollapsableBlock>
     );
 }

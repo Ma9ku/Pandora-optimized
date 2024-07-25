@@ -23,7 +23,7 @@ function UlAdditionalInfoTab({
             <NedvReestr data={data ? data.mvRnOlds : []}/>
             <Transport data={[]}/>
             <OtherTransport data={[]}/>
-            <Equipment data={[]}/>
+            <Equipment data={data ? data.equipment : []}/>
             <Pension data={[]}/>
             <FPG data={[]}/>
         </>
