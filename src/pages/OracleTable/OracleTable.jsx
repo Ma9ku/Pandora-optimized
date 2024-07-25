@@ -312,7 +312,7 @@ function OracleTable(props) {
             page
         }
         console.log(req)
-        axios.get('http://localhost:1415/get', {params: req}, {
+        axios.get('http://10.202.20.92:1415/get', {params: req}, {
                 cancelToken: request.token
             }).then(res => {
                 console.log(res.data)
@@ -357,7 +357,7 @@ function OracleTable(props) {
             page
         }
         console.log(req)
-        axios.get('http://localhost:1415/count', {params: req}, {
+        axios.get('http://10.202.20.92:1415/count', {params: req}, {
                 cancelToken: request.token
             }).then(res => {
                 setCount(res.data)
@@ -387,7 +387,7 @@ function OracleTable(props) {
     
 
     const download = () => {
-        axios.get('http://localhost:1415/export-to-pdf', {responseType: 'blob'}).then(res=> {
+        axios.get('http://10.202.20.92:1415/export-to-pdf', {responseType: 'blob'}).then(res=> {
             const url = window.URL.createObjectURL(new Blob([res.data]))
             const link = document.createElement('a')
             link.href = url
@@ -1077,7 +1077,7 @@ function ResultTable(props) {
     const {list} = props
     const downloadSchema = (row) => {
 
-        axios.get('http://localhost:8081/export-to-pdf/' + row.messOfmId + '/' + row.memberId, {responseType: 'blob'}).then(res=> {
+        axios.get('http://10.202.20.92:8081/export-to-pdf/' + row.messOfmId + '/' + row.memberId, {responseType: 'blob'}).then(res=> {
             const url = window.URL.createObjectURL(new Blob([res.data]))
             const link = document.createElement('a')
             link.href = url

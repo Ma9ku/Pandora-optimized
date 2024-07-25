@@ -51,7 +51,7 @@ function Result() {
 
         
         if (lastRequest && lastRequest.image_name) {
-            img.src = `http://localhost:8081/history/${results.image_name}`
+            img.src = `http://10.202.20.92:8081/history/${results.image_name}`
         } else {
             img.src = URL.createObjectURL(file);
         }
@@ -239,7 +239,7 @@ function Result() {
                                                 <img 
                                                     src={
                                                         boxes[currentSubjectIndex].results[0].metadata.photo 
-                                                            ? `http://localhost:8081/photos/${boxes[currentSubjectIndex].results[0].metadata.photo}` 
+                                                            ? `http://10.202.20.92:8081/photos/${boxes[currentSubjectIndex].results[0].metadata.photo}` 
                                                             : mockPhoto
                                                     } 
                                                     alt="Udostak" 
@@ -299,7 +299,7 @@ const SimilarCard = ({
                 <img 
                     src={
                         image 
-                            ? `http://localhost:8081/photos/${image}` 
+                            ? `http://10.202.20.92:8081/photos/${image}` 
                             : mockPhoto
                     } 
                 />

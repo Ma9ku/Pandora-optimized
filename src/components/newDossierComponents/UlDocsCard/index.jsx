@@ -16,6 +16,8 @@ function UlDocsCard({
 
     const [passports, setPassports] = useState([]);
 
+    const [data, setData] = useState({})
+
     let { bin } = useParams();
 
     const [isLoading, setLoading] = useState(true);
@@ -26,7 +28,7 @@ function UlDocsCard({
         const fetchData = () => {
             setLoading(true);
 
-            axios.get(`${dossierURL}cc`, { params: { bin: bin } })
+            axios.get(`${dossierURL}ulAddresses`, { params: { bin: bin } })
                 .then(res => {
                     console.log('docs', res.data);
                     setAddress(res.data.regAddressUlEntities ? res.data.regAddressUlEntities : {});
