@@ -32,19 +32,19 @@ function AdditionalInfoTab({data}) {
             />
 
             {/* mvAutoFls */}
-            <Transport data={data.mvAutoFls}/>
+            <Transport data={data.mvAutoFl || []}/>
 
             <OtherTransport />
 
-            <Equipment data={data.equipment}/>
+            <Equipment data={data.equipment || []}/>
 
-            <Military data={data.militaryAccounting2Entities}/>
+            <Military data={data.militaryAccounting2Entities || []}/>
 
-            <FlUl data={data.mvUlFounderFls}/>
+            <FlUl data={data.mvUlFounderFls || []}/>
 
-            <Pension data={data.pensions}/>
+            <Pension data={data.pensions || []}/>
 
-            <Ipkh data={data}/>
+            <Ipkh data={data || []}/>
         </>
     );
 }

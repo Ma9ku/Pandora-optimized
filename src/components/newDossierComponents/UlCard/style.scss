@@ -10,14 +10,14 @@ $light-theme: (
   main-bg-color: #F4F4F5,
   main-text-color: #000,
   border-color: #B0B0B0,
-  secondary-bg-color: rgba(#000, 0.2)
+  secondary-bg-color: #E4E8EB
 );
 
 @mixin theme($theme) {
   background-color: map-get($theme, main-bg-color);
   color: map-get($theme, main-text-color);
 
-  .secondary {
+  &.secondary {
     background-color: map-get($theme, secondary-bg-color);
   }
 
@@ -65,7 +65,7 @@ $light-theme: (
   }
 }
 
-.person-card-block {
+.ul-card-block {
   @include theme($dark-theme); // Default theme
 
   &.light {
@@ -82,18 +82,17 @@ $light-theme: (
   align-items: center;
   border-radius: 10px;
   position: relative;
-
-  &.secondary {
-    margin-top: 25px;
-  }
+  min-width: 430px;
+  min-height: 525px;
 
   &.loading {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 460px;
+    min-width: 430px;
     min-height: 525px;
   }
+
 
   .resident {
     position: absolute;
@@ -131,14 +130,51 @@ $light-theme: (
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    position: relative;
 
     img {
-      border-radius: 50%;
       width: 100%;
-      height: auto;
+      height: 100%;
       max-width: 142px;
       max-height: 142px;
+      transition: filter 0.3s;
       object-fit: cover;
+      clip-path: circle(50%);
+      
+      &.no-user-photo {
+        clip-path: circle(40%);
+      }
+    }
+    
+
+    .hidden-button {
+      display: none;
+      position: absolute; 
+      top: 50%; 
+      left: 50%; 
+      transform: translate(-50%, -50%); 
+      color: white;
+      padding: 5px;
+      z-index: 1; 
+      align-items: center; 
+      justify-content: center; 
+      gap: 5px; 
+      cursor: pointer;
+
+      a {
+        font-size: 14px;
+        font-weight: 100;
+        
+      }
+    }
+
+    &:hover {
+      .hidden-button {
+        display: flex;
+      }
+      img {
+        filter: brightness(0.3);
+      }
     }
   }
 

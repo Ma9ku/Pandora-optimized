@@ -24,7 +24,6 @@ function PersonCard({
     let { iin } = useParams();
     iin = _iin ? _iin : iin;
 
-
     const [ isLoading, setLoading ] = useState(true);
     const [ error, setError ] = useState('');
 
@@ -42,7 +41,6 @@ function PersonCard({
 
     const userSession = JSON.parse(localStorage.getItem("user"))
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + userSession.accessToken
-
 
     useEffect(() => {
 

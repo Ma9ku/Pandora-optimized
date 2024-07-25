@@ -19,6 +19,8 @@ function UlDocsCard({
     let { bin } = useParams();
 
     const [isLoading, setLoading] = useState(true);
+    const [ address, setAddress ] = useState(null);
+    const [ oked, setOked ] = useState('');
 
     useEffect(() => {
         const fetchData = () => {
@@ -27,7 +29,8 @@ function UlDocsCard({
             axios.get(`${dossierURL}cc`, { params: { bin: bin } })
                 .then(res => {
                     console.log('docs', res.data);
-
+                    setAddress(res.data.regAddressUlEntities ? res.data.regAddressUlEntities : {});
+                    setOked(res.data.mvUls ? res.data.mvUls[0].oked : '')
                 })
                 .catch(err => console.log(err))
                 .finally(() => {
@@ -41,13 +44,13 @@ function UlDocsCard({
     }, [bin]);
 
     if (isLoading) {
-        return <div className={`docs-card-block loading`}>
+        return <div className={`ul-docs-card-block loading`}>
             ...Loading
         </div>;
     }
 
     return (
-        <div className={`docs-card-block ${theme}`}>
+        <div className={`ul-docs-card-block ${theme}`}>
 
             <Block
                 title_body={<>
@@ -56,14 +59,19 @@ function UlDocsCard({
                     <div className='text-button'>Регистрация ЮЛ на одном адресе</div>
                 </>}
                 data={{
-                    'Область': 'Астана',
-                    'Город': 'Есиль',
-                    'Район': '12/03/2020',
-                    'Улица': 'Сарайшык',
-                    'Номер дома': '10',
-                    'Номер помещения': '12/03/2024'
+                    'Область': address.regAddrRegionRu || '---',
+                    'Город': address.regAddrLocalityRu || '---',
+                    'Район': address.regAddrRuralDistrictRu || '---',
+                    'Улица': address.regAddrStreetRu || '---',
+                    'Номер дома': address.regAddrBuildingNum || '---',
+                    'Номер помещения': address.regAddrOffice || '---'
                 }}
             />
+
+            <div className="single-info-row">
+                <div>Наименование ОКЭД: </div>
+                <div>{oked || '---'}</div>
+            </div>
         </div>
     );
 }

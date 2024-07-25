@@ -64,7 +64,7 @@ function UlCard({
     }
 
     return ( 
-        <div className={`person-card-block ${theme} ${secondary ? 'secondary' : ''}`}>
+        <div className={`ul-card-block ${theme} ${secondary ? 'secondary' : ''}`}>
 
             <div className="person-info">
                 <table>

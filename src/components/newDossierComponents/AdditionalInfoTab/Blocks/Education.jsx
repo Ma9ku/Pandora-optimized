@@ -16,7 +16,7 @@ function Education({
         console.log(data);
 
         setSchools(prev => {
-            if (data.schools === null || data.schools.length === 0) return []
+            if (data.schools === null || data.schools === undefined || data.schools.length === 0) return []
 
             return data.schools.map(school => {
                 return [
@@ -32,7 +32,7 @@ function Education({
         });
 
         setUniversities(prev => {
-            if (data.universities === null || data.universities.length === 0) return []
+            if (data.universities === null || data.universities === undefined || data.universities.length === 0) return []
 
             return data.universities.map(university => {
                 return [

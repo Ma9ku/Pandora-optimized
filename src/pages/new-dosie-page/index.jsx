@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom';
 import DataProvider, { useData } from '../../context/dosieDataContext';
 import { FaSun, FaMoon } from 'react-icons/fa6';
 import { useTheme } from '../../context/themeContext';
-import { PiFilePdf, PiFileXls } from 'react-icons/pi';
+import { PiFileDoc, PiFilePdf, PiFileXls } from 'react-icons/pi';
 import IconButton from '../../components/newDossierComponents/UI/IconButton';
 import axios from 'axios';
 import { dossierURL } from '../../data/dossier';
@@ -108,7 +108,7 @@ function DosiePage() {
                 <div className="icon-buttons">
                     <IconButton 
                         onClick={handleDownloadDoc}
-                        icon={<PiFileXls />}
+                        icon={<PiFileDoc />}
                     />
                     <IconButton 
                         onClick={handleDownloadPdf}

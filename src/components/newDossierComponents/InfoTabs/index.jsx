@@ -7,8 +7,7 @@ import RisksTab from './../RisksTab';
 import AdditionalInfoTab from './../AdditionalInfoTab';
 import MainInfoTab from './../MainInfoTab';
 import { useTheme } from '../../../context/themeContext';
-
-const dossierURL = 'http://localhost:8081/api/pandora/dossier/';  // Replace with the actual URL
+import { dossierURL } from '../../../data/dossier';
 
 function InfoTabs() {
     const [tab, setTab] = useState(0);
@@ -22,10 +21,6 @@ function InfoTabs() {
     const [additionalInfo, setAdditionalInfo] = useState({})
     const [relativesInfo, setRelativesInfo] = useState([])
     const [risksInfo, setRisksInfo] = useState({})
-
-    useEffect(() => {
-        console.log(tab);
-    }, [tab]);
 
     useEffect(() => {
         const fetchData = () => {
