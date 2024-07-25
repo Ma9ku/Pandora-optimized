@@ -31,8 +31,8 @@ function UlDocsCard({
             axios.get(`${dossierURL}ulAddresses`, { params: { bin: bin } })
                 .then(res => {
                     console.log('docs', res.data);
-                    setAddress(res.data.regAddressUlEntities ? res.data.regAddressUlEntities : {});
-                    setOked(res.data.mvUls ? res.data.mvUls[0].oked : '')
+                    setAddress(res.data);
+                    setOked(res.data.oked ? res.data.oked : '')
                 })
                 .catch(err => console.log(err))
                 .finally(() => {
@@ -61,12 +61,12 @@ function UlDocsCard({
                     <div className='text-button'>Регистрация ЮЛ на одном адресе</div>
                 </>}
                 data={{
-                    'Область': address.regAddrRegionRu || '---',
-                    'Город': address.regAddrLocalityRu || '---',
-                    'Район': address.regAddrRuralDistrictRu || '---',
-                    'Улица': address.regAddrStreetRu || '---',
-                    'Номер дома': address.regAddrBuildingNum || '---',
-                    'Номер помещения': address.regAddrOffice || '---'
+                    'Область': address.reg_addr_district_ru || '---',
+                    'Город': address.reg_addr_locality_ru || '---',
+                    'Район': address.reg_addr_rural_district_ru || '---',
+                    'Улица': address.reg_addr_street_ru || '---',
+                    'Номер дома': address.reg_addr_bulding_num || '---',
+                    'Номер помещения': address.reg_addr_office || '---'
                 }}
             />
 

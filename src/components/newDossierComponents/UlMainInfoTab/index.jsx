@@ -20,7 +20,7 @@ function UlMainInfoTabs({
             <OKED data={[]}/>
             <RegUl1Address data={[]}/>
             <Contacts data={data ? data.fl_contacts : []}/>
-            <DL data={[]} />
+            <DL data={data ? data.pdls : []} />
         </>
     );
 }

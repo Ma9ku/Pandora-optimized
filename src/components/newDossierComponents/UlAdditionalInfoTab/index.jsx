@@ -25,7 +25,7 @@ function UlAdditionalInfoTab({
             <OtherTransport data={[]}/>
             <Equipment data={data ? data.equipment : []}/>
             <Pension data={[]}/>
-            <FPG data={[]}/>
+            <FPG data={data ? data.fpgTempEntities : []}/>
         </>
     );
 }
