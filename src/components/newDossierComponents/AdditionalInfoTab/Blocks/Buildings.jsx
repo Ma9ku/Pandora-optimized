@@ -78,7 +78,7 @@ function Buildings({ data }) {
                                         'Дата регистрации': item.register_reg_date?.substring(0, 10),
                                         'Дата прекращения': item.register_end_date?.substring(0, 10) || '---',
                                         'ИИН/БИН продавца': item.owner_iin_bin,
-                                        'ФИО/Наименование продавца': item.owner_name ? item.owner_name : "---",
+                                        'ФИО/Наименование продавца': item.owner_full_name ? item.owner_full_name : "---",
                                         'Сумма сделки (стоимость)': item.register_transaction_amount,
                                     }}
                                 />
