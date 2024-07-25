@@ -9,6 +9,8 @@ import { useParams } from 'react-router-dom';
 
 import { FaCheck } from "react-icons/fa6";
 import { useTheme } from '../../../context/themeContext';
+import IconButton from '../UI/IconButton';
+import { PiFileDoc, PiFilePdf } from 'react-icons/pi';
 
 function UlCard({
     _iin,
@@ -57,6 +59,42 @@ function UlCard({
         }
     }, [bin])
 
+    const handleDownloadDoc = () => {
+        axios.get(`${dossierURL}downloadUlDoc/${bin}`, { responseType: 'arraybuffer' })
+            .then(res => {
+                const url = window.URL.createObjectURL(new Blob([res.data]));
+                const link = document.createElement('a');
+                link.href = url;
+                // Set the desired file name here
+                link.setAttribute('download', `${bin}.docx`);
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            })
+            .catch(err => {
+                console.log('downloading doc fl err', err);
+            });
+    }
+    
+    const handleDownloadPdf = () => {
+        axios.get(`${dossierURL}downloadUlPdf/${bin}`)
+            .then(res => {
+                const pdfData = new Blob([res.data], { type: 'application/pdf' });
+                const pdfUrl = URL.createObjectURL(pdfData);
+
+                // Create a link element and click it to start the download
+                const link = document.createElement('a');
+                link.href = pdfUrl;
+                link.download = `${bin}.pdf`;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            })
+            .catch(err => {
+                console.log('downloading doc ul err', err)
+            })
+    }
+
     if (isLoading) {
         return <div className={`person-card-block loading ${secondary ? 'secondary' : ''}`}>
             ...Loading
@@ -65,7 +103,16 @@ function UlCard({
 
     return ( 
         <div className={`ul-card-block ${theme} ${secondary ? 'secondary' : ''}`}>
-
+            <div className="icon-buttons">
+                <IconButton 
+                    onClick={handleDownloadDoc}
+                    icon={<PiFileDoc />}
+                />
+                <IconButton 
+                    onClick={handleDownloadPdf}
+                    icon={<PiFilePdf />}
+                />
+            </div>
             <div className="person-info">
                 <table>
                     <TableRow label={'БИН'} value={bin}/>
