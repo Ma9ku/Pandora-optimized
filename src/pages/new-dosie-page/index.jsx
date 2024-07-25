@@ -19,6 +19,7 @@ function DosiePage() {
     const { pIIN, pSetIIN } = useData();
     const [loading, isLoading] = useState(true);
     const [modalOpen, setModalOpen] = useState(false);
+    const [tab, setTab] = useState(0);
     const [photo, setPhoto] = useState("")
     const userSession = JSON.parse(localStorage.getItem("user"))
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + userSession.accessToken
@@ -115,11 +116,11 @@ function DosiePage() {
                         icon={<PiFilePdf />}
                     />
                 </div>
-                <PersonCard setModalOpen={setModalOpen} setPhotoModal={setPhoto}/>
+                <PersonCard setModalOpen={setModalOpen} setPhotoModal={setPhoto} setTab={setTab}/>
                 <DocsCard />
             </div>
             <div className="row-info">
-                <InfoTabs />
+            <InfoTabs tab={tab} setTab={setTab} />
             </div>
         </div>
     );
