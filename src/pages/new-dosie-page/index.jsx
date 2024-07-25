@@ -70,16 +70,6 @@ function DosiePage() {
                 </div>
                 )}
             <div className="row-info">
-                <div className="icon-buttons">
-                    <IconButton 
-                        onClick={handleDownloadDoc}
-                        icon={<PiFileDoc />}
-                    />
-                    <IconButton 
-                        onClick={handleDownloadPdf}
-                        icon={<PiFilePdf />}
-                    />
-                </div>
                 <PersonCard setModalOpen={setModalOpen} setPhotoModal={setPhoto} setTab={setTab}/>
                 <DocsCard />
             </div>
