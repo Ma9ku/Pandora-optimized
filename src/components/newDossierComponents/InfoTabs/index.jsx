@@ -9,7 +9,8 @@ import MainInfoTab from './../MainInfoTab';
 import { useTheme } from '../../../context/themeContext';
 import { dossierURL } from '../../../data/dossier';
 
-function InfoTabs() {
+
+function InfoTabs({setSameAddressFls}) {
     const [tab, setTab] = useState(0);
     const { theme } = useTheme();
     const { iin } = useParams();
@@ -63,6 +64,7 @@ function InfoTabs() {
                 .then(res => {
                     console.log('generalInfo data', res.data);
                     setGeneralInfo(res.data);
+                    setSameAddressFls(res.data.sameAddressFls)
                 })
                 .catch(err => console.log(err))
                 .finally(() => {

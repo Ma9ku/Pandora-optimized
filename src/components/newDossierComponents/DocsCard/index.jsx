@@ -10,10 +10,12 @@ import { RiMapPinTimeFill } from "react-icons/ri";
 import TableRow from '../TableRow';
 import { useTheme } from '../../../context/themeContext';
 import SimpleText from '../UI/Text';
+import SameAddress from '../RisksTab/Blocks/SameAddress';
 
 function DocsCard({
     _iin = null,
     secondary = false,
+    sameAddressFls = []
 }) {
     const { theme } = useTheme();
     const [ addressModalOpen, setAddressModalOpen ] = useState(false);
@@ -95,7 +97,7 @@ function DocsCard({
                             <div className="modal-body-wrapper">
                                 <div className="modal-body">
                                     <div className="close" onClick={() => setAddressModalOpen(false)}><FaXmark /></div>
-                                    Hi
+                                    <SameAddress data={sameAddressFls ? sameAddressFls : []} defaultOpen={true}/>
                                 </div>
                             </div>
                         </div>
