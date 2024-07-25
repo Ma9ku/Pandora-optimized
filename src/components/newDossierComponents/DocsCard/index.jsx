@@ -46,11 +46,11 @@ function DocsCard({
                     const { mvIinDocList, mvAutoFls, regAddressFls } = res.data;
 
                     mvIinDocList.map(doc => {
-                        // if (doc.doc_type_ru_name === 'Водительское удостоверение') {
-                            // setTransportDocs(prev => [...prev, doc]);
-                        // } else {
+                        if (doc.doc_type_ru_name === 'Паспорт') {
+                            setPassports(prev => [...prev, doc]);
+                        } else {
                         setIinDocs(prev => [...prev, doc]);
-                        // }
+                        }
                     });
                     setAddressesPerm(regAddressFls.filter(x => x.registration_type != 'Temporary'))
                     setAddressesTemp(regAddressFls.filter(x => x.registration_type == 'Temporary'))
@@ -130,10 +130,10 @@ function DocsCard({
                             title_text={'ПАСПОРТ'}
                             title_icon={<TfiIdBadge />}
                             data={{
-                                'Орган выдачи': 'МВД РК',
-                                'Срок действия': '12/03/2030',
-                                'Номер документа': '12324332',
-                                'Дата выдачи': '12/03/2020'
+                                'Орган выдачи': passports[0].issue_organization_ru_name,
+                                'Срок действия': passports[0].expiry_date,
+                                'Номер документа': passports[0].doc_number,
+                                'Дата выдачи': passports[0].issue_date,
                             }}
                         />
                     ) :  
