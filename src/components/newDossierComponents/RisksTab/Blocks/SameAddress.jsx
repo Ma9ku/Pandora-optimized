@@ -5,12 +5,14 @@ import SimpleText from '../../UI/Text';
 import SimpleTable from '../../SimpleTable';
 import { dossierURL } from '../../../../data/dossier';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
-function SameAddress({ iin = '', data, defaultOpen = false }) {
+function SameAddress({data, defaultOpen = false }) {
+    const {iin} = useParams()
     const [rows, setRows] = useState([]);
     useEffect(() => {
         // axios.get(`${dossierURL}sameAddressFl`, {}
-        if (data.length == 0) {
+        if (data.length != 0) {
             setRows(data.filter(item => item != null).map(item => [
                 item.first_name || '---',
                 item.last_name || '---',
@@ -20,9 +22,9 @@ function SameAddress({ iin = '', data, defaultOpen = false }) {
         } else {
             const userSession = JSON.parse(localStorage.getItem("user"))
             axios.defaults.headers.common['Authorization'] = 'Bearer ' + userSession.accessToken
+            console.log("iin", iin)
             axios.get(`${dossierURL}sameAddressFl`, { params: { iin: iin } })
             .then(res => {
-                console.log('docs', res.data);
                 setRows(res.data.filter(item => item != null).map(item => [
                     item.first_name || '---',
                     item.last_name || '---',
@@ -43,7 +45,7 @@ function SameAddress({ iin = '', data, defaultOpen = false }) {
         name={'Регистрация ФЛ на одном адресе'}
         defaultOpen={defaultOpen}
     >
-            {data && data.length > 0 ? (
+            {rows && rows.length > 0 ? (
                 <SimpleTable
                     columns={[
                         'Имя',

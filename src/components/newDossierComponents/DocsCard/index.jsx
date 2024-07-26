@@ -39,6 +39,8 @@ function DocsCard({
             return;
         };
 
+        console.log("iin on doc", iin)
+
         const fetchData = () => {
             setLoading(true);
 
