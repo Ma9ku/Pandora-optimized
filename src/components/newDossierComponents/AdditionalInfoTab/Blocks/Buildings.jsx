@@ -85,7 +85,7 @@ function Buildings({ data }) {
                                 <div className="actions">
                                     <ActionButton 
                                         onClick={() => {
-                                            setModalOpen(true);
+                                            fetchData(item.cadastral_number, item.address_history_rus);
                                         }}
                                         value={'Детальный просмотр (Купил-Продал)'}
                                     />
