@@ -3,7 +3,7 @@ import BigCollapsableBlock from "../../BigCollapsableBlock";
 import SimpleText from "../../UI/Text";
 import SimpleTable from "../../SimpleTable";
 import ModalWindow from "../../modalWindow";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { dossierURL } from "../../../../data/dossier";
 function Pension({
@@ -36,27 +36,44 @@ function Pension({
                 {
                     data && data.length > 0 
                     ? (
-                        <SimpleTable 
+                        <SimpleTable
+                            withSorting={true}
                             columns={[
-                                'БИН',
-                                'Наименование ЮЛ',
-                                'Период',
-                                'Сумма (010)',
-                                'Сумма (012)',
+                                {
+                                    value: 'БИН',
+                                    align: 'left',
+                                    sorting: false,
+                                },
+                                {
+                                    value: 'Наименование ЮЛ',
+                                    align: 'left',
+                                    sorting: false,
+                                },
+                                {
+                                    value: 'Период',
+                                    align: 'center',
+                                    sorting: true,
+                                },
+                                {
+                                    value: 'Сумма (010)',
+                                    align: 'center',
+                                    sorting: true,
+                                },
+                                {
+                                    value: 'Сумма (012)',
+                                    align: 'center',
+                                    sorting: true,
+                                },
                             ]}
                             rows={
                                 data 
                                 ? data.map(item => {
-                                    // console.log("flul", item)
-                                    
                                     return [
                                         item.bin || '---',
                                         item.name || '---',
                                         item.period || '---',
                                         item.sum010 ? item.sum010.toLocaleString('ru-RU') : '---',
-                                        
                                         item.sum012 ? item.sum012.toLocaleString('ru-RU') : '---',
-                                        // <button>Перейти</button>,
                                     ]
                                 })
                                 : [] 
