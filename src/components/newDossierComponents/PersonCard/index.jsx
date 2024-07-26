@@ -32,6 +32,7 @@ function PersonCard({
     const [citizenship, setCitizenship] = useState('');
     const [lifeStatus, setLifeStatus] = useState('');
     const [birthDate, setBirthDate] = useState('');
+    const [birthLocation, setBirthLocation] = useState('');
     const [photo, setPhoto] = useState('');
     const [isResident, setIsResident] = useState(false);
 
@@ -46,7 +47,9 @@ function PersonCard({
 
             axios.get(`${dossierURL}getFirstRowByIin`, { params: { iin: iin } })
                 .then(res => {
-                    const { mvFls, riskPercentage, photoDbf } = res.data;
+                    console.log(res.data);
+
+                    const { mvFls, riskPercentage, photoDbf, mvFlAddresses } = res.data;
                     setFirstName(mvFls[0].first_name);
                     setLastName(mvFls[0].last_name);
                     setPatronymic(mvFls[0].patronymic);
@@ -58,6 +61,7 @@ function PersonCard({
                     setPhoto(photoDbf[0].photo);
                     setPhotoModal(photoDbf[0].photo);
                     setIsResident(mvFls[0].is_resident);
+                    setBirthLocation(mvFlAddresses[0].district);
                 })
                 .catch(err => console.log(err))
                 .finally(() => {
@@ -172,7 +176,7 @@ function PersonCard({
                     <TableRow label={'Статус'} value={lifeStatus} />
                     <TableRow label={'Гражданство'} value={citizenship} />
                     <TableRow label={'Национальность'} value={nationality} />
-                    <TableRow label={'Место рождения'} value={''} />
+                    <TableRow label={'Место рождения'} value={birthLocation} />
                     <TableRow label={'Дата рождения'} value={birthDate} />
                 </table>
             </div>
