@@ -46,17 +46,17 @@ function DocsCard({
                 .then(res => {
                     console.log('docs', res.data);
 
-                    const { mvIinDocList, mvAutoFls, regAddressFls } = res.data;
+                    const { mvIinDocList, mvAutoFls, mvFlAddresses, registrationTemps } = res.data;
 
                     mvIinDocList.map(doc => {
                         if (doc.doc_type_ru_name === 'Паспорт') {
                             setPassports(prev => [...prev, doc]);
                         } else {
-                        setIinDocs(prev => [...prev, doc]);
+                            setIinDocs(prev => [...prev, doc]);
                         }
                     });
-                    setAddressesPerm(regAddressFls.filter(x => x.registration_type != 'Temporary'))
-                    setAddressesTemp(regAddressFls.filter(x => x.registration_type == 'Temporary'))
+                    setAddressesPerm(mvFlAddresses)
+                    setAddressesTemp(registrationTemps)
                     setTransports([
                         ...mvAutoFls,
                         {
@@ -148,14 +148,14 @@ function DocsCard({
                         >Регистрация ФЛ на одном адресе</div>
                     </>}
                     data={{
-                        'Область/Город респуб. значения': addressesPerm[0].region,
-                        'Регион/Район': addressesPerm[0].district,
-                        'Населенный пункт/Город': addressesPerm[0].city,
-                        'Дата регистрации прописки': addressesPerm[0].reg_date,
-                        'Улица': addressesPerm[0].street,
-                        'Дом': addressesPerm[0].building,
-                        'Квартира': addressesPerm[0].apartment_number,
-                        'Дата снятия с прописки': addressesPerm[0].reg_end_date
+                        'Область/Город респуб. значения': addressesPerm[0].region || "---" ,
+                        'Регион/Район': addressesPerm[0].district || "---" ,
+                        'Населенный пункт/Город': addressesPerm[0].city || "---" ,
+                        'Дата регистрации прописки': addressesPerm[0].addressDate.split(" ")[0] || "---" ,
+                        'Улица': addressesPerm[0].street || "---" ,
+                        'Дом': addressesPerm[0].building || "---" ,
+                        'Квартира': addressesPerm[0].apartment_number || "---" ,
+                        'Дата снятия с прописки': addressesPerm[0].addressEndDate?.split(" ")[0] || "---" 
                     }}
                 /> : 
                 <Block
@@ -172,14 +172,14 @@ function DocsCard({
                     title_text={'АДРЕС ВРЕМЕННОЙ РЕГИСТРАЦИИ'}
                     title_icon={<RiMapPinTimeFill />}
                     data={{
-                        'Область/Город респуб. значения': addressesTemp[0].region,
-                        'Регион/Район': addressesTemp[0].district,
-                        'Населенный пункт/Город': addressesTemp[0].city,
-                        'Дата регистрации прописки': addressesTemp[0].reg_date,
-                        'Улица': addressesTemp[0].street,
-                        'Дом': addressesTemp[0].building,
-                        'Квартира': addressesTemp[0].apartment_number,
-                        'Дата снятия с прописки': addressesTemp[0].reg_end_date
+                        'Область/Город респуб. значения': addressesTemp[0].region || "---" ,
+                        'Регион/Район': addressesTemp[0].district || "---" ,
+                        'Населенный пункт/Город': addressesTemp[0].city || "---" ,
+                        'Дата регистрации прописки': addressesTemp[0].beginDate || "---" ,
+                        'Улица': addressesTemp[0].street || "---" ,
+                        'Дом': addressesTemp[0].building || "---" ,
+                        'Этаж': addressesTemp[0].flat || "---" ,
+                        'Дата снятия с прописки': addressesTemp[0].endDate || "---" 
                     }}
                 /> : 
                 <Block
