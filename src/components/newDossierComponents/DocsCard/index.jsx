@@ -90,7 +90,7 @@ function DocsCard({
             {
                 addressModalOpen ? (
                     <ModalWindow closer={setAddressModalOpen}>
-                        <SameAddress data={sameAddressFls ? sameAddressFls : []} defaultOpen={true}/>
+                        <SameAddress iin={iin} data={sameAddressFls ? sameAddressFls : []} defaultOpen={true}/>
                     </ModalWindow>
                 ) : null
             }
