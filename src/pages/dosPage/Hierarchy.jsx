@@ -9,6 +9,8 @@ import downloadIcon from './down-arrow-download-svgrepo-com.svg';
 import { dirIcon, baseIcon } from '../../images/icons';
 import { hierachies } from './HierarchyLocal/hierarhyLocal';
 import html2canvas from 'html2canvas';
+import exportIcon from '../../assets/img/export-svgrepo-com.png'
+import { CiExport } from "react-icons/ci";
 
 function HierarchyChart({ iin }) {
   const chartRef = useRef(null);
@@ -170,18 +172,18 @@ function HierarchyChart({ iin }) {
               src: photo,
             })
           );
-          if (isDirector)
-            target.children.push(
-              am5.Picture.new(root, {
-                width: 55,
-                height: 55,
-                centerX: am5.percent(50),
-                centerY: am5.percent(200),
-                fill: '#ffffff',
-                src: dirIcon,
-              })
-            );
         }
+        if (isDirector && isPhoto)
+        target.children.push(
+          am5.Picture.new(root, {
+            width: 57,
+            height: 76,
+            centerX: am5.percent(50),
+            centerY: am5.percent(50),
+            fill: '#ffffff',
+            src: photo,
+          })
+        );
       });
     };
   
@@ -224,7 +226,7 @@ function HierarchyChart({ iin }) {
       {Object.keys(data).length ? (
         <div className='schema-risks'>
           <div ref={chartRef} style={{ textAlign: 'center', width: '100%', height: '85vh' }}></div>
-          <img ref={exportButtonRef} onClick={exportChartAsImage} src={downloadIcon} alt="Download" />
+          <img ref={exportButtonRef} onClick={exportChartAsImage} src={exportIcon} alt="Download" />
         </div>
       ) : null}
     </>

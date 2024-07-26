@@ -2,14 +2,46 @@ import React, { useState, useEffect } from 'react';
 
 import './style.scss';
 import { useTheme } from '../../../context/themeContext';
+import { FaSort } from 'react-icons/fa6';
 
 function SimpleTable({
     columns,
     rows,
-    onRowClick = null
+    onRowClick = null,
+    withSorting = false,
+    sortingColumns = null
 }) {
 
     const { theme } = useTheme();
+
+    const [ sortedRows, setSortedRows ] = useState([]) 
+    const [ sortingColumnIndex, setSortingColumnIndex ] = useState(-1)
+
+    useEffect(() => {
+        if (!withSorting || sortingColumnIndex === -1) {
+            setSortedRows(rows);
+            return;
+        }
+
+        const rowsCopy = [...rows];
+        rowsCopy.sort((a, b) => {
+            const valueA = a[sortingColumnIndex];
+            const valueB = b[sortingColumnIndex];
+
+            // Convert values to numbers if they are numeric
+            const numA = Number(valueA);
+            const numB = Number(valueB);
+
+            if (!isNaN(numA) && !isNaN(numB)) {
+                return numA - numB; // Sort numerically
+            }
+
+            // Otherwise, sort as strings
+            return String(valueA).localeCompare(String(valueB));
+        });
+
+        setSortedRows(rowsCopy);
+    }, [sortingColumnIndex, rows])    
 
     if (columns.lenght === 0) return null;
 
@@ -22,6 +54,27 @@ function SimpleTable({
                     ? columns.map((column, index) => {
 
                         if (typeof column === 'object') {
+                            if (withSorting && column.sorting) {
+                                return <th className={`${sortingColumnIndex === index ? 'sorting-column' : ''}`} align={column.align} key={index}>
+                                    {column.value}
+                                    <FaSort 
+                                        style={{
+                                            color: sortingColumnIndex === index 
+                                                ? theme === 'dark'
+                                                    ? 'white' 
+                                                    : 'black'
+                                                : theme === 'dark'
+                                                    ? 'rgb(84, 84, 84)' 
+                                                    : 'rgb(181, 181, 181)'
+                                        }}
+                                        onClick={() => setSortingColumnIndex(prev => {
+                                            if (prev === index) return -1;
+                                            return index;
+                                        })}
+                                    />
+                                </th>
+                            }
+
                             return <th align={column.align} key={index}>{column.value}</th>
                         }
 
@@ -34,8 +87,8 @@ function SimpleTable({
             </thead>
             <tbody>
             {
-                rows 
-                ? rows.map((row, r_index) => {
+                sortedRows 
+                ? sortedRows.map((row, r_index) => {
                     return <tr 
                         key={r_index}
                     >
