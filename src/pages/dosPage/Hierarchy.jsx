@@ -172,18 +172,18 @@ function HierarchyChart({ iin }) {
               src: photo,
             })
           );
-          if (isDirector)
-            target.children.push(
-              am5.Picture.new(root, {
-                width: 55,
-                height: 55,
-                centerX: am5.percent(50),
-                centerY: am5.percent(200),
-                fill: '#ffffff',
-                src: dirIcon,
-              })
-            );
         }
+        if (isDirector && isPhoto)
+        target.children.push(
+          am5.Picture.new(root, {
+            width: 57,
+            height: 76,
+            centerX: am5.percent(50),
+            centerY: am5.percent(50),
+            fill: '#ffffff',
+            src: photo,
+          })
+        );
       });
     };
   
