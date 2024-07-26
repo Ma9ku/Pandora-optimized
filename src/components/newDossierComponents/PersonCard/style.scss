@@ -72,7 +72,7 @@ $light-theme: (
     @include theme($light-theme);
   }
 
-  padding: 30px 75px 40px 75px;
+  padding: 50px 75px 40px 75px;
   box-sizing: border-box;
   max-width: 460px;
   min-width: 426px;
@@ -96,7 +96,7 @@ $light-theme: (
 
   .resident {
     position: absolute;
-    top: 18px;
+    top: 30px;
     transform: translate(130px);
     display: flex;
     flex-direction: row;

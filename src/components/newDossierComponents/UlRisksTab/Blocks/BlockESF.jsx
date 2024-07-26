@@ -7,7 +7,7 @@ function BlockESF({
 }) {
     return ( 
         <BigCollapsableBlock
-            name={'Блокировака выписки ЭСФ'}
+            name={'Сведения по контрагентам (ЭСФ)'}
             icon={<MdBlock />}
         >
             <SimpleText>Нет данных</SimpleText>

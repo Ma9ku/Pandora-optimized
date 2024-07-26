@@ -6,11 +6,15 @@
   display: flex;
   flex-direction: column;
   
+  
 }
 
 body {
   overflow-x: hidden !important;
   // background-image: url(./images/bg-image.png);
+  &.modal-open {
+    overflow: hidden;
+  }
 }
 
 * {
