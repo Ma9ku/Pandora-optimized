@@ -26,6 +26,8 @@ import Discipline from './Blocks/Discipline';
 import Missing from './Blocks/Missing';
 import Unemployed from './Blocks/Unemployed';
 import Administrative from './Blocks/Administrative';
+import OpgEntites from './Blocks/OpgEntites';
+import Kuis from './Blocks/kuis';
 
 function RisksTab({data}) {
 
@@ -35,8 +37,8 @@ function RisksTab({data}) {
                 data={data ? data.blockEsfs : []} 
             /> {/*completed */}
 
-            <ForcedTreatment data={data ? data.forcedTreatment : []} /> 
-            {/* нету */}
+            {/* <ForcedTreatment data={data ? data.forcedTreatment : []} /> 
+            нету */}
 
             <Criminal data={data ? data.criminals : []} />{/*completed */}
             <MinZdrav data={data ? data.mzEntities : []} />{/*completed */}
@@ -44,8 +46,8 @@ function RisksTab({data}) {
 
             <NDS data={data ? data.ndsEntities : []} />
             {/* null */}
-            <RiskUL data={data ? data.riskUL : []} />
-            {/* нету */}
+            {/* <RiskUL data={data ? data.riskUL : []} />
+            нету */}
 
             <Orphanage data={data ? data.orphans : []} /> {/*completed */}
 
@@ -65,8 +67,8 @@ function RisksTab({data}) {
 
             <Incompetent data={data ? data.incapacitateds : []} /> {/*completed */}
 
-            <Examination data={data ? data.examination : []} />
-            {/* нету */}
+            {/* <Examination data={data ? data.examination : []} />
+            нету */}
 
             <Dismissed data={data ? data.dismissals : []} /> {/*completed */}
 
@@ -75,10 +77,14 @@ function RisksTab({data}) {
 
             <Missing data={data ? data.wantedListEntities : []} /> {/*completed */}
 
-            <Unemployed data={data ? data.unemployed : []} />
+            <Unemployed data={data ? data.unemployeds : []} />
             {/* нету */}
 
             <Administrative data={data ? data.adms : []} /> {/*completed */}
+            {/* <OpgEntites data={data ? data.adms : []} /> completed */}
+            <Kuis data={data ? data.kuis : []} /> {/*completed */}
+
+
         </>
     );
 }

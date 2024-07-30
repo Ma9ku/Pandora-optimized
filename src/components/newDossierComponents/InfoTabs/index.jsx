@@ -29,7 +29,7 @@ function InfoTabs({ tab, setTab, setSameAddressFls }) {
                         'drugAddicts', 'orphans', 'omns', 'dormants',
                         'beneficiariesLists', 'immoralLifestyles', 
                         'firstCreditBureauEntities', 'incapacitateds', 
-                        'dismissals', 'wantedListEntities', 'adms'
+                        'dismissals', 'wantedListEntities', 'adms', 'kuis'
                     ];
 
                     const count = fieldsToCheck.filter(field => 
@@ -97,6 +97,9 @@ function InfoTabs({ tab, setTab, setSameAddressFls }) {
             axios.get(`${dossierURL}getRiskByIin`, { params: { iin: iin } })
                 .then(res => {
                     setRisksInfo(res.data);
+                    console.log("riskssss");
+                    console.log(res.data);
+
                 })
                 .catch(err => console.log(err))
                 .finally(() => {

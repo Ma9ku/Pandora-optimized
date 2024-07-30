@@ -12,7 +12,7 @@ function MinZdrav({ data }) {
             setRows(data.filter(item => item != null).map(item => [
                 item.statusMz || '---',
                 item.medicalOrg || '---',
-                item.risk_category || '---',
+                item.diseaseCode || '---',
                 item.comments || '---',
                 item.appointments_dt || '---',
             ]));

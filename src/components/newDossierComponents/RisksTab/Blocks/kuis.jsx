@@ -4,17 +4,20 @@ import SimpleText from "../../UI/Text";
 import { LiaUserTieSolid } from "react-icons/lia";
 import { useEffect, useState } from 'react';
 
-function NDS({ data }) {
+function Kuis({ data }) {
     const [rows, setRows] = useState([]);
 
     useEffect(() => {
         if (data) {
             console.log(data)
             setRows(data.filter(item => item != null).map(item => [
-                item.iinBin || '---',
-                item.startDt || '---',
-                item.endDt || '---',
-                item.reason || '---',
+                item.institution || '---',
+                item.region || '---',
+                item.bin || '---',
+                item.period_start || '---',
+                item.period_end || '---',
+                item.conviction_article || '---',
+                item.editorial_code || '---',
             ]));
         } else {
             setRows([]);
@@ -24,16 +27,19 @@ function NDS({ data }) {
     return (
         <BigCollapsableBlock
             exist={data && data.length > 0 ? true : false}
-            name={'Снятые с учета по НДС'}
+            name={'KUIS'}
             icon={<LiaUserTieSolid />}
         >
             {data && data.length > 0 ? (
                 <SimpleTable 
                     columns={[
-                        'ИИН/БИН',
-                        'Дата постановки на учет',
-                        'Дата снятия с учета',
-                        'Причина снятия с учета по НДС',
+                        'Институт',
+                        'Регион',
+                        'БИН',
+                        'Начало',
+                        'Конец',
+                        'Статья',
+                        'Статья',
                     ]}
                     rows={rows}
                 />
@@ -44,4 +50,4 @@ function NDS({ data }) {
     );
 }
 
-export default NDS;
+export default Kuis;
