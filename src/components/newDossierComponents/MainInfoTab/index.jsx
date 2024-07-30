@@ -7,6 +7,8 @@ import GeneralInfo from '../RisksTab/Blocks/GeneralInfo';
 import FlInfo from '../RisksTab/Blocks/FlInfo'
 import ContactInfo from '../RisksTab/Blocks/ContactInfo';
 import SameAddress from '../RisksTab/Blocks/SameAddress';
+import SimpleText from '../UI/Text';
+import SimpleTable from '../SimpleTable';
 
 function MainInfoTab({data}) {
     const { iin } = useParams();
@@ -14,23 +16,6 @@ function MainInfoTab({data}) {
   
     return ( 
         <>
-            <GeneralInfo />
-            <FlInfo />
-
-            {/* <BigCollapsableBlock 
-                icon={<FaFile />}
-                name={'Документы'}
-            >
-                
-            </BigCollapsableBlock> */}
-
-            {/* <BigCollapsableBlock 
-                icon={<FaFile />}
-                name={'Адрес прописки'}
-            >
-                
-            </BigCollapsableBlock> */}
-
             <SameAddress data={data ? data.sameAddressFls : []}/>
 
             <ContactInfo data={data ? data.contacts : []} />
@@ -39,7 +24,25 @@ function MainInfoTab({data}) {
                 icon={<FaFile />}
                 name={'Смена ФИО'}
             >
-                
+                {
+                    data.changeFio 
+                    ? (
+                        <SimpleTable
+                            columns={[
+                                'ФИО старое',
+                                'Дата смены ФИО',
+                                'Номер Акта'
+                            ]}
+                            rows={data.changeFio 
+                                ? [[
+                                    `${data.changeFio.surname_before || ''} ${data.changeFio.name_before || ''} ${data.changeFio.secondname_before || ''}`,
+                                    data.changeFio.to_date,
+                                    data.changeFio.number_akt
+                                ]]
+                                : []}
+                        />
+                    ) : <SimpleText>Нет данных</SimpleText>
+                }
             </BigCollapsableBlock>
         </>
     );

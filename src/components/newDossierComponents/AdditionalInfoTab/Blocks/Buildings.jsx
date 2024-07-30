@@ -74,7 +74,7 @@ function Buildings({ data }) {
                                         'Жилая площадь': item.area_useful,
                                         'Вид документа': item.register_emergence_rights_rus,
                                         'Номер документа': item.register_record_number,
-                                        'Дата документа': 'NETU',
+                                        'Дата документа': '---',
                                         'Дата регистрации': item.register_reg_date?.substring(0, 10),
                                         'Дата прекращения': item.register_end_date?.substring(0, 10) || '---',
                                         'ИИН/БИН продавца': item.owner_iin_bin,
@@ -114,11 +114,11 @@ function Buildings({ data }) {
                                         'Жилая площадь': item.area_useful,
                                         'Вид документа': item.register_emergence_rights_rus,
                                         'Номер документа': item.register_record_number,
-                                        'Дата документа': 'NETU',
+                                        'Дата документа': '---',
                                         'Дата регистрации': item.register_reg_date?.substring(0, 10),
                                         'Дата прекращения': item.register_end_date?.substring(0, 10) || '---',
                                         'ИИН/БИН продавца': item.owner_iin_bin,
-                                        'ФИО/Наименование продавца': 'NETU',
+                                        'ФИО/Наименование продавца': '---',
                                         'Сумма сделки (стоимость)': item.register_transaction_amount,
                                     }}
                                 />

@@ -168,25 +168,8 @@ const Search = (props) => {
                                     <tr>
                                         <td>1</td>
                                         <td>0201031123</td>
-                                        <td>KUKUK KUKUK UJJF</td>
-                                        <td>2011.20.03</td>
-                                        <td>
-                                            <div
-                                                className='history-goto-button'
-                                                onClick={() => {
-
-                                                }}
-                                            >
-                                                Перейти
-                                            </div>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>1</td>
-                                        <td>0201031123</td>
-                                        <td>KUKUK KUKUK UJJF</td>
-                                        <td>2011.20.03</td>
+                                        <td>EMAIL</td>
+                                        <td>20.03.2024</td>
                                         <td>
                                             <div
                                                 className='history-goto-button'

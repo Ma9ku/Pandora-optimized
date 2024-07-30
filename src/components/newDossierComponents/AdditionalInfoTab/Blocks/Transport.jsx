@@ -20,12 +20,12 @@ function Transport({
 
                         return (
                             <CollapsableContainer
-                                name={`${index+1}. ${item.brand_model}, Регистрационный номер ${item.reg_number}, Статус: ${item.status}, ${item.reg_date} - ${item.end_date ?? ''}`}
+                                name={`${index+1}. ${item.brand}, Регистрационный номер ${item.number}, Статус: ${item.status}, ${item.date} - ${item.end_date ?? ''}`}
                             >
                                 <VerticalTable 
                                     twoColumn={false}
                                     data={{
-                                        'Дата регистрации с': 'NETU' || item.reg_date || '',
+                                        'Дата регистрации с': '' || item.reg_date || '',
                                         'Дата регистрации по': item.end_date || '---',
                                         'Категория': item.owner_category || '',
                                         'Дата выдачи свидетельства': item.date_certificate || '---',
@@ -37,7 +37,7 @@ function Transport({
                                         'Масса без нагрузки': item.weight || '',
                                         'Разрешенная max масса': item.max_weight || '',
                                         'Особые отметки': item.special_marks || '',
-                                        'Отметка о снятии с учета': 'NETU' || ''
+                                        'Отметка о снятии с учета': '---' || ''
                                     }}
                                 />
 

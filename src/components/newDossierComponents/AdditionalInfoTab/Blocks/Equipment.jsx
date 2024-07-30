@@ -20,24 +20,17 @@ function Equipment({
 
                         return (
                             <CollapsableContainer
-                                name={`${index+1}. ${item.brand_model}, Регистрационный номер ${item.reg_number}, Статус: ${item.status}, ${item.reg_date} - ${item.end_date ?? ''}`}
+                                name={`${index+1}. ${item.equipment_model}, Регистрационный номер ${item.reg_series_num}, ${item.reg_date} - ${item.end_date ?? ''}`}
                             >
                                 <VerticalTable 
                                     twoColumn={false}
                                     data={{
-                                        'Имя владельца': item.owner_name || '',
+                                        'Имя владельца': item.proprietor_name || '---',
                                         'Дата регистрации по': item.end_date || '---',
-                                        'Категория': item.owner_category || '',
-                                        'Дата выдачи свидетельства': item.date_certificate || '---',
-                                        'Серия и регистрационный № свидетельства': item.series_reg_number || '',
-                                        'VIN/Кузов/Шасси': item.vin_kuzov_shassi || '',
-                                        'Год выпуска ТС': item.release_year_tc || '',
-                                        'Объем двигателя см.куб': item.engine_volume || '',
-                                        'Цвет': item.color || '',
-                                        'Масса без нагрузки': item.weight || '',
-                                        'Разрешенная max масса': item.max_weight || '',
-                                        'Особые отметки': item.special_marks || '',
-                                        'Отметка о снятии с учета': 'NETU' || ''
+                                        'Серия и регистрационный № свидетельства': item.reg_series_num || '---',
+                                        'VIN/Кузов/Шасси': item.vin || '---',
+                                        'Особые отметки': item.special_marks || '---',
+                                        'Отметка о снятии с учета': item.end_reason || '---'
                                     }}
                                 />
 

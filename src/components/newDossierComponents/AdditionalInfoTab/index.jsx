@@ -33,9 +33,13 @@ function AdditionalInfoTab({data}) {
             />
 
             {/* mvAutoFls */}
-            <Transport data={data.mvAutoFl || []}/>
+            <Transport data={data.autoTransports || []}/>
 
-            <OtherTransport />
+            <OtherTransport 
+                trains={data ? data.trains : []}
+                aviaTransport={data ? data.aviaTransport : []}
+                waterTransports={data ? data.waterTransports : []}
+            />
 
             <Equipment data={data.equipment || []}/>
 
@@ -46,8 +50,8 @@ function AdditionalInfoTab({data}) {
             <Pension data={data.pensions || []} iin={iin}/>
 
             <Ipkh 
-                dataIp={data.individualEntrepremeurs || []}
-                datapKh={data.kxes || []}
+                dataIp={data.individualEntrepreneurs || []}
+                dataKh={data.kxes || []}
             />
 
             <CommodityProducers data={data.commodityProducers || []}/>

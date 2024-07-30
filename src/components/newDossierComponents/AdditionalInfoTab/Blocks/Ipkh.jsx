@@ -15,6 +15,22 @@ function Ipkh({
         setData(prev => {
             let res = [];
 
+            console.log(dataIp, dataKh);
+
+            dataIp = dataIp ? dataIp.map(data => {
+                return {
+                    ...data,
+                    'type': 'ИП'
+                }
+            }) : [];
+
+            dataKh = dataKh ? dataKh.map(data => {
+                return {
+                    ...data,
+                    'type': 'КХ'
+                }
+            }) : [];
+
             if (dataIp !== null && dataIp !== undefined) res = [...res, ...dataIp];
             if (dataKh !== null && dataKh !== undefined) res = [...res, ...dataKh];
 
@@ -38,17 +54,19 @@ function Ipkh({
         >
             <SimpleTable 
                 columns={[
+                    'Тип',
                     'Наименование',
                     'ИИН',
                     'РНН'
                 ]}
-                rows={[
+                rows={
                     data.map(item => [
+                        item.type,
                         item.name_rus || '---',
                         item.iin || '---',
                         item.rnn || '---'
                     ])
-                ]}
+                }
             />
         </BigCollapsableBlock>
     );  

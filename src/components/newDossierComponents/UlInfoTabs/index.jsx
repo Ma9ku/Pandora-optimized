@@ -43,71 +43,71 @@ function UlInfoTabs() {
         }
     }, [bin]);
 
-    // useEffect(() => {
-    //     const fetchGeneralInfo = () => {
-    //         setLoading(true);
+    useEffect(() => {
+        const fetchGeneralInfo = () => {
+            setLoading(true);
 
-    //         axios.get(`${dossierURL}cc`, { params: { bin: bin } })
-    //             .then(res => {
-    //                 console.log('generalInfo data', res.data);
-    //                 setGeneralInfo(res.data);
-    //             })
-    //             .catch(err => console.log(err))
-    //             .finally(() => {
-    //                 setLoading(false);
-    //             });
-    //     }
-    //     const fetchAdditionalInfo = () => {
-    //         setLoading(true);
+            axios.get(`${dossierURL}generalInfoUl`, { params: { bin: bin } })
+                .then(res => {
+                    console.log('generalInfo data', res.data);
+                    setGeneralInfo(res.data);
+                })
+                .catch(err => console.log(err))
+                .finally(() => {
+                    setLoading(false);
+                });
+        }
+        const fetchAdditionalInfo = () => {
+            setLoading(true);
 
-    //         axios.get(`${dossierURL}cc`, { params: { bin: bin } })
-    //             .then(res => {
-    //                 console.log('additional tab', res.data);
-    //                 setAdditionalInfo(res.data);
-    //             })
-    //             .catch(err => console.log(err))
-    //             .finally(() => {
-    //                 setLoading(false);
-    //             });
-    //     }
-    //     const fetchSvedInfo = () => {
-    //         setLoading(true);
+            axios.get(`${dossierURL}additionalInfoUL`, { params: { bin: bin } })
+                .then(res => {
+                    console.log('additional tab', res.data);
+                    setAdditionalInfo(res.data);
+                })
+                .catch(err => console.log(err))
+                .finally(() => {
+                    setLoading(false);
+                });
+        }
+        const fetchSvedInfo = () => {
+            setLoading(true);
 
-    //         axios.get(`${dossierURL}cc`, { params: { bin: bin } })
-    //             .then(res => {
-    //                 console.log('relatives', res.data);
+            axios.get(`${dossierURL}`, { params: { bin: bin } })
+                .then(res => {
+                    console.log('relatives', res.data);
                     
-    //                 setSvedInfo([]);
-    //             })
-    //             .catch(err => console.log(err))
-    //             .finally(() => {
-    //                 setLoading(false);
-    //             });
-    //     }
-    //     const fetchRisks = () => {
-    //         setLoading(true);
+                    setSvedInfo([]);
+                })
+                .catch(err => console.log(err))
+                .finally(() => {
+                    setLoading(false);
+                });
+        }
+        const fetchRisks = () => {
+            setLoading(true);
 
-    //         axios.get(`${dossierURL}cc`, { params: { bin: bin } })
-    //             .then(res => {
-    //                 console.log('risks tab data', res.data);
-    //                 setRisksInfo(res.data);
-    //             })
-    //             .catch(err => console.log(err))
-    //             .finally(() => {
-    //                 setLoading(false);
-    //             });
-    //     }
+            axios.get(`${dossierURL}getRiskByBin`, { params: { bin: bin } })
+                .then(res => {
+                    console.log('risks tab data', res.data);
+                    setRisksInfo(res.data);
+                })
+                .catch(err => console.log(err))
+                .finally(() => {
+                    setLoading(false);
+                });
+        }
 
-    //     if (tab == 0) {
-    //         fetchGeneralInfo()
-    //     } else if (tab == 1) {
-    //         fetchAdditionalInfo()
-    //     } else if (tab == 2) {
-    //         fetchSvedInfo()
-    //     }else if (tab == 3) {
-    //         fetchRisks()
-    //     }
-    // }, [tab]);
+        if (tab == 0) {
+            fetchGeneralInfo()
+        } else if (tab == 1) {
+            fetchAdditionalInfo()
+        } else if (tab == 2) {
+            fetchSvedInfo()
+        }else if (tab == 3) {
+            fetchRisks()
+        }
+    }, [tab]);
 
     return ( 
         <div className={`info-tabs-block ${theme}`}>
