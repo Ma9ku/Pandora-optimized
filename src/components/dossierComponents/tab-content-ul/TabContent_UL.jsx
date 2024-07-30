@@ -47,13 +47,13 @@ const inputStyle = {
 
 const zaprosButtonStyle = {
     height: '34px', 
-    backgroundColor: "#757575", 
+    backgroundColor: "#2E3740", 
     color: 'white', 
     width: 'fit-content', 
     marginLeft: 3,
      
     ":hover": {
-        backgroundColor: "#a3a3a3", 
+        backgroundColor: "#191e24", 
     },
 
     ":active": {
