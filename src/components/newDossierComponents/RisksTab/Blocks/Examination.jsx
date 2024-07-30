@@ -6,6 +6,7 @@ import SimpleTable from "../../SimpleTable";
 function Examination({ data }) {
     return ( 
         <BigCollapsableBlock
+            exist={data && data.length > 0 ? true : false}
             name={'Проверки'}
             icon={<Search />}
         >

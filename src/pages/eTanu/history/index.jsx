@@ -33,7 +33,7 @@ const HistoryPage = () => {
     const email = localStorage.getItem("email")
 
     axios.get(
-      `http://10.202.20.92:8081/getEtanuHistory`,
+      `http://192.168.5.22:8081/getEtanuHistory`,
       {
         params: {
           'page': page,
@@ -55,7 +55,7 @@ const HistoryPage = () => {
     const _auth_user_id = auth_user_id || localStorage.getItem('auth_user_id') || 2
     
     axios.get(
-      `http://10.202.20.92:8081/api/v1/account/history/${_auth_user_id}/`,
+      `http://192.168.5.22:8081/api/v1/account/history/${_auth_user_id}/`,
       {
         params: {
           'page': page
@@ -152,7 +152,7 @@ const SearchCard = ({ history, onRepeatSearch }) => {
 
   const { devMode } = useAuth();
 
-  const PHOTO_URL = 'http://10.202.20.92:8081/history/';
+  const PHOTO_URL = 'http://192.168.5.22:8081/history/';
 
   useEffect(() => {
     setPhoto(`${PHOTO_URL}${history.searchedPhoto}`);
@@ -185,7 +185,7 @@ const SearchCard = ({ history, onRepeatSearch }) => {
     // console.log(token, auth_user_id, history.searchedPhoto)
 
     await axios.post(
-      'http://10.202.20.92:8081/api/v1/search/',
+      'http://192.168.5.22:8081/api/v1/search/',
       data,
       {
         headers: { 'Authorization': 'Bearer ' + token },//TOKEN  

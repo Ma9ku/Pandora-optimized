@@ -24,6 +24,7 @@ function Missing({ data }) {
 
     return (
         <BigCollapsableBlock
+            exist={data && data.length > 0 ? true : false}
             name={'Пропавшие без вести'}
             icon={<PiUserFocusThin />}
         >

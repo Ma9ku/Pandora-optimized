@@ -6,6 +6,7 @@ import SimpleTable from "../../SimpleTable";
 function Attend1D({ data }) {
     return ( 
         <BigCollapsableBlock
+            exist={data && data.length > 0 ? true : false}
             name={'Посещения (1D)'}
             icon={<BsCalendar2 />}
         >

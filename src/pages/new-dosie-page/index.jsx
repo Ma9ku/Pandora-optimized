@@ -74,7 +74,7 @@ function DosiePage() {
                 <DocsCard />
             </div>
             <div className="row-info">
-            <InfoTabs tab={tab} setTab={setTab} setSameAddressFls={setSameAddressFls}/>
+                <InfoTabs tab={tab} setTab={setTab} setSameAddressFls={setSameAddressFls}/>
             </div>
         </div>
     );

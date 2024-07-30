@@ -6,6 +6,7 @@ import { LiaUserTieSolid } from "react-icons/lia";
 function Unemployed({ data }) {
     return ( 
         <BigCollapsableBlock
+            exist={data && data.length > 0 ? true : false}
             name={'Реестр безработных'}
             icon={<LiaUserTieSolid />}
         >

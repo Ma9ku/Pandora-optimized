@@ -6,6 +6,7 @@ import SimpleTable from "../../SimpleTable";
 function Discipline({ data }) {
     return ( 
         <BigCollapsableBlock
+            exist={data && data.length > 0 ? true : false}
             name={'Учет лиц, совершивших дисциплинарные проступки'}
             icon={<FaUsersBetweenLines />}
         >

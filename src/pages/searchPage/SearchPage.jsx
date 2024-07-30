@@ -9,6 +9,7 @@ import TabContent_IIN from '../../components/dossierComponents/tab-content-iin/T
 import TabContent_FIO from '../../components/dossierComponents/tab-content-fio/TabContent_FIO';
 import TabContent_BIN from '../../components/dossierComponents/tab-content-bin/TabContent_BIN';
 import TabContent_UL from '../../components/dossierComponents/tab-content-ul/TabContent_UL';
+import SimpleTable from '../../components/newDossierComponents/SimpleTable';
 
 const Search = (props) => {
     const [value, setValue] = React.useState(0);
@@ -21,6 +22,7 @@ const Search = (props) => {
     const [fioTab, setFIOTab] = useState(false)
     const [binTab, setBINTab] = useState(false)
     const [ulTab, setUlTab] = useState(false)
+    const [historyTab, setHistoryTab] = useState(false)
     const [menuOpen, setMenuOpen] = useState(false)
 
     const logoutHandler = () => {
@@ -42,6 +44,7 @@ const Search = (props) => {
                                 setFIOTab(false)
                                 setBINTab(false)
                                 setUlTab(false)
+                                setHistoryTab(false)
                             }}/>
                         <label htmlFor="tab4" 
                             style={{
@@ -58,6 +61,7 @@ const Search = (props) => {
                                 setFIOTab(true)
                                 setBINTab(false)
                                 setUlTab(false)
+                                setHistoryTab(false)
                             }}/>
                         <label htmlFor="tab5" 
                             style={{
@@ -73,6 +77,7 @@ const Search = (props) => {
                                 setFIOTab(false)
                                 setBINTab(true)
                                 setUlTab(false)
+                                setHistoryTab(false)
                             }}/>
                         <label htmlFor="tab6" 
                             style={{
@@ -88,6 +93,7 @@ const Search = (props) => {
                                 setFIOTab(false)
                                 setBINTab(false)
                                 setUlTab(true)
+                                setHistoryTab(false)
                             }}/>
                         <label htmlFor="tab7" 
                             style={{
@@ -105,8 +111,24 @@ const Search = (props) => {
                         <label htmlFor="tab0" style={{cursor:"default"}}></label>
                         
                         
-                        <input type="radio" id="tab0" name="tabGroup2" className="tab" style={{cursor: 'default'}}></input>
-                        <label htmlFor="tab0" style={{cursor:"default"}}></label>
+                        <input type="radio" id="tab10" name="tabGroup2" className="tab" style={{cursor: 'default'}}
+                            onClick={() => {
+                                setIINTab(false)
+                                setFIOTab(false)
+                                setBINTab(false)
+                                setUlTab(false)
+                                setHistoryTab(true)
+                            }}
+                        ></input>
+                        <label 
+                            htmlFor="tab10" 
+                            style={{
+                                backgroundColor: historyTab?"#0D0F11":"#171B1F", 
+                                color: historyTab?"#FFFFFF":"#7B7B7B",
+                                borderTop: "1px #565656 solid",
+                                borderRight: "1px #565656 solid",
+                                borderLeft: "1px #565656 solid",
+                            }}>История поиска</label>
                         
                         
                         <input type="radio" id="tab0" name="tabGroup2" className="tab" style={{cursor: 'default'}}></input>
@@ -128,6 +150,57 @@ const Search = (props) => {
                         <TabContent_BIN/>
                         <TabContent_UL/>
                         
+                        <div className="tab__content"></div>
+                        <div className="tab__content"></div>
+
+                        <div className="tab__content tab_history">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>№</th>
+                                        <th>ИИН</th>
+                                        <th>ФИО</th>
+                                        <th>Дата поиска</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>0201031123</td>
+                                        <td>KUKUK KUKUK UJJF</td>
+                                        <td>2011.20.03</td>
+                                        <td>
+                                            <div
+                                                className='history-goto-button'
+                                                onClick={() => {
+
+                                                }}
+                                            >
+                                                Перейти
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>1</td>
+                                        <td>0201031123</td>
+                                        <td>KUKUK KUKUK UJJF</td>
+                                        <td>2011.20.03</td>
+                                        <td>
+                                            <div
+                                                className='history-goto-button'
+                                                onClick={() => {
+
+                                                }}
+                                            >
+                                                Перейти
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
 
                     </div>
                 </div>

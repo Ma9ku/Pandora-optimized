@@ -26,6 +26,7 @@ function Criminal({ data }) {
 
     return ( 
         <BigCollapsableBlock 
+            exist={data && data.length > 0 ? true : false}
             name={'Сведения о судимости'}
             icon={<RiCriminalFill />}
         >

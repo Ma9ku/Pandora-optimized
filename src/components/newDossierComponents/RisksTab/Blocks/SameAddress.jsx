@@ -12,7 +12,7 @@ function SameAddress({data, defaultOpen = false }) {
     const [rows, setRows] = useState([]);
     useEffect(() => {
         // axios.get(`${dossierURL}sameAddressFl`, {}
-        if (data.length != 0) {
+        if (data && data.length != 0) {
             setRows(data.filter(item => item != null).map(item => [
                 item.first_name || '---',
                 item.last_name || '---',

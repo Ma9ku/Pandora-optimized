@@ -22,6 +22,7 @@ function Incompetent({ data }) {
 
     return (
         <BigCollapsableBlock
+            exist={data && data.length > 0 ? true : false}
             name={'Недееспособные'}
             icon={<FaPersonCircleQuestion />}
         >

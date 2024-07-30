@@ -166,7 +166,8 @@ const MainPage = (props) => {
           top: 0,
           left: 0,
           width: "100%",
-          height: "100%",
+          height: '100vh',
+          overflow: "hidden"
         }}
       >
         <video
@@ -190,7 +191,9 @@ const MainPage = (props) => {
       <SideBar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
       <div
         className="mainPageBlock"
-        style={{ position: "relative", width: "100%" }}
+        style={{ position: "relative", width: "100%", height: '100vh', overflow: "hidden", display: 'flex',
+          flexDirection: 'column', 
+         }}
       >
         <div
           className="navbar-transparent"
@@ -288,53 +291,58 @@ const MainPage = (props) => {
             </div>
           </div>
         </div>
-        <div className="container">
-  <div
-    className="card toolPan"
-    onClick={() => {
-      navigate("/itap");
-    }}
-  >
-    <img className="card-image" src={itapL} alt="itap" />
-    <a className="card-title">Поиск взаимосвязей</a>
-  </div>
-  <div
-    className="card toolPan"
-    onClick={() => {
-      navigate("/superset");
-    }}
-  >
-    <img className="card-image" src={supersetL} alt="superset" />
-    <a className="card-title">Аналитичесие отчеты</a>
-  </div>
-  <div
-    className="card toolPan"
-    onClick={() => {
-      navigate("/profiler");
-    }}
-  >
-    <img className="card-image" src={profilerL} alt="profiler" />
-    <a className="card-title">Поиск объектов</a>
-  </div>
-  <div
-    className="card toolPan"
-    onClick={() => {
-      navigate("/esf");
-    }}
-  >
-    <img className="card-image" src={esfL} alt="esf" />
-    <a className="card-title">ESF</a>
-  </div>
-  <div
-    className="card toolPan"
-    onClick={() => {
-      navigate("/eTanu");
-    }}
-  >
-    <img className="card-image" src={eTanu} alt="eTanu" />
-    <a className="card-title">eTanu</a>
-  </div>
-</div>
+        <div className="container"
+          style={{
+            alignItems: "center",
+            flex: '1'
+          }}
+        >
+          <div
+            className="card toolPan"
+            onClick={() => {
+              navigate("/itap");
+            }}
+          >
+            <img className="card-image" src={itapL} alt="itap" />
+            <a className="card-title">Поиск взаимосвязей</a>
+          </div>
+          <div
+            className="card toolPan"
+            onClick={() => {
+              navigate("/superset");
+            }}
+          >
+            <img className="card-image" src={supersetL} alt="superset" />
+            <a className="card-title">Аналитичесие отчеты</a>
+          </div>
+          <div
+            className="card toolPan"
+            onClick={() => {
+              navigate("/profiler");
+            }}
+          >
+            <img className="card-image" src={profilerL} alt="profiler" />
+            <a className="card-title">Поиск объектов</a>
+          </div>
+          <div
+            className="card toolPan"
+            onClick={() => {
+              navigate("/esf");
+            }}
+          >
+            <img className="card-image" src={esfL} alt="esf" />
+            <a className="card-title">ESF</a>
+          </div>
+          <div
+            className="card toolPan"
+            onClick={() => {
+              navigate("/eTanu");
+            }}
+          >
+            <img className="card-image" src={eTanu} alt="eTanu" />
+            <a className="card-title">eTanu</a>
+          </div>
+        </div>
 
       </div>
       {/* <div className='newsAndAnnouncements'>

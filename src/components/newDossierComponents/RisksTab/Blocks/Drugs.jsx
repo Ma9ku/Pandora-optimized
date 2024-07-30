@@ -16,6 +16,7 @@ function Drugs({ data }) {
     },[data])
     return ( 
         <BigCollapsableBlock
+            exist={data && data.length > 0 ? true : false}
             name={'Сведения по наркотическим веществам'}
             icon={<MedicationLiquid />}
         >

@@ -22,6 +22,7 @@ function Inactive({ data }) {
 
     return (
         <BigCollapsableBlock
+            exist={data && data.length > 0 ? true : false}
             name={'Бездействующие'}
             icon={<Person2Outlined />}
         >

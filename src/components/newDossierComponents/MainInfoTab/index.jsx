@@ -8,9 +8,6 @@ import FlInfo from '../RisksTab/Blocks/FlInfo'
 import ContactInfo from '../RisksTab/Blocks/ContactInfo';
 import SameAddress from '../RisksTab/Blocks/SameAddress';
 
-const dossierURL = 'http://10.202.20.92:8081/api/pandora/dossier/';
-
-
 function MainInfoTab({data}) {
     const { iin } = useParams();
     const [isLoading, setLoading] = useState(true);

@@ -24,6 +24,7 @@ function Orphanage({ data }) {
 
     return (
         <BigCollapsableBlock
+            exist={data && data.length > 0 ? true : false}
             name={'Воспитанники детского дома'}
             icon={<FaChildren />}
         >

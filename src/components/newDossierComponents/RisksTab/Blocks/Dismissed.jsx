@@ -20,6 +20,7 @@ function Dismissed({ data }) {
 
     return (
         <BigCollapsableBlock
+            exist={data && data.length > 0 ? true : false}
             name={'Уволенные по отрицательным мотивам'}
             icon={<FiUserMinus />}
         >

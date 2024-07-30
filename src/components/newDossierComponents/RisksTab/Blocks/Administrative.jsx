@@ -28,6 +28,7 @@ function Administrative({ data }) {
 
     return (
         <BigCollapsableBlock
+            exist={data && data.length > 0 ? true : false}
             name={'Административные правонарушения'}
             icon={<LiaUserTieSolid />}
         >

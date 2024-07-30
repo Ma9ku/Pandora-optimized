@@ -5,6 +5,7 @@ import SimpleText from "../../UI/Text";
 function Debt({ data }) {
     return ( 
         <BigCollapsableBlock
+            exist={data && data.length > 0 ? true : false}
             name={'Должники ФЛ (Должники судебных приставов)'}
             icon={<MoneyOff />}
         >

@@ -21,6 +21,7 @@ function Amoral({ data }) {
     }, [data]);
     return ( 
         <BigCollapsableBlock
+            exist={data && data.length > 0 ? true : false}
             name={'Аморальный образ жизни(ст.449'}
             icon={<NoDrinks />}
         >

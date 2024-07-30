@@ -6,6 +6,7 @@ import SimpleTable from "../../SimpleTable";
 function RiskUL({ data }) {
     return ( 
         <BigCollapsableBlock
+            exist={data && data.length > 0 ? true : false}
             name={'Участие в рисковых ЮЛ'}
             icon={<BsBuildingExclamation />}
         >

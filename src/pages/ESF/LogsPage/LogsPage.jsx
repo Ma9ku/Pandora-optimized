@@ -18,7 +18,7 @@ const columns = [
     { field: 'approvalBody', headerName: 'Основания проверки', width: 600 },
 ];
 
-const baseURL = "http://10.202.20.92:8081/";
+const baseURL = "http://192.168.5.22:8081/";
 function userAdmin() {
     const login = Cookies.get('login');
     if (admins.includes(login)) {

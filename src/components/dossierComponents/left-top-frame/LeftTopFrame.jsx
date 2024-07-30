@@ -9,9 +9,6 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import axios from 'axios';
 
-const baseURL = 'http://10.202.20.92:8081/'
-
-
 function LeftTopFrame(props) {
     const [photo, setPhoto] = useState('')
     const [photos, setPhotos] = useState([{photo: ''}, {photo: ''}])

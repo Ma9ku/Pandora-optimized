@@ -63,12 +63,16 @@ function TabConent_IIN(props) {
         const params = { iin: iin, email: email }
         setLoading(true)
         console.log(params)
-        axios.defaults.headers.common['Authorization'] = 'Bearer ' + userSession.accessToken
-        axios.get(dossierURL+'iin', {params: params}).then(res => {
+        axios.get(dossierURL+'iin', {
+            params: params,
+            authorization: 'Bearer ' + userSession.accessToken
+        })
+        .then(res => {
             console.log(res.data)
             setResult(res.data)
             setLoading(false)
         })
+        .catch(err => console.log(err));
         setPhoto('')
     }
     const searchDoc = async () => {

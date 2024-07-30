@@ -28,20 +28,20 @@ const SignInPage = () => {
     return (
         <>
             <div className="signInBlock">
-                <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}>
-                            <video autoPlay muted loop style={{
-                                // position: 'absolute',
-                                zIndex: -2,
-                                top: 0,
-                                left: 0,
-                                height: '100%',
-                                objectFit: 'cover',
-                                filter: 'grayscale(100%)'
-                            }}>
-                                <source src={backVideo} type="video/mp4" />
-                                Your browser does not support the video tag.
-                            </video>
-                    </div>
+                <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100vh', overflow: 'hidden' }}>
+                    <video autoPlay muted loop style={{
+                        // position: 'absolute',
+                        zIndex: -2,
+                        top: 0,
+                        left: 0,
+                        width: '100%',
+                        objectFit: 'cover',
+                        filter: 'grayscale(100%)'
+                    }}>
+                        <source src={backVideo} type="video/mp4" />
+                        Your browser does not support the video tag.
+                    </video>
+            </div>
             {userSession ? navigate('/') : <></>}
             <div className="error-block" style={{left: error != "" ? '20px' : '-500px'}}>
                     <a>{error}</a>
@@ -49,7 +49,7 @@ const SignInPage = () => {
             <div className="signInPageSection">
                 
                 <div className="title">
-                    <div>PANDORA</div>
+                    <div>ДОСЬЕ</div>
                     </div>
 
 

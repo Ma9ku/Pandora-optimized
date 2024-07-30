@@ -21,6 +21,7 @@ function PKB({ data }) {
     }, [data])
     return ( 
         <BigCollapsableBlock
+            exist={data && data.length > 0 ? true : false}
             name={'Первое Кредитное Бюро(ПКБ)'}
             icon={<CreditCardOffSharp />}
         >

@@ -20,6 +20,7 @@ function Beneficiary({ data }) {
 
     return (
         <BigCollapsableBlock
+            exist={data && data.length > 0 ? true : false}
             name={'Льготники'}
             icon={<Person4 />}
         >

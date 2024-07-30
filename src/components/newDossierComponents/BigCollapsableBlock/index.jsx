@@ -3,7 +3,16 @@ import { BsArrowsCollapse } from "react-icons/bs";
 import './style.scss';
 import { useTheme } from '../../../context/themeContext';
 
-function BigCollapsableBlock({ children, switcher = null, switcherText = null, icon, name, defaultOpen = false }) {
+function BigCollapsableBlock({ 
+    children, 
+    switcher = null, 
+    switcherText = null, 
+    icon, 
+    name, 
+    defaultOpen = false,
+    exist = false
+}) {
+
     const [open, setOpen] = useState(defaultOpen);
     const { theme } = useTheme();
 
@@ -13,6 +22,11 @@ function BigCollapsableBlock({ children, switcher = null, switcherText = null, i
 
     return (
         <div className={`big-collapsable-block ${theme}`}>
+            {
+                exist 
+                ? <div className="exist-indicator"></div>
+                : null
+            }
             <div className={`title ${open ? 'open' : 'closed'}`}>
                 {icon}
                 <div className="title-text">

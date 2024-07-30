@@ -22,6 +22,7 @@ function MinZdrav({ data }) {
     }, [data]);
     return ( 
         <BigCollapsableBlock 
+            exist={data && data.length > 0 ? true : false}
             name={'Сведения Минздрава'}
             icon={<FaHospitalUser />}
         >

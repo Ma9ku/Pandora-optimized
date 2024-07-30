@@ -21,6 +21,7 @@ function ForcedTreatment({
 
     return ( 
         <BigCollapsableBlock
+            exist={data && data.length > 0 ? true : false}
             name={'Принудительное лечение'}
             icon={<BsHospital />}
         >

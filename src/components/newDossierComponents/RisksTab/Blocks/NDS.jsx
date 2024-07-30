@@ -6,6 +6,7 @@ import SimpleTable from "../../SimpleTable";
 function NDS({ data }) {
     return ( 
         <BigCollapsableBlock
+            exist={data && data.length > 0 ? true : false}
             name={'Снятые с учета по НДС'}
             icon={<MdMonetizationOn />}
         >

@@ -6,6 +6,7 @@ import SimpleTable from "../../SimpleTable";
 function Kartochki({ data }) {
     return ( 
         <BigCollapsableBlock
+            exist={data && data.length > 0 ? true : false}
             name={'Карточки'}
             icon={<IoCardSharp />}
         >

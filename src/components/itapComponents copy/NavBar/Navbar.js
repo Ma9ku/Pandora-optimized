@@ -57,8 +57,8 @@ const Navbar = () => {
                         </> 
                         :
                         <>
-                            {/* <li><a className={"nav-links"} href={"http://10.202.20.92:3000/registration"}>SIGN UP</a></li> */}
-                            {/* <li><a className={"nav-links"} href={"http://10.202.20.92:3000/login"}>LOG IN</a></li> */}
+                            {/* <li><a className={"nav-links"} href={"http://192.168.5.22:3000/registration"}>SIGN UP</a></li> */}
+                            {/* <li><a className={"nav-links"} href={"http://192.168.5.22:3000/login"}>LOG IN</a></li> */}
                         </>
                     }
                 </ul>

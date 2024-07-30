@@ -21,7 +21,7 @@ import './tabContent_fio.scss';
 
 import { dossierURL } from '../../../data/dossier';
 import DopInfoBlock from '../dop-info-block/DopInfoBlock';
-// const baseURL = 'http://10.202.20.92:9095/'
+// const baseURL = 'http://192.168.5.22:9095/'
 const selectStyle = {
     width: '200px',
     height: '35px',

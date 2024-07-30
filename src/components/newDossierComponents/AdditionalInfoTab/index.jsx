@@ -13,6 +13,7 @@ import Military from './Blocks/Military';
 import FlUl from './Blocks/FlUL';
 import Ipkh from './Blocks/Ipkh';
 import Pension from './Blocks/Pension';
+import CommodityProducers from './Blocks/CommodityProducers';
 
 function AdditionalInfoTab({data}) {
 
@@ -44,7 +45,12 @@ function AdditionalInfoTab({data}) {
 
             <Pension data={data.pensions || []} iin={iin}/>
 
-            <Ipkh data={data || []}/>
+            <Ipkh 
+                dataIp={data.individualEntrepremeurs || []}
+                datapKh={data.kxes || []}
+            />
+
+            <CommodityProducers data={data.commodityProducers || []}/>
         </>
     );
 }

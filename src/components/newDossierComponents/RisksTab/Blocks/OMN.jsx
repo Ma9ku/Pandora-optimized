@@ -22,6 +22,7 @@ function OMN({ data }) {
 
     return (
         <BigCollapsableBlock
+            exist={data && data.length > 0 ? true : false}
             name={'Отсутствие по месту нахождения(ОМН)'}
             icon={<Person2Outlined />}
         >
