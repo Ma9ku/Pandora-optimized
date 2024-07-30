@@ -55,7 +55,9 @@ const NavbarN = (props) => {
             <div className={`navbar-transparent ${theme}`} style={{width: '100%', height: '80px', display: 'flex', justifyContent: 'space-between', margin: '0 auto', zIndex: 1,  marginTop: '15px'}}>
                 <div style={{ width: '90%', margin: '0 auto', opacity: '1', display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
                     <div style={{display: 'flex', alignItems: 'center' }}>
-                        <img className="pandora-logo" src={pandora} onClick={() => {navigate('/')}} alt='pandora' style={{width: '170px'}}/>
+                        {/* <img className="pandora-logo" src={pandora} onClick={() => {navigate('/')}} alt='pandora' style={{width: '170px'}}/> */}
+                        <h1 className="pandora-logo" onClick={() => {navigate('/')}}>ДОСЬЕ</h1>
+
                     </div>
                     <div>
                         {isItapRoute && (

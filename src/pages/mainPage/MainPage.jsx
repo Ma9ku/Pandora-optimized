@@ -225,7 +225,8 @@ const MainPage = (props) => {
                                 filter: 'brightness(100%)', cursor: 'pointer'}} onMouseEnter={(e) => e.target.style.filter = 'brightness(50%)'}
                                  onMouseLeave={(e) => e.target.style.filter = 'brightness(100%)'}/>
                             <a href={'/'} style={{fontWeight: 600, fontSize: '26px', color: 'white'}}>SID</a> */}
-              <img src={pandora} alt="pandora" style={{ width: "170px" }} />
+              {/* <img src={pandora} alt="pandora" style={{ width: "170px" }} /> */}
+              <h1>ДОСЬЕ</h1>
             </div>
             <div>
               <a
