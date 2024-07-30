@@ -24,7 +24,7 @@ function ModalWindow({closer, children}) {
                 ></div>
                 <div className="modal-body-wrapper">
                     <div className="modal-body">
-                        <div className="close" onClick={() => closer(false)}><FaXmark /></div>
+                        <div className="close" onClick={() => handleClose()}><FaXmark /></div>
                         {children}
                     </div>
                 </div>

@@ -9,26 +9,38 @@ import TabContent_IIN from '../../components/dossierComponents/tab-content-iin/T
 import TabContent_FIO from '../../components/dossierComponents/tab-content-fio/TabContent_FIO';
 import TabContent_BIN from '../../components/dossierComponents/tab-content-bin/TabContent_BIN';
 import TabContent_UL from '../../components/dossierComponents/tab-content-ul/TabContent_UL';
-import SimpleTable from '../../components/newDossierComponents/SimpleTable';
+import axios from 'axios';
+import { pandoraURL } from '../../data/dossier';
+import { useNavigate } from 'react-router-dom';
 
 const Search = (props) => {
-    const [value, setValue] = React.useState(0);
-
-    const handleChange = (event, newValue) => {
-        setValue(newValue);
-    };
-
     const [iinTab, setIINTab] = useState(true)
     const [fioTab, setFIOTab] = useState(false)
     const [binTab, setBINTab] = useState(false)
     const [ulTab, setUlTab] = useState(false)
-    const [historyTab, setHistoryTab] = useState(false)
-    const [menuOpen, setMenuOpen] = useState(false)
 
-    const logoutHandler = () => {
-        authService.logout();
-        // navigate('/login');
-    }
+    const [historyTab, setHistoryTab] = useState(false)
+    const [historyLoading, setHistoryLoading] = useState(true)
+    const [historyError, setHistoryError] = useState(true)
+    const [history, setHistory] = useState([]);
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const userSession = JSON.parse(localStorage.getItem("user"))
+        axios.defaults.headers.common['Authorization'] = 'Bearer ' + userSession.accessToken
+
+        axios.get(`${pandoraURL}/logs`)
+            .then((res) => {
+                setHistory(res.data)
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+            .finally(() => {
+                setHistoryLoading(false);
+            })
+    }, [])
 
     return (
         <>
@@ -165,22 +177,37 @@ const Search = (props) => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>0201031123</td>
-                                        <td>EMAIL</td>
-                                        <td>20.03.2024</td>
-                                        <td>
-                                            <div
-                                                className='history-goto-button'
-                                                onClick={() => {
+                                {
+                                    historyLoading 
+                                        ? <tr>
+                                            <td className='loading-row' colSpan={5}>...Загрузка</td>
+                                        </tr>
+                                        : historyError
+                                        ?  <tr>
+                                            <td className='loading-row' colSpan={5}>Ошибка загрузки</td>
+                                        </tr>
+                                        : (
+                                            history && history.map((item, index) => {
 
-                                                }}
-                                            >
-                                                Перейти
-                                            </div>
-                                        </td>
-                                    </tr>
+                                                return <tr>
+                                                    <td>{index + 1}</td>
+                                                    <td>{item.iin}</td>
+                                                    <td>{item.username}</td>
+                                                    <td>{item.date.substring(0, 10)}</td>
+                                                    <td>
+                                                        <div
+                                                            className='history-goto-button'
+                                                            onClick={() => {
+                                                                navigate(`/profiler/person/${item.iin}`)
+                                                            }}
+                                                        >
+                                                            Перейти
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            })
+                                        )
+                                }
                                 </tbody>
                             </table>
                         </div>

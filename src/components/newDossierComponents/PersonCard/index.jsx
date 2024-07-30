@@ -123,7 +123,7 @@ function PersonCard({
     }
 
     if (isLoading) {
-        return <div className={`person-card-block loading ${secondary ? 'secondary' : ''}`}>
+        return <div className={`person-card-block loading ${theme} ${secondary ? 'secondary' : ''}`}>
             ...Loading
         </div>;
     }

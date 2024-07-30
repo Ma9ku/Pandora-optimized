@@ -14,8 +14,6 @@
     flex-direction: row;
 }
 
-
-
 .searchtabs {
     position: relative;
     width: 90%;
@@ -79,6 +77,10 @@ $tab-wrap-border-radius: 2px;
         &:hover {
             transform: scale(105%);
         }
+    }
+
+    .loading-row {
+        padding: 50px;
     }
 
     > table {

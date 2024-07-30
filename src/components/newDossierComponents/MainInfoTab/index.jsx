@@ -33,12 +33,12 @@ function MainInfoTab({data}) {
                                 'Дата смены ФИО',
                                 'Номер Акта'
                             ]}
-                            rows={data.changeFio 
-                                ? [[
+                            rows={data.changeFio && Array.isArray(data.changeFio)
+                                ? data.map(item => [
                                     `${data.changeFio.surname_before || ''} ${data.changeFio.name_before || ''} ${data.changeFio.secondname_before || ''}`,
                                     data.changeFio.to_date,
                                     data.changeFio.number_akt
-                                ]]
+                                ])                                    
                                 : []}
                         />
                     ) : <SimpleText>Нет данных</SimpleText>

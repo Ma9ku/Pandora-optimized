@@ -72,7 +72,7 @@ function DocsCard({
     }, [iin]);
 
     if (isLoading) {
-        return <div className={`docs-card-block loading ${secondary ? 'secondary' : ''}`}>
+        return <div className={`docs-card-block loading ${theme} ${secondary ? 'secondary' : ''}`}>
             ...Loading
         </div>;
     }
