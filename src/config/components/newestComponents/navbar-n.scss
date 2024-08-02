@@ -1,0 +1,38 @@
+.navbar-transparent {
+  //opacity: 0.4;
+  .navbar-logo-dosie {
+    
+  }
+
+  &.light {
+    background-color: #f4f4f5;
+    color: #000;
+
+    .pandora-logo {
+      filter: invert(100%);
+    }
+  }
+
+  &.dark {
+    background-color: #2E3740;
+    color: #fff;
+  }
+
+  .pandora-logo {
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.7;
+      transition: all 0.2s ease;
+    }
+  }
+
+  a.text-button {
+    cursor: pointer;
+  }
+
+  a.text-button:hover {
+    opacity: 0.7;
+  }
+}
+

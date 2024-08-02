@@ -1,0 +1,13 @@
+.pension-group {
+    .title {
+        padding: 12px 12px 12px 12px;
+        border-bottom: 1px solid grey;
+
+        &:hover {
+            background-color: grey;
+        }
+    }
+    div {
+        padding: 6px;
+    }
+}

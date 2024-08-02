@@ -1,0 +1,159 @@
+// Define theme variables
+$dark-theme: (
+  main-bg-color: #2E3740,
+  secondary-bg-color: #20272C,
+  main-text-color: #FFF,
+  border-color: rgba(#FFF, 0.2)
+);
+
+$light-theme: (
+  main-bg-color: #F4F4F5,
+  secondary-bg-color: #E0E0E0,
+  main-text-color: #000,
+  border-color: rgba(#000, 0.2)
+);
+
+@mixin theme($theme) {
+  color: map-get($theme, main-text-color);
+
+  > .title {
+    color: map-get($theme, main-text-color);
+    border-bottom: 1px solid map-get($theme, border-color);
+  }
+}
+
+.big-collapsable-block {
+  @include theme($dark-theme); // Default theme
+
+  &.light {
+    @include theme($light-theme);
+  }
+
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  .actions {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+
+  .exist-indicator {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    transform: translate(-60%, -60%);
+
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    box-sizing: border-box;
+    background-color: rgb(160, 67, 67);
+  }
+
+  & + .big-collapsable-block {
+    margin-top: 30px;
+  }
+
+  > .title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-bottom: 15px;
+
+    > *:first-child {
+      margin-right: 8px;
+      font-size: 20px;
+    }
+
+    .title-text {
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 20.68px;
+      text-align: left;
+      margin-right: 14px;
+      text-transform: uppercase;
+    }
+
+    .helper-button {
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 20.68px;
+      text-align: left;
+      margin-right: 14px;
+      text-transform: uppercase;
+
+      background-color: #20272C;
+      padding: 10px 20px 10px 20px;
+      border-radius: 6px;
+
+      cursor: pointer;
+
+      &:hover {
+        background-color: #20272cce;
+      }
+      &.dark {
+        background-color: #20272C;
+        color: #FFFFFF;
+        &:hover {
+            background-color: #232a30;
+        }
+    
+        &:active {
+            background-color: rgb(14, 19, 22);
+        }
+      }
+
+      &.light {
+          background-color: #E6E8EE;
+          color: #000;
+          &:hover {
+              background-color: #afb2bb;
+          }
+      
+          &:active {
+              background-color: rgb(233, 233, 237);
+          }
+      }
+    }
+
+    > *:last-child {
+      font-size: 20px;
+      cursor: pointer;
+      transition: transform 0.2s ease-in-out;
+
+      &:hover {
+        transform: scale(120%);
+      }
+    }
+
+    &.open > *:last-child {
+      font-size: 30px;
+      transition: transform 0.2s ease-in-out;
+      cursor: pointer;
+
+      &:hover {
+        transform: scale(90%);
+      }
+    }
+  }
+
+  .body {
+    overflow: hidden;
+    transition: height 0.3s ease, padding 0.3s ease;
+
+    &.closed {
+      height: 0;
+      padding: 0;
+    }
+
+    &.opened {
+      height: auto;
+      padding: 15px 0;
+    }
+  }
+}

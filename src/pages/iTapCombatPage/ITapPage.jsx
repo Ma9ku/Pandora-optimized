@@ -27,7 +27,7 @@ import listOfItap from "../../data/listOfItapResults";
 
 import defaultURL from "../../data/baseURL";
 
-const baseURL = "/main";
+const baseURL = "/itap";
 const zagsURL = "/zags";
 
 function ITapPage() {
@@ -292,8 +292,6 @@ function ITapPage() {
       setDiragramAllowed(false);
     }
 
-    console.log(defaultURL + axiosURL + endPoint);
-
     if (options?.iin1?.length == 6 || options?.iin1?.length == 13) {
       setLoading(true);
       let res = [];
@@ -345,17 +343,30 @@ function ITapPage() {
       axios
         .get(defaultURL + axiosURL + endPoint, { params: params })
         .then(async (res) => {
-          let _nodes = [];
+          let _nodes = res.data.nodes;
           let _edges = res.data.edges;
-          console.log(res.data.edges);
-          // console.log(res)
-          function removeDuplicatesById(arr) {
-            const uniqueIds = new Set();
+
+          function removeDuplicatesByIdEdge(arr) {
+            const uniqueIds = [];
             const resArr = [];
 
             for (const item of arr) {
-              if (!uniqueIds.has(item.properties.id)) {
-                uniqueIds.add(item.properties.id);
+              if (!uniqueIds.includes(item.properties.id)) {
+                uniqueIds.push(item.properties.id);
+                resArr.push(item);
+              }
+            }
+
+            return resArr;
+          }
+          
+          function removeDuplicatesByIdNode(arr) {
+            const uniqueIds = [];
+            const resArr = [];
+
+            for (const item of arr) {
+              if (!uniqueIds.includes(item.id)) {
+                uniqueIds.push(item.id);
                 resArr.push(item);
               }
             }
@@ -363,9 +374,14 @@ function ITapPage() {
             return resArr;
           }
 
-          _edges = await removeDuplicatesById(_edges);
+          console.log(_nodes);
 
-          setNodes(res.data.nodes);
+          _edges = await removeDuplicatesByIdEdge(_edges);
+          _nodes = await removeDuplicatesByIdNode(_nodes);
+
+          console.log(_edges);
+
+          setNodes(_nodes);
           setEdges(_edges);
         })
         .catch((r) => {
@@ -643,6 +659,7 @@ function ITapPage() {
             <>
               {graphType == "graph" && (
                 <GraphNetnew
+                  key = {Math.random()}
                   itapRef={itapRef}
                   physicsEnable={physicsEnable}
                   setPhysicsEnable={setPhysicsEnable}

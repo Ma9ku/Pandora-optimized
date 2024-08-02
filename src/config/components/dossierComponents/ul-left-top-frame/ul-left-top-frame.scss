@@ -1,0 +1,47 @@
+.addressLine {
+    
+}
+
+.left-top-section .adressBlock {
+
+    margin-top: 20px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    > div:nth-child(1) {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+
+        label {
+            font-size: 14px;
+            color: white;
+        }
+    }
+
+    .addressLine {
+        display: grid;
+        grid-template-columns: repeat(2, 49%);
+        grid-gap: 10px 10px;
+
+        >* {
+            overflow: visible !important;
+        }
+
+        > div {
+            width: 100%;
+
+            display: flex;
+            flex-direction: column;
+            grid-auto-flow: column;
+            justify-content: center;
+            align-items: flex-start;
+
+            div {
+                width: 100%;
+            }
+        }
+    }
+}

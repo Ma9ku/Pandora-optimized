@@ -1,0 +1,173 @@
+// Define theme variables
+$dark-theme: (
+  main-bg-color: #2E3740,
+  main-text-color: #FFF,
+  secondary-bg-color: rgba(255, 255, 255, 0.2)
+);
+
+$light-theme: (
+  main-bg-color: #F4F4F5,
+  main-text-color: #000,
+  secondary-bg-color: rgba(0, 0, 0, 0.2)
+);
+
+@mixin theme($theme) {
+  background-color: map-get($theme, main-bg-color);
+  color: map-get($theme, main-text-color);
+
+  &.secondary {
+    background-color: map-get($theme, secondary-bg-color);
+  }
+
+  .single-info-row {
+    > div:last-child {
+      border: 1px solid rgba($color: map-get($theme, main-text-color), $alpha: .3);
+    }
+  }
+
+  .title {
+    border-bottom: 1px solid map-get($theme, main-text-color);
+
+    .text-button {
+      color: rgba(map-get($theme, main-text-color), 0.5);
+
+      &:hover {
+        color: rgba(map-get($theme, main-text-color), 0.4);
+      }
+
+      &:active {
+        color: rgba(map-get($theme, main-text-color), 0.7);
+      }
+    }
+  }
+
+  .body {
+    .column {
+      tr > td:not(:first-child) {
+        color: rgba(map-get($theme, main-text-color), 0.7);
+      }
+    }
+  }
+}
+
+.ul-docs-card-block {
+  @include theme($dark-theme); // Default theme
+
+  &.light {
+    @include theme($light-theme);
+  }
+
+  flex: 1 1 0;
+  overflow-y: auto;
+  max-height: 100%;
+  border-radius: 10px;
+  padding: 40px 52px;
+  box-sizing: border-box;
+
+  &.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 525px;
+  }
+
+  .title {
+    display: flex;
+    flex-direction: row;
+    gap: 7px;
+    align-items: center;
+    padding-bottom: 15px;
+
+    > *:first-child {
+      font-size: 24px;
+    }
+
+    .title-text {
+      font-size: 1.1rem;
+      font-weight: 700;
+      line-height: 20.68px;
+      text-align: left;
+    }
+
+    .text-button {
+      height: 100%;
+      padding-left: 20px;
+      margin-left: 15px;
+      border-left: solid 1px;
+      font-size: 1.1rem;
+      font-weight: 400;
+      line-height: 120%;
+      text-align: left;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+
+  .single-info-row {
+    margin-top: 56px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 13px;
+    
+    > div:first-child {
+      font-size: 0.8rem;
+      font-weight: 500;
+      line-height: 16.09px;
+      text-align: left;
+    } 
+
+    > div:last-child {
+      padding: 12px 15px;
+      border-radius: 7px;
+
+      font-size: 0.8rem;
+      font-weight: 300;
+      line-height: 16.09px;
+      text-align: left;
+    }
+  }
+
+  .body {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 30px;
+
+    .column {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      font-size: 0.8rem;
+
+      td {
+        min-width: 180px;
+        vertical-align: text-top;
+      }
+
+      table > tr:not(:first-child) > td,
+      tbody > tr:not(:first-child) > td {
+        padding: 10px 0px;
+      }
+
+      tr > td:first-child {
+        font-weight: 500;
+        line-height: 16.09px;
+        text-align: left;
+      }
+
+      tr > td:not(:first-child) {
+        font-weight: 400;
+        line-height: 16.09px;
+        text-align: left;
+      }
+    }
+  }
+
+  > .block + .block {
+    margin-top: 36px;
+  }
+}

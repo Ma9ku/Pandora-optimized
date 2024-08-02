@@ -1,0 +1,35 @@
+.action-button {
+    padding: 13px 16px;
+    min-width: 200px;
+    font-size: 1rem;
+    
+    outline: none;
+    border: none;
+    border-radius: 6px;
+    
+    cursor: pointer;
+    
+    &.dark {
+        background-color: #20272C;
+        color: #FFFFFF;
+        &:hover {
+            background-color: #232a30;
+        }
+    
+        &:active {
+            background-color: rgb(14, 19, 22);
+        }
+    }
+
+    &.light {
+        background-color: #E6E8EE;
+        color: #000;
+        &:hover {
+            background-color: #afb2bb;
+        }
+    
+        &:active {
+            background-color: rgb(233, 233, 237);
+        }
+    }
+}

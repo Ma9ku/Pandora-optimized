@@ -131,27 +131,6 @@ const GraphNetnew = ({itapRef, physicsEnable, setPhysicsEnable, layoutOptions, s
           if(Network) Network.stabilize()
       }
     }, [rnodes, redges])
-    // useEffect(() => {
-    //   const centralBar = document.querySelector('.centralBar');
-      
-    //   const resizeObserver = new ResizeObserver(entries => {
-    //     for (let entry of entries) {
-    //       if (entry.target === centralBar) {
-    //         console.log("Central bar's size changed");
-    //         setUpdateGraph(prev => !prev)
-    //         if (Network) {
-    //           Network.fit({});
-    //         }
-    //       }
-    //     }
-    //   });
-    
-    //   resizeObserver.observe(centralBar);
-    
-    //   return () => {
-    //     resizeObserver.unobserve(centralBar);
-    //   };
-    // }, []);
 
     useEffect(() => {
         // console.log(openLimit, showRels)
@@ -1560,11 +1539,12 @@ const GraphNetnew = ({itapRef, physicsEnable, setPhysicsEnable, layoutOptions, s
                       </div>
                   </div>
                   <Graph
+                      key={Math.random()}
                       graph={{nodes: nodes, edges: edges}}
                       options={graphOptions}
                       events={events}
                       getNetwork={network => {
-                          Network = network;
+                        Network = network;
                       }}
                       manipulation={manipulation}
                       className={"graph"}

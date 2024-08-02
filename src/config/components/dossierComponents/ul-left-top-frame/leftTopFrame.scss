@@ -1,0 +1,123 @@
+@mixin inputLabel {
+    display: flex;
+    flex-direction: column;
+    min-width: max-content;
+    // max-width: 800px;
+    // margin-right: 100px;
+
+    label {
+        margin-left: 1px;
+        font-family: 'Ubuntu';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 18px;
+        text-transform: uppercase;
+
+        color: #838383;
+    }
+
+    input {
+        // box-sizing: border-box;
+        // border-radius: 2px;
+        // border: 1px solid #8F8F8F;
+        // background: #0D0F11;
+
+        // font-family: 'Ubuntu';
+        // font-style: normal;
+        // font-weight: 600;
+        // text-transform: uppercase;
+        
+        // font-size: .9rem;
+        // color: #ffffff;
+
+        // padding: 3px 0px 3px 12px;
+    }
+}
+
+.css-nrutr0-MuiInputBase-input-MuiOutlinedInput-input {
+    height: 0 !important;
+}
+
+.left-top-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    
+    padding: 20px;
+    
+    // height: 90%;
+    // > div {
+    //     // border: 1px dashed darksalmon;
+    //     height: max-content;
+    // }
+
+    .first-line {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+
+        overflow: visible;
+    }
+
+    .other-line {
+        overflow: visible !important;
+        
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 10px 0px;
+        overflow: visible;
+        
+        > div {
+            width: 49%;
+        }
+
+        > div input {
+            width: 100%;
+            // max-content: 100px;
+        };
+
+        > div {
+            @include inputLabel;
+        }
+    }
+}
+
+.left-top-section .first-line .avatar {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    > div {
+      display: flex;
+      flex-direction: row;
+        gap: 5px;
+    }
+
+    width: 30%;
+    padding: 0;
+    margin: 0;
+
+    img {
+        width: 90%;
+        // height: 100%;
+    }
+}
+
+.left-top-section .first-line .person-main-info {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    > div {
+        @include inputLabel
+    }
+}
+
+
+// .left-top-section .disabledInput {
+//     background-color: #EEEEEE !important;
+// };

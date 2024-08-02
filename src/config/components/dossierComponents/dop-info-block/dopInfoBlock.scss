@@ -1,0 +1,50 @@
+.dopInfoBlock {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 15px 0;
+
+    width: 95%;
+
+    margin: 0 0px 0px 10px;
+    padding: 0px 0 0 0;
+    
+    border-radius: 4px;
+    
+    > div {
+        width: 49%;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+
+        label {
+            margin-left: 10px;
+            color: #838383;
+        }
+    }
+}
+
+.showed {
+    padding-top: 25px;
+    height: 350px;
+    -webkit-transition: height 0.3s linear;
+        -moz-transition: height 0.3s linear;
+        -ms-transition: height 0.3s linear;
+            -o-transition: height 0.3s linear;
+            transition: height 0.3s linear;
+}
+
+.hidden {
+    padding-top: 0px;
+    height: 0px;
+    // opacity: 0;
+    // transition: opacity 300ms ease;
+    -webkit-transition: height 0.3s linear, padding-top 0.3s linear;
+       -moz-transition: height 0.3s linear, padding-top 0.3s linear;
+        -ms-transition: height 0.3s linear, padding-top 0.3s linear;
+         -o-transition: height 0.3s linear, padding-top 0.3s linear;
+            transition: height 0.3s linear, padding-top 0.3s linear;
+}

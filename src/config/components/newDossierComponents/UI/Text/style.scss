@@ -1,0 +1,15 @@
+.simple-text {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 20.68px;
+    text-align: left;
+
+    &.dark {
+        color: rgba($color: #FFF, $alpha: .75);
+    }
+
+    &.light {
+        color: rgba($color: #000, $alpha: .75);
+    }
+
+}

@@ -1,0 +1,87 @@
+// Define theme variables
+$dark-theme: (
+  main-bg-color: #2E3740,
+  secondary-bg-color: #20272C,
+  main-text-color: #FFF,
+  border-color: rgba(#FFF, 0.2)
+);
+
+$light-theme: (
+  main-bg-color: #F4F4F5,
+  secondary-bg-color: #E0E0E0,
+  main-text-color: #000,
+  border-color: rgba(#000, 0.2)
+);
+
+@mixin theme($theme) {
+  color: map-get($theme, main-text-color);
+
+  .title {
+    color: map-get($theme, main-text-color);
+  }
+}
+
+.small-collapsable-block {
+  @include theme($dark-theme); // Default theme
+
+  &.light {
+    @include theme($light-theme);
+  }
+
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  > .title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 5px;
+    padding-bottom: 15px;
+    border-bottom: none;
+
+    .title-text {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+
+      span {
+        font-weight: 700;
+        font-size: .8rem;
+        line-height: 20.68px;
+        text-align: left;
+      }
+    }
+
+    &.open > *:last-child {
+      transform: rotate(-90deg);
+      font-size: 20px;
+    }
+
+    > *:last-child {
+      font-size: 20px;
+      cursor: pointer;
+      transition: transform 0.4s ease-in-out;
+      user-select: none;
+    }
+  }
+
+  .body {
+    overflow: hidden;
+    transition: height 0.3s ease, padding 0.3s ease;
+
+    &.closed {
+      height: 0;
+      padding: 0;
+    }
+
+    &.opened {
+      height: auto;
+      padding: 15px 0;
+      padding-bottom: 50px;
+    }
+  }
+}
