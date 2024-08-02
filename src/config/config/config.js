@@ -1,5 +1,5 @@
 
 
-const default_host = 'http://10.16.72.73:8081/'
+const default_host = 'http://10.202.20.92:9091/'
 
 export default default_host

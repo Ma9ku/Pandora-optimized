@@ -1,3 +1,3 @@
-const defaultURL = 'http://10.16.72.73:8081/api/pandora'
+const defaultURL = 'http://10.202.20.92:9091/api/pandora'
 
 export default defaultURL
