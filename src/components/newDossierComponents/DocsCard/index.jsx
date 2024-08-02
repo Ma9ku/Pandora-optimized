@@ -48,11 +48,7 @@ function DocsCard({
                 .then(res => {
                     console.log('docs', res.data);
 
-<<<<<<< HEAD
                     const { mvIinDocList, mvFlAddresses, registrationTemps } = res.data;
-=======
-                    const { mvIinDocList, mvAutoFls, mvFlAddresses, registrationTemps } = res.data;
->>>>>>> 4c331df3535cd582753eef8ef3e18f6fb7f0452b
 
                     mvIinDocList.map(doc => {
                         if (doc.doc_type_ru_name === 'Паспорт') {
@@ -63,19 +59,6 @@ function DocsCard({
                     });
                     setAddressesPerm(mvFlAddresses)
                     setAddressesTemp(registrationTemps)
-<<<<<<< HEAD
-=======
-                    setTransports([
-                        ...mvAutoFls,
-                        {
-                            brand_model: 'Tayota',
-                            series_reg_number: 'Camry',
-                            reg_number: '111',
-                            date_certificate: '111',
-                            end_date: '111',
-                        }
-                    ]);
->>>>>>> 4c331df3535cd582753eef8ef3e18f6fb7f0452b
                 })
                 .catch(err => console.log(err))
                 .finally(() => {
