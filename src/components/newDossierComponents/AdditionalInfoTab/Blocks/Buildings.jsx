@@ -50,13 +50,13 @@ function Buildings({ data }) {
     return (
         <>
             <BigCollapsableBlock 
+                exist={data && data.length > 0 ? true : false}
                 icon={<PiHouseLine />}
                 name={'СВЕДЕНИЯ ПО РЕЕСТРУ НЕДВИЖИМОСТИ'}
             >
                 <SmallCollapsableBlock 
                     name={`Текущие (${actuals.length})`}
                 >
-                    {console.log(actuals)}
                     {actuals.map((item, index) => {
                         console.log(item);
                         return (

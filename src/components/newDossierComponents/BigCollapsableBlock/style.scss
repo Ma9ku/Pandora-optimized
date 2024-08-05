@@ -34,6 +34,13 @@ $light-theme: (
   flex-direction: column;
   position: relative;
 
+  .actions {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+
   .exist-indicator {
     position: absolute;
     top: 0px;
@@ -42,8 +49,8 @@ $light-theme: (
     transform: translate(-60%, -60%);
 
     border-radius: 50%;
-    width: 30px;
-    height: 30px;
+    width: 10px;
+    height: 10px;
     box-sizing: border-box;
     background-color: rgb(160, 67, 67);
   }

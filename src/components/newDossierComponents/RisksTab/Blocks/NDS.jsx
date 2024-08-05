@@ -12,8 +12,8 @@ function NDS({ data }) {
             console.log(data)
             setRows(data.filter(item => item != null).map(item => [
                 item.iinBin || '---',
-                item.startDt || '---',
-                item.endDt || '---',
+                item.startDt ? item.startDt.substring(0, 10) : '---',
+                item.endDt ? item.endDt.substring(0, 10) : '---',
                 item.reason || '---',
             ]));
         } else {

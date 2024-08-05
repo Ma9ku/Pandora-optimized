@@ -192,7 +192,7 @@ $light-theme: (
       font-family: Ubuntu;
 
       td {
-        padding: 10px 0px;
+        padding: 7.5px 0px;
       }
 
       tr > td:not(:first-child),
@@ -204,7 +204,7 @@ $light-theme: (
   }
 
   .person-stats {
-    margin-top: 60px;
+    margin-top: 30px;
     width: 100%;
     display: flex;
     flex-direction: row;

@@ -50,6 +50,10 @@ function Education({
 
     return ( 
         <BigCollapsableBlock 
+            exist={
+                (Array.isArray(data.schools) && data.schools.length > 0) 
+                || (Array.isArray(data.university) && data.university.length > 0)
+            }
             icon={<HiOutlineAcademicCap />}
             name={'СВЕДЕНИЯ ПО ОБРАЗОВАНИЮ'}
         >

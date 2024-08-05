@@ -24,17 +24,14 @@ function InfoTabs({ tab, setTab, setSameAddressFls }) {
         const fetchData = () => {
             axios.get(`${dossierURL}getRiskByIin`, { params: { iin: iin } })
                 .then(res => {
-                    const fieldsToCheck = [
-                        'blockEsfs', 'criminals', 'mzEntities', 
-                        'drugAddicts', 'orphans', 'omns', 'dormants',
-                        'beneficiariesLists', 'immoralLifestyles', 
-                        'firstCreditBureauEntities', 'incapacitateds', 
-                        'dismissals', 'wantedListEntities', 'adms', 'kuis'
-                    ];
 
-                    const count = fieldsToCheck.filter(field => 
-                        Array.isArray(res.data[field]) && res.data[field].length > 0
-                    ).length;
+                    let count = 0;
+
+                    Object.values(res.data).map(item => {
+                        count += Array.isArray(item) && item.length > 0 ? 1 : 0
+                    })
+
+                    console.log(count);
 
                     setNonEmptyArraysCount(count);
                 })

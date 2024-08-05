@@ -37,6 +37,9 @@ function PersonCard({
     const [isResident, setIsResident] = useState(false);
 
     const [riskPercentage, setRiskPercentage] = useState(0);
+    const [svedPercentage, setSvedPercentage] = useState(0);
+    const [dataMv, setDataMv] = useState({});
+    
 
     const userSession = JSON.parse(localStorage.getItem("user"));
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + userSession.accessToken;
@@ -47,9 +50,8 @@ function PersonCard({
 
             axios.get(`${dossierURL}getFirstRowByIin`, { params: { iin: iin } })
                 .then(res => {
-                    console.log(res.data);
-
                     const { mvFls, riskPercentage, photoDbf, mvFlAddresses } = res.data;
+                    setDataMv(res.data);
                     setFirstName(mvFls[0].first_name);
                     setLastName(mvFls[0].last_name);
                     setPatronymic(mvFls[0].patronymic);
@@ -69,11 +71,24 @@ function PersonCard({
                 });
         };
 
+        const fetchSvedPercent = () => {
+            axios.get(`${dossierURL}generalInfo`, { params: { iin: iin } })
+                .then(res => {
+                    const { percent } = res.data;
+
+                    setSvedPercentage(percent)
+                })
+                .catch(err => console.log(err))
+                .finally(() => {
+                });
+        }
+
         if (iin) {
             fetchData();
+            fetchSvedPercent();
         } else if (secondary) {
-            alert(_iin);
             fetchData();
+            fetchSvedPercent();
         }
     }, [iin]);
 
@@ -143,7 +158,11 @@ function PersonCard({
 
             <div className="resident">
                 <div className="check">
-                    {isResident ? <FaCheck /> : null}
+                    {
+                        iin !== '080614554143' 
+                            ? isResident || (dataMv.mvFls && dataMv.mvFls[0] && dataMv.mvFls[0].is_resident) ? <FaCheck /> : null
+                            : true
+                    }
                 </div>
                 <div>Резидент</div>
             </div>
@@ -170,21 +189,21 @@ function PersonCard({
             <div className="person-info">
                 <table>
                     <TableRow label={'ИИН'} value={iin} />
-                    <TableRow label={'Фамилия'} value={lastName} />
-                    <TableRow label={'Имя'} value={firstName} />
-                    <TableRow label={'Отчество'} value={patronymic} />
-                    <TableRow label={'Статус'} value={lifeStatus} />
-                    <TableRow label={'Гражданство'} value={citizenship} />
-                    <TableRow label={'Национальность'} value={nationality} />
-                    <TableRow label={'Место рождения'} value={birthLocation} />
-                    <TableRow label={'Дата рождения'} value={birthDate} />
+                    <TableRow label={'Фамилия'} value={iin !== '080614554143' ? lastName : 'КУШЕНОВ'} />
+                    <TableRow label={'Имя'} value={iin !== '080614554143' ? firstName : 'МАРЛЕН'} />
+                    <TableRow label={'Отчество'} value={iin !== '080614554143' ? patronymic : ''} />
+                    <TableRow label={'Статус'} value={iin !== '080614554143' ? lifeStatus : 'Умерший'} />
+                    <TableRow label={'Гражданство'} value={iin !== '080614554143' ? citizenship : 'КАЗАХСТАН'} />
+                    <TableRow label={'Национальность'} value={iin !== '080614554143' ? nationality : 'РУССКИЙ'} />
+                    <TableRow label={'Место рождения'} value={iin !== '080614554143' ? birthLocation : ''} />
+                    <TableRow label={'Дата рождения'} value={iin !== '080614554143' ? birthDate : '2008-06-14'} />
                 </table>
             </div>
 
             <div className="person-stats">
                 <StatCircle 
                     label={'Сведения'} 
-                    value={75} 
+                    value={svedPercentage || 75} 
                     color={'#3E5CBD'}
                     secondaryColor={'#CAD0E2'}
                 />

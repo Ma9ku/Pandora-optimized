@@ -5,7 +5,7 @@ import SimpleTable from "../SimpleTable";
 import TwoColumn from "../TwoColumn";
 import PersonCard from "../PersonCard";
 import DocsCard from "../DocsCard";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ActionButton from "../UI/ActionButton";
 
 import HierarchyChart from "../../../pages/dosPage/Hierarchy";
@@ -18,6 +18,10 @@ function RelationsTab({data, hierarchy, iin}) {
     const setMode = () => {
         setHierarchyMode(!hierarchyMode)
     }
+
+    useEffect(() => {
+        if (relIIN === '') return;
+    }, [relIIN])
 
     if (hierarchyMode) {
         return (
@@ -57,13 +61,18 @@ function RelationsTab({data, hierarchy, iin}) {
                     onRowClick={(e) => {
                         console.log(e)
                         setRelIIN(e.row_data[4] || '')
+
+                        if (e.row_data && e.row_data[4] !== '')
+                        document.querySelector('.secondary-card').scrollIntoView({
+                            behavior: 'smooth'
+                        })
                     }}
                 />
 
                 {
                     relIIN && relIIN.length > 0
                     ? (
-                        <div className="row-info">
+                        <div className="row-info secondary-card">
                             <PersonCard _iin={relIIN} secondary={true} />
                             <DocsCard _iin={relIIN} secondary={true} />
                         </div>
@@ -79,6 +88,8 @@ function RelationsTab({data, hierarchy, iin}) {
                                 onClick={() => {
                                     const url = `/profiler/person/` + relIIN
                                     window.open(url, '_blank', 'noopener,noreferrer')
+
+                                    
                                   }}
                             />
                         </div>

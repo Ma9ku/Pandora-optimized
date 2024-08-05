@@ -21,10 +21,11 @@ function ContactInfo({ data }) {
 
     return (
         <BigCollapsableBlock 
-        icon={<FaFile />}
-        name={'Контактные данные'}
-    >
-        {data && data.length > 0 ? (
+            exist={data && data.length > 0 ? true : false}
+            icon={<FaFile />}
+            name={'Контактные данные'}
+        >
+            {data && data.length > 0 ? (
                 <SimpleTable
                     columns={[
                         'Номер',

@@ -9,11 +9,11 @@ function BigCollapsableBlock({
     switcherText = null, 
     icon, 
     name, 
-    defaultOpen = false,
+    defaultOpen = true,
     exist = false
 }) {
 
-    const [open, setOpen] = useState(defaultOpen);
+    const [open, setOpen] = useState(true);
     const { theme } = useTheme();
 
     const toggleOpen = () => {

@@ -10,6 +10,7 @@ function Equipment({
 }) {
     return ( 
         <BigCollapsableBlock 
+            exist={data && data.length > 0 ? true : false}
             icon={<PiGear />}
             name={'ТЕХНИКА'}
         >

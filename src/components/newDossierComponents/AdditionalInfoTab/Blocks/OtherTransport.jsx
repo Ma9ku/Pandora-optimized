@@ -12,6 +12,11 @@ function OtherTransport({
 
     return ( 
         <BigCollapsableBlock 
+            exist={
+                (aviaTransport && aviaTransport.length > 0) 
+                || (trains && trains.length > 0) 
+                || (waterTransports && waterTransports.length > 0) ? true : false
+            }
             icon={<LuSailboat />}
             name={'ДРУГИЕ ВИДЫ ТРАНСПОРТА'}
         >
@@ -67,7 +72,7 @@ function OtherTransport({
                                     item.vagon_make_year || '---',
                                     item.vagon_series || '---',
                                     item.vagon_type || '---',
-                                    item.doc_date || '---',
+                                    item.doc_date ? item.doc_date.substring(0, 10) : '---',
                                 ])
                             }
                         />

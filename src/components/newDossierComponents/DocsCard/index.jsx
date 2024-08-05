@@ -14,7 +14,7 @@ import SameAddress from '../RisksTab/Blocks/SameAddress';
 import ModalWindow from '../modalWindow';
 
 function DocsCard({
-    _iin = null,
+    _iin,
     secondary = false,
     sameAddressFls = []
 }) {
@@ -25,8 +25,8 @@ function DocsCard({
     const [transportDocs, setTransportDocs] = useState([]);
     const [iinDocs, setIinDocs] = useState([]);
     const [transports, setTransports] = useState([]);
-    const [addressesPerm, setAddressesPerm] = useState([])
-    const [addressesTemp, setAddressesTemp] = useState([])
+    const [addressesPerm, setAddressesPerm] = useState([]);
+    const [addressesTemp, setAddressesTemp] = useState([]);
 
     let { iin } = useParams();
     iin = _iin ? _iin : iin;
@@ -34,15 +34,10 @@ function DocsCard({
     const [isLoading, setLoading] = useState(true);
 
     useEffect(() => {
-        if (_iin) {
-            setLoading(false);
-            return;
-        };
-
-        console.log("iin on doc", iin)
-
         const fetchData = () => {
             setLoading(true);
+
+            console.log("fetch");
 
             axios.get(`${dossierURL}getFirstRowByIin`, { params: { iin: iin } })
                 .then(res => {
@@ -51,7 +46,7 @@ function DocsCard({
                     const { mvIinDocList, mvFlAddresses, registrationTemps } = res.data;
 
                     mvIinDocList.map(doc => {
-                        if (doc.doc_type_ru_name === 'Паспорт') {
+                        if (doc.doc_type_ru_name === 'ПАСПОРТ РК') {
                             setPassports(prev => [...prev, doc]);
                         } else {
                             setIinDocs(prev => [...prev, doc]);
@@ -132,18 +127,12 @@ function DocsCard({
                     title_body={<>
                         <FaLocationDot />
                         <div className="title-text">АДРЕС ПРОПИСКИ</div>
-                        <div 
-                            className='text-button'
-                            onClick={() => {
-                                setAddressModalOpen(true);
-                            }}
-                        >Регистрация ФЛ на одном адресе</div>
                     </>}
                     data={{
                         'Область/Город респуб. значения': addressesPerm[0].region || "---" ,
                         'Регион/Район': addressesPerm[0].district || "---" ,
                         'Населенный пункт/Город': addressesPerm[0].city || "---" ,
-                        'Дата регистрации прописки': addressesPerm[0].addressDate.split(" ")[0] || "---" ,
+                        'Дата регистрации прописки': addressesPerm[0].addressDate ? addressesPerm[0].addressDate.split(" ")[0] : "---",
                         'Улица': addressesPerm[0].street || "---" ,
                         'Дом': addressesPerm[0].building || "---" ,
                         'Квартира': addressesPerm[0].apartment_number || "---" ,
@@ -154,7 +143,6 @@ function DocsCard({
                     title_body={<>
                         <FaLocationDot />
                         <div className="title-text">АДРЕС ПРОПИСКИ</div>
-                        <div className='text-button'>Регистрация ФЛ на одном адресе</div>
                     </>}
                 />
             }

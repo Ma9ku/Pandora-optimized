@@ -28,6 +28,7 @@ import Unemployed from './Blocks/Unemployed';
 import Administrative from './Blocks/Administrative';
 import OpgEntites from './Blocks/OpgEntites';
 import Kuis from './Blocks/kuis';
+import Sudispol from './Blocks/Sudispol';
 
 function RisksTab({data}) {
 
@@ -40,9 +41,14 @@ function RisksTab({data}) {
             {/* <ForcedTreatment data={data ? data.forcedTreatment : []} /> 
             нету */}
 
-            <Criminal data={data ? data.criminals : []} />{/*completed */}
+            <Criminal
+                criminal={data && data.criminal ? data.criminal : []}
+                convictsAbroad={data && data.convictsAbroads ? data.convictsAbroads : []} 
+                convictsJustified={data && data.convictsJustifieds ? data.convictsJustifieds : []} 
+                convictsTerminatedByRehab={data && data.convictsTerminatedByRehabs ? data.convictsTerminatedByRehabs : []} 
+            />{/*completed */}
             <MinZdrav data={data ? data.mzEntities : []} />{/*completed */}
-            <Drugs data={data ? data.drugAddicts : []} />{/*пустой */}
+            <Drugs data={data ? data.drugAddicts : []} />
 
             <NDS data={data ? data.ndsEntities : []} />
             {/* null */}
@@ -51,10 +57,10 @@ function RisksTab({data}) {
 
             <Orphanage data={data ? data.orphans : []} /> {/*completed */}
 
-            <Kartochki data={data ? data.kartochki : []} />
+            {/* <Kartochki data={data ? data.kartochki : []} />
             {/* нету */}
-            <Attend1D data={data ? data.attend1D : []} />
-            {/* нету */}
+            {/* <Attend1D data={data ? data.attend1D : []} /> */}
+            {/* нету */} 
 
             <OMN data={data ? data.omns : []} /> {/*completed */}
             <Inactive data={data ? data.dormants : []} /> {/*completed */}
@@ -84,7 +90,7 @@ function RisksTab({data}) {
             {/* <OpgEntites data={data ? data.adms : []} /> completed */}
             <Kuis data={data ? data.kuis : []} /> {/*completed */}
 
-
+            <Sudispol data={data && data.sudispols ? data.sudispols : []}/>
         </>
     );
 }

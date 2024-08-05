@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import backVideo from './../mainPage/backgroundVideo.mp4';
 
 import SignInForm from "../../components/itapComponents copy/SignInForm/SignInForm";
 import './SignInPage.css';
@@ -38,7 +37,7 @@ const SignInPage = () => {
                         objectFit: 'cover',
                         filter: 'grayscale(100%)'
                     }}>
-                        <source src={backVideo} type="video/mp4" />
+                        <source src={`${process.env.PUBLIC_URL}/backgroundVideo.mp4`} type="video/mp4" />
                         Your browser does not support the video tag.
                     </video>
             </div>

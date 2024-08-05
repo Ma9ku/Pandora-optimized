@@ -21,23 +21,24 @@ function MainInfoTab({data}) {
             <ContactInfo data={data ? data.contacts : []} />
 
             <BigCollapsableBlock 
+                exist={data.changeFio && data.changeFio.length > 0 ? true : false}
                 icon={<FaFile />}
                 name={'Смена ФИО'}
             >
                 {
-                    data.changeFio 
+                    data.changeFio && data.changeFio.length > 0
                     ? (
                         <SimpleTable
                             columns={[
                                 'ФИО старое',
                                 'Дата смены ФИО',
-                                'Номер Акта'
+                                'Причина смены'
                             ]}
                             rows={data.changeFio && Array.isArray(data.changeFio)
-                                ? data.map(item => [
-                                    `${data.changeFio.surname_before || ''} ${data.changeFio.name_before || ''} ${data.changeFio.secondname_before || ''}`,
-                                    data.changeFio.to_date,
-                                    data.changeFio.number_akt
+                                ? data.changeFio.map(item => [
+                                    `${item.surname_before || ''} ${item.name_before || ''} ${item.secondname_before || ''}`,
+                                    item.to_date,
+                                    item.remarks
                                 ])                                    
                                 : []}
                         />

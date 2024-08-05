@@ -4,6 +4,7 @@ import SimpleText from "../../UI/Text";
 import SimpleTable from "../../SimpleTable";
 import ModalWindow from "../../modalWindow";
 import { useState } from "react";
+import './style.scss'
 import axios from "axios";
 import { dossierURL } from "../../../../data/dossier";
 function Pension({
@@ -30,58 +31,17 @@ function Pension({
     return ( 
         <>
             <BigCollapsableBlock 
+                exist={data && data.length > 0 ? true : false}
                 icon={<BsCashStack />}
                 name={'Пенсионные отчисления'}
-                >
+            >
                 {
                     data && data.length > 0 
                     ? (
-                        <SimpleTable
-                            withSorting={true}
-                            columns={[
-                                {
-                                    value: 'БИН',
-                                    align: 'left',
-                                    sorting: false,
-                                },
-                                {
-                                    value: 'Наименование ЮЛ',
-                                    align: 'left',
-                                    sorting: false,
-                                },
-                                {
-                                    value: 'Период',
-                                    align: 'center',
-                                    sorting: true,
-                                },
-                                {
-                                    value: 'Сумма (010)',
-                                    align: 'center',
-                                    sorting: true,
-                                },
-                                {
-                                    value: 'Сумма (012)',
-                                    align: 'center',
-                                    sorting: true,
-                                },
-                            ]}
-                            rows={
-                                data 
-                                ? data.map(item => {
-                                    return [
-                                        item.bin || '---',
-                                        item.name || '---',
-                                        item.period || '---',
-                                        item.sum010 ? item.sum010.toLocaleString('ru-RU') : '---',
-                                        item.sum012 ? item.sum012.toLocaleString('ru-RU') : '---',
-                                    ]
-                                })
-                                : [] 
-                            }
-                            onRowClick={(e) => {
-                                fetchData( e.row_data[0], e.row_data[2])
-                            }}
-                        />
+                        data.map((x) => (
+                            <PensionGroup x = {x} fetchData={fetchData}/>
+                        ))
+                        
                         ) : <SimpleText>Нет данных</SimpleText>
                     }
 
@@ -117,6 +77,72 @@ function Pension({
             }
         </>
     );
+}
+
+
+const PensionGroup = ({x, fetchData}) => {
+    const [opened, setOpened] = useState(false)
+    return (
+        <>
+            <div className="pension-group" >
+                <div className="title" onClick={() => setOpened(!opened)}>
+                    <a>{x.name}</a>
+                </div>
+                {opened ? 
+                <div>
+
+                <SimpleTable
+                withSorting={true}
+                columns={[
+                    {
+                        value: 'БИН',
+                        align: 'left',
+                        sorting: false,
+                    },
+                    {
+                        value: 'Наименование ЮЛ',
+                        align: 'left',
+                        sorting: false,
+                    },
+                    {
+                        value: 'Период',
+                        align: 'center',
+                        sorting: true,
+                    },
+                    {
+                        value: 'Сумма (010)',
+                        align: 'center',
+                        sorting: true,
+                    },
+                    {
+                        value: 'Сумма (012)',
+                        align: 'center',
+                        sorting: true,
+                    },
+                ]}
+                rows={
+                    x.list && x.list.length > 0 
+                    ? x.list.map(item => {
+                        return [
+                            item.bin || '---',
+                            item.name || '---',
+                            item.period || '---',
+                            item.sum010 ? item.sum010.toLocaleString('ru-RU') : '---',
+                            item.sum012 ? item.sum012.toLocaleString('ru-RU') : '---',
+                        ]
+                    })
+                    : [] 
+                }
+                onRowClick={(e) => {
+                    fetchData( e.row_data[0], e.row_data[2])
+                }}
+                />
+                </div>
+                : null
+                }
+            </div>
+        </>
+    )
 }
 
 export default Pension;

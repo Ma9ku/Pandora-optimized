@@ -49,6 +49,7 @@ function Ipkh({
 
     return ( 
         <BigCollapsableBlock 
+            exist={data.length > 0 ? true : false}
             icon={<BsPerson />}
             name={'ИП/КХ'}
         >

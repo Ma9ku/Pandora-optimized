@@ -47,7 +47,7 @@ function AdditionalInfoTab({data}) {
 
             <FlUl data={data.mvUlFounderFls || []}/>
 
-            <Pension data={data.pensions || []} iin={iin}/>
+            <Pension data={data.pensionsGrouped || []} iin={iin}/>
 
             <Ipkh 
                 dataIp={data.individualEntrepreneurs || []}

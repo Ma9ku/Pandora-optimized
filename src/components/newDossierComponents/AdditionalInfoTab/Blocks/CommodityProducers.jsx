@@ -25,6 +25,7 @@ function CommodityProducers({
 
     return ( 
         <BigCollapsableBlock
+            exist={data && data.length > 0 ? true : false}
             name={'Отечественные производители'}
             icon={<FaTractor />}
         >
@@ -35,14 +36,14 @@ function CommodityProducers({
                     'Производитель',
                     'Статус'
                 ]}
-                rows={[
+                rows={
                     data.map(item => [
                         item.sspName,
                         item.count,
                         item.producer,
                         item.status
                     ])
-                ]}
+                }
             />
         </BigCollapsableBlock>
     );

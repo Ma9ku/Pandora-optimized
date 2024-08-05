@@ -14,8 +14,6 @@ import history_mock_1 from './history_mock_1.jpeg';
 import history_mock_2 from './history_mock_2.jpeg';
 import history_mock_3 from './history_mock_3.jpeg';
 import history_mock_4 from './history_mock_4.jpg';
-import homePageMock from './mockData';
-import mock from './mockResponse';
 
 function ETanu() {
   const searchContext = useSearch();
@@ -62,11 +60,6 @@ function ETanu() {
       }).catch((error) => {
         console.log(error);
         setSearching(false); // Set searching to false if an error occurs
-
-        if (devMode) {
-          searchContext.setLastRequest(mock);
-          navigate('/eTanu/search/result');
-        }
       });
     }
  
@@ -81,29 +74,19 @@ function ETanu() {
 
   useEffect(() => {
     if (authUserId) {
-      if (!devMode) {
-        axios.post(
-          'http://192.168.5.22:8081/api/v1/getUserInfo/',
-          { 'auth_user_id': authUserId },
-          { headers: { 'Authorization': 'Bearer ' + token } }
-        ).then(res => {
-          setHistory(res.data.history);
-          console.log(res.data);
-          setLoading(false);
-        }).catch(error => {
-          console.log(error);
-        });
-      } else {
-        devModeHome();
-      }
+      axios.post(
+        'http://192.168.5.22:8081/api/v1/getUserInfo/',
+        { 'auth_user_id': authUserId },
+        { headers: { 'Authorization': 'Bearer ' + token } }
+      ).then(res => {
+        setHistory(res.data.history);
+        console.log(res.data);
+        setLoading(false);
+      }).catch(error => {
+        console.log(error);
+      });
     }
   }, [authUserId, devMode, token]);
-
-  const devModeHome = async () => {
-    await new Promise(r => setTimeout(r, 2000));
-    setHistory(homePageMock.history);
-    setLoading(false);
-  }
 
   return (
     <Layout>

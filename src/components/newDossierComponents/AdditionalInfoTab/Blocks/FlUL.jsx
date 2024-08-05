@@ -8,6 +8,7 @@ function FlUl({
 }) {
     return ( 
         <BigCollapsableBlock 
+            exist={data && data.length > 0 ? true : false}
             icon={<FaBuildingUser />}
             name={'Сведения об участии в ЮЛ'}
         >

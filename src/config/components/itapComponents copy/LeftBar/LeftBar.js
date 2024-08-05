@@ -1378,7 +1378,7 @@ const HistoryBlock = (props) => {
     const userSession = JSON.parse(localStorage.getItem("user"))
     useEffect(() => {
         axios.defaults.headers.common['Authorization'] = 'Bearer ' + userSession.accessToken
-        axios.get("http://10.202.20.92:9091/api/pandora/main/getCurrUserDetails").then(res=> {
+        axios.get("http://192.168.5.21:8081/api/pandora/main/getCurrUserDetails").then(res=> {
             console.log(res.data.logs)
             const array = res.data.logs.map(x => {
                 return {

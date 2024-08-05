@@ -21,7 +21,7 @@ const Search = (props) => {
 
     const [historyTab, setHistoryTab] = useState(false)
     const [historyLoading, setHistoryLoading] = useState(true)
-    const [historyError, setHistoryError] = useState(true)
+    const [historyError, setHistoryError] = useState(false)
     const [history, setHistory] = useState([]);
 
     const navigate = useNavigate();
@@ -30,7 +30,7 @@ const Search = (props) => {
         const userSession = JSON.parse(localStorage.getItem("user"))
         axios.defaults.headers.common['Authorization'] = 'Bearer ' + userSession.accessToken
 
-        axios.get(`${pandoraURL}/logs`)
+        axios.get(`${pandoraURL}/main/logs`)
             .then((res) => {
                 setHistory(res.data)
             })
@@ -170,7 +170,7 @@ const Search = (props) => {
                                 <thead>
                                     <tr>
                                         <th>№</th>
-                                        <th>ИИН</th>
+                                        <th>Лог</th>
                                         <th>ФИО</th>
                                         <th>Дата поиска</th>
                                         <th></th>
@@ -188,17 +188,18 @@ const Search = (props) => {
                                         </tr>
                                         : (
                                             history && history.map((item, index) => {
+                                                const logIIN = item.obwii.substring(item.obwii.lastIndexOf(':')+2)
 
                                                 return <tr>
                                                     <td>{index + 1}</td>
-                                                    <td>{item.iin}</td>
+                                                    <td>{item.obwii}</td>
                                                     <td>{item.username}</td>
                                                     <td>{item.date.substring(0, 10)}</td>
                                                     <td>
                                                         <div
                                                             className='history-goto-button'
                                                             onClick={() => {
-                                                                navigate(`/profiler/person/${item.iin}`)
+                                                                navigate(`/profiler/person/${logIIN}`)
                                                             }}
                                                         >
                                                             Перейти

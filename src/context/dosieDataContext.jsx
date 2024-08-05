@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext, createContext } from 'react';
-import { mockData1 } from '../pages/new-dosie-page/mockData';
 import axios from 'axios';
 import { dossierURL } from '../data/dossier';
 
@@ -30,7 +29,6 @@ const DataProvider = ({ children }) => {
                     })
                     .catch(err => {
                         console.log("ERROR")
-                        setData(mockData1);
                     })
                     .finally(() => {
                         setLoading(false);

@@ -10,6 +10,7 @@ function Transport({
 }) {
     return ( 
         <BigCollapsableBlock 
+            exist={data && data.length > 0 ? true : false}
             icon={<IoCarSharp />}
             name={'СВЕДЕНИЯ ПО ТРАНСПОРТУ'}
         >
