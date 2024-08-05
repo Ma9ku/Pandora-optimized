@@ -7,7 +7,6 @@ import { dossierURL } from '../../data/dossier';
 import './hierarchy.scss';
 import downloadIcon from './down-arrow-download-svgrepo-com.svg';
 import { dirIcon, baseIcon } from '../../images/icons';
-import { hierachies } from './HierarchyLocal/hierarhyLocal';
 import html2canvas from 'html2canvas';
 import exportIcon from '../../assets/img/export-svgrepo-com.png'
 import { CiExport } from "react-icons/ci";
@@ -24,13 +23,9 @@ function HierarchyChart({ iin }) {
       if (iin) {
         let response;
         try {
-          if (iin.length === 6) {
-            response = hierachies.find(x => x.iin.startsWith(iin));
-          } else {
-            response = await axios.get(`${dossierURL}hierarchy`, { params: { iin } });
-            response = response.data;
-          }
-
+          response = await axios.get(`${dossierURL}hierarchy`, { params: { iin } });
+          response = response.data;
+        
           if (mounted && response) {
             setData(response);
           }
